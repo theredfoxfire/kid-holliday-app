@@ -7,17 +7,11 @@ import type {Dispatch} from '../types/Store';
 import HomePage from '../pages/HomePage';
 
 export function mapStateToProps(state: RootState) {
-  return {
-    isLoading: state.loadingIndicator.isLoginLoading,
-  };
+  return {};
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    onGuestLoginButtonPress() {
-      dispatch({type: 'RESET_ROUTE', key: 'homepage'}); // Temporary for dismiss login page
-    },
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -35,38 +35,32 @@ export default class DrawerComponent extends Component {
       <View>
         <View style={styles.containerMenus}>
           <View style={styles.drawerHeader}>
-            <View style={styles.headerTop} />
             <View style={styles.headerBottom}>
-              <View style={styles.headerBottomLeft}>
                 <Image
                   source={logoImage}
                   style={styles.image}
-                  resizeMode="contain"
+                  resizeMode="cover"
                 />
-              </View>
-              <View style={styles.headerBottomRight}>
-                <Text style={styles.logoTop}>KARSA</Text>
-                <Text style={styles.logoBottom}>Petani Pintar</Text>
-              </View>
             </View>
           </View>
           <View style={styles.drawerBody}>
-            {/*<DrawerMenuItem onPress={onPressSearch} onSwipe={onPressClose}>
-              <Icon name="search" style={styles.icon} /><Text style={styles.drawerItemLable}>Pencarian</Text>
-            </DrawerMenuItem>*/}
-            {this.props.guestMode ? null : (
-              <DrawerMenuItem onPress={onPressProfile} onSwipe={onPressClose}>
-                <Icon name="person" style={styles.icon} /><Text style={styles.drawerItemLable}>Profil Saya</Text>
-              </DrawerMenuItem>
-            )}
-            <DrawerMenuItem onPress={onPressContactUs} onSwipe={onPressClose}>
-              <Icon name="phone" style={styles.icon} /><Text style={styles.drawerItemLable}>Hubungi Kami</Text>
+            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
+              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Places</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose} style={{flex: 1, backgroundColor: '#fff'}} />
+            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
+              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Seacrh Nearby</Text>
+            </DrawerMenuItem>
+            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
+              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
+            </DrawerMenuItem>
+            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
+              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
+            </DrawerMenuItem>
+            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose} style={styles.onClose} />
           </View>
           <View style={styles.drawerFooter}>
             <DrawerMenuItem onPress={() => onPressLogout()} onSwipe={() => onPressClose()}>
-              <Icon name="lock" style={styles.icon} /><Text style={styles.drawerItemLable}>Keluar</Text>
+              <Icon name="lock" style={styles.iconFooter} /><Text style={styles.footerText}>Keluar</Text>
             </DrawerMenuItem>
           </View>
         </View>

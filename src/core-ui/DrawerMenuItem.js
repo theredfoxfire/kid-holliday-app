@@ -10,11 +10,11 @@ import {
 let {width} = Dimensions.get('window');
 let styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: width / 12,
-    marginRight: 50,
+    marginRight: 30,
   },
 });
 

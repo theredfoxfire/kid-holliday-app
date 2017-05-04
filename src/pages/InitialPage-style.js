@@ -6,8 +6,6 @@ import {
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
 
-import {LA_BLUE, LA_WHITE} from '../constants/color';
-
 const height = Platform.OS === 'ios' ? 175 : 250;
 
 export default StyleSheet.create({

@@ -28,7 +28,7 @@ export function mapDispatchToProps(dispatch: Dispatch) {
     //   dispatch({type: 'LOGIN', userAuth: user});
     // },
     onLoginSubmit() {
-      dispatch({type: 'RESET_ROUTE', key: 'homepage'}); // Temporary for dismiss login page
+      dispatch({type: 'RESET_ROUTE', key: 'homepage'});
     },
   };
 }

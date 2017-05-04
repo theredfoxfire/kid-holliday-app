@@ -2,11 +2,12 @@
 
 export const PRIMARY_BLUE = '#2d98bb';
 export const SECONDARY_RED = '#ef423e';
-export const LIGHT_YELLOW = '#fae252';
 export const PRIMARY_BUTTON = '#ef423e';
 export const INFO_TEXT = '#f13f40';
-export const LA_BLUE = '#89d0f3';
-export const LA_WHITE = '#fff';
+export const LA_BLUE = '#3194b5';
+export const LA_WHITE = '#eceeed';
+export const LA_GREY = '#8e8e8e';
+export const LA_BLUE_OLD = '#2d98bb';
 export const DARK_GREEN = '#5BA82F';
 export const DARKER_GREEN = '#1E975C';
 export const DARK_YELLOW = '#B89815';

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {
   Button,
+  TitleBar,
 } from '../core-ui';
 import styles from './HomePage-style';
 import autobind from 'class-autobind';
@@ -34,6 +35,11 @@ export default class HomePage extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+        <View style={styles.barContainer}>
+          <TitleBar
+            title="Liburan Anak"
+          />
+        </View>
         <View style={styles.imageContainer}>
           <Image source={laLogo} style={styles.image} resizeMode="contain" />
         </View>

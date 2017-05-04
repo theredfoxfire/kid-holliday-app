@@ -1,6 +1,7 @@
 // @flow
 
 import {StyleSheet} from 'react-native';
+import {LA_BLUE} from '../constants/color';
 
 export default StyleSheet.create({
   containerNoText: {
@@ -16,15 +17,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   iconText: {
-    color: 'white',
+    color: LA_BLUE,
     marginLeft: 4,
   },
   iconSize: {
     fontSize: 28,
-    color: 'white',
+    color: LA_BLUE,
   },
   iconSizeSmall: {
     fontSize: 18,
-    color: 'white',
+    color: LA_BLUE,
   },
 });

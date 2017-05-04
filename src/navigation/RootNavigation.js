@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import autobind from 'class-autobind';
 
-import {PRIMARY_BLUE} from '../constants/color';
+import {LA_GREY} from '../constants/color';
 
 import InitialPageContainer from '../containers/InitialPageContainer';
 import LoginPageContainer from '../containers/LoginPageContainer';
@@ -100,7 +100,7 @@ class RootNavigation extends Component {
           })}
         >
           <StatusBar
-            backgroundColor={PRIMARY_BLUE}
+            backgroundColor={LA_GREY}
           />
           <NavigationCardStack
             direction="horizontal"
@@ -133,12 +133,6 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: 'RESET_ROUTE',
         key: 'homepage',
-      });
-    },
-    showWalkthrough: () => {
-      dispatch({
-        type: 'RESET_ROUTE',
-        key: 'walkthrough',
       });
     },
     onPressClose() {

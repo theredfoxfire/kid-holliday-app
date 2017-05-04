@@ -22,7 +22,8 @@ type State = {
 };
 type Props = {
   isLoading: boolean;
-  onLoginSubmit: (user: {email: string; password: string}) => null;
+  // onLoginSubmit: (user: {email: string; password: string}) => null;
+  onLoginSubmit: () => null;
 };
 
 export default class LoginPage extends Component {
@@ -102,7 +103,7 @@ export default class LoginPage extends Component {
           </View>
           <Button
             text="MASUK"
-            onPress={this._onLoginSubmit}
+            onPress={this.props.onLoginSubmit}
             style={{width: 300}}
           />
         </View>

@@ -1,8 +1,10 @@
 //@flow
-import {StyleSheet, Dimensions} from 'react-native';
-import {LIGHT_GREY} from '../constants/color';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {LIGHT_GREY, LA_BLUE_OLD} from '../constants/color';
 
-let {height, width} = Dimensions.get('window');
+import {getScreenSize} from '../helpers/getSize';
+
+const height = Platform.OS === 'ios' ? 75 : 100;
 
 export default StyleSheet.create({
   containerDrawer: {
@@ -10,21 +12,25 @@ export default StyleSheet.create({
   },
   containerMenus: {
     backgroundColor: '#fff',
-    height: height,
+    height: getScreenSize().height,
   },
   drawerItem: {
-    paddingVertical: 20,
+    paddingVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: width / 12,
+    paddingLeft: getScreenSize().width / 12,
   },
   drawerItemLable: {
-    color: '#8e8e8e',
+    color: '#fff',
+    fontSize: 14,
+    marginLeft: 5,
+    fontWeight: 'bold',
+  },
+  footerText: {
+    color: LA_BLUE_OLD,
     fontSize: 14,
     marginLeft: 20,
     fontWeight: 'bold',
-  },
-  drawerHeader: {
   },
   headerBottom: {
     justifyContent: 'center',
@@ -34,17 +40,14 @@ export default StyleSheet.create({
     paddingBottom: 40,
     paddingTop: 30,
   },
-  headerBottomLeft: {
-  },
   headerBottomRight: {
     marginLeft: 10,
     marginTop: 10,
     justifyContent: 'center',
   },
   image: {
-    height: 65,
-    width: 50,
-    backgroundColor: 'transparent',
+    width: getScreenSize().width * 0.40,
+    height: height,
   },
   logoTop: {
     fontSize: 30,
@@ -64,9 +67,15 @@ export default StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 10,
     justifyContent: 'flex-start',
+    backgroundColor: LA_BLUE_OLD,
   },
   icon: {
-    color: '#3ece73',
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  iconFooter: {
+    color: LA_BLUE_OLD,
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -77,6 +86,8 @@ export default StyleSheet.create({
     borderTopColor: '#e8e8e8',
     borderTopWidth: 1,
   },
-  spacer: {
+  onClose: {
+    flex: 1,
+    backgroundColor: LA_BLUE_OLD,
   },
 });

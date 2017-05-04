@@ -66,7 +66,7 @@ export default class LoginPage extends Component {
             iconStyle={{fontSize: 25, marginRight: 10}}
             style={{backgroundColor: '#d52d28', borderColor: '#d52d28', width: 300}}
             textStyle={styles.centeredButton}
-            onPress={this.props.onFacebookLoginButtonPress}
+            onPress={this.props.onGoogleLoginButtonPress}
           />
           <View style={{height: 30}} />
           <View style={styles.divider}>
@@ -79,7 +79,7 @@ export default class LoginPage extends Component {
               textStyle={styles.centeredButton}
               inverted
               onPress={this.props.onGuestLoginButtonPress}
-              style={{width: 150}}
+              style={{width: 120}}
             />
         </View>
         <View style={styles.wall}>

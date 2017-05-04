@@ -5,8 +5,7 @@ import {
   Platform,
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
-
-import {LA_BLUE, LA_WHITE} from '../constants/color';
+import {LA_BLUE} from '../constants/color';
 
 const height = Platform.OS === 'ios' ? 175 : 250;
 
@@ -16,7 +15,7 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   wall: {
-    marginTop: -380,
+    marginTop: -420,
     zIndex: 0,
     flex: 1,
   },
@@ -35,18 +34,24 @@ export default StyleSheet.create({
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -60,
+    marginTop: -10,
   },
   welcomeContainer: {
     height: 60,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 60,
+  },
+  barContainer: {
+    height: 60,
+    zIndex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -5,
   },
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#3194b5',
+    color: LA_BLUE,
   },
 });

@@ -2,10 +2,13 @@
 
 import {StyleSheet} from 'react-native';
 
+import {LA_WHITE, LA_BLUE} from '../constants/color';
+import {getScreenSize} from '../helpers/getSize';
+
 export default StyleSheet.create({
   container: {
     height: 55,
-    backgroundColor: '#00C853',
+    backgroundColor: LA_WHITE,
     paddingHorizontal: 10,
     flexDirection: 'row',
   },
@@ -13,6 +16,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     height: 40,
@@ -27,9 +31,10 @@ export default StyleSheet.create({
   },
   title: {
     flex: 1,
-    color: 'white',
+    color: LA_BLUE,
     fontSize: 18,
     fontWeight: 'bold',
+    marginLeft: getScreenSize().width * 0.225,
   },
   leftIcon: {
     marginTop: 9,
