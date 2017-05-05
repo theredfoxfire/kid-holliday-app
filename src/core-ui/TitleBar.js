@@ -24,7 +24,7 @@ export default class TitleBar extends Component {
       <View style={[styles.container, style]}>
         <View style={styles.block}>
           <View style={styles.logo}>
-            <BurgerButtonContainer onIconButtonPress={() => onIconButtonPress} />
+            <BurgerButtonContainer />
           </View>
           <Text style={styles.title}>{title}</Text>
           {Children.count(children) !== 0 ? children : null}

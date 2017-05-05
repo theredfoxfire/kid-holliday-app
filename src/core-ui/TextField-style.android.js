@@ -25,17 +25,14 @@ export default StyleSheet.create({
   input: {
     flex: 1,
     padding: 0,
-    backgroundColor: '#c0c0c0',
+    backgroundColor: GREY,
     paddingHorizontal: 7,
     borderWidth: 0.8,
-    borderColor: '#c0c0c0',
+    borderColor: GREY,
     borderRadius: 5,
     maxHeight: 40,
     minHeight: 40,
     fontSize: 18,
-  },
-  iconBox: {
-    padding: 5,
   },
   icon: {
     fontSize: 28,

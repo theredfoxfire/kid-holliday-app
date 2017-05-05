@@ -9,16 +9,16 @@ import {
 import {Icon} from '../core-ui';
 
 import styles from './DrawerComponent-style';
-import logoImage from '../images/la-logo.png';
+import bgMenu from '../images/bg-side-menu.png';
 import DrawerMenuItem from '../core-ui/DrawerMenuItem';
 
 type Props = {
   guestMode?: boolean;
   onPressClose: () => void;
-  onPressSearch: () => void;
-  onPressProfile: () => void;
+  onPressPlaces: () => void;
+  onPressHome: () => void;
   onPressLogout: () => void;
-  onPressContactUs: () => void;
+  onPressNearBy: () => void;
 };
 
 export default class DrawerComponent extends Component {
@@ -30,25 +30,28 @@ export default class DrawerComponent extends Component {
   }
 
   render() {
-    let {onPressClose, onPressLogout, onPressProfile, onPressContactUs} = this.props;
+    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces} = this.props;
     return (
       <View>
         <View style={styles.containerMenus}>
           <View style={styles.drawerHeader}>
             <View style={styles.headerBottom}>
                 <Image
-                  source={logoImage}
+                  source={bgMenu}
                   style={styles.image}
                   resizeMode="cover"
                 />
             </View>
           </View>
           <View style={styles.drawerBody}>
-            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
+            <DrawerMenuItem onPress={onPressHome} onSwipe={onPressClose} style={styles.home}>
+              <Icon name="home" style={styles.iconFooter} /><Text style={styles.footerText}>Home</Text>
+            </DrawerMenuItem>
+            <DrawerMenuItem onPress={onPressPlaces} onSwipe={onPressClose}>
               <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Places</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
-              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Seacrh Nearby</Text>
+            <DrawerMenuItem onPress={onPressNearBy} onSwipe={onPressClose}>
+              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Search Nearby</Text>
             </DrawerMenuItem>
             <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
               <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>

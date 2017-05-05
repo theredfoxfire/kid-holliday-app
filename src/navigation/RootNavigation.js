@@ -16,6 +16,8 @@ import {LA_GREY} from '../constants/color';
 import InitialPageContainer from '../containers/InitialPageContainer';
 import LoginPageContainer from '../containers/LoginPageContainer';
 import HomePageContainer from '../containers/HomePageContainer';
+import PlacesPageContainer from '../containers/PlacesPageContainer';
+import NearbyPageContainer from '../containers/NearbyPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -32,10 +34,9 @@ type Props = {
   backToHome: () => void;
   showWalkthrough: () => void;
   onPressClose: () => void;
-  onPressSearch: () => void;
-  onPressProfile: () => void;
+  onPressPlaces: () => void;
   onPressLogout: () => void;
-  onPressContactUs: () => void;
+  onPressNearBy: () => void;
   autoLogin: (userAuth: {email: string; password: string}) => void;
 };
 
@@ -78,6 +79,8 @@ class RootNavigation extends Component {
       case 'login': return <LoginPageContainer />;
       case 'initial': return <InitialPageContainer />;
       case 'homepage': return <HomePageContainer />;
+      case 'places': return <PlacesPageContainer />;
+      case 'nearby': return <NearbyPageContainer />;
     }
   }
 
@@ -147,24 +150,30 @@ function mapDispatchToProps(dispatch) {
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressContactUs: () => {
+    onPressNearBy: () => {
       dispatch({
-        type: 'PUSH_ROUTE', key: 'contactUs',
+        type: 'RESET_ROUTE', key: 'nearby',
       });
       dispatch({
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressProfile() {
+    onPressHome() {
       dispatch({
-        type: 'PUSH_ROUTE',
-        key: 'editProfile',
+        type: 'RESET_ROUTE',
+        key: 'homepage',
       });
       dispatch({
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressSearch() {
+    onPressPlaces() {
+      dispatch({
+        type: 'RESET_ROUTE', key: 'places',
+      });
+      dispatch({
+        type: 'CLOSE_DRAWER',
+      });
     },
     autoLogin(userAuth) {
       dispatch({type: 'LOGIN', userAuth});

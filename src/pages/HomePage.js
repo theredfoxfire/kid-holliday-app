@@ -45,7 +45,7 @@ export default class HomePage extends Component {
         </View>
         <View style={styles.welcomeContainer}>
           <Text style={styles.title}>Welcome to</Text>
-          <Text>Liburan Anak</Text>
+          <Text style={styles.subtitle}>Liburan Anak</Text>
         </View>
         <View style={styles.wall}>
           <Image source={backroungCover} style={styles.backgroundImage} />

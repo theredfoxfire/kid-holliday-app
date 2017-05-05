@@ -5,9 +5,9 @@ import {
   Platform,
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
-import {LA_BLUE} from '../constants/color';
+import {LA_RED} from '../constants/color';
 
-const height = Platform.OS === 'ios' ? 175 : 250;
+const height = Platform.OS === 'ios' ? 175 : 200;
 
 export default StyleSheet.create({
   mainContainer: {
@@ -52,6 +52,10 @@ export default StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: LA_BLUE,
+    color: LA_RED,
+  },
+  subtitle: {
+    fontSize: 20,
+    color: LA_RED,
   },
 });

@@ -2,7 +2,7 @@
 
 import {StyleSheet} from 'react-native';
 
-import {LA_WHITE, LA_BLUE} from '../constants/color';
+import {LA_WHITE, LA_RED} from '../constants/color';
 import {getScreenSize} from '../helpers/getSize';
 
 export default StyleSheet.create({
@@ -31,10 +31,9 @@ export default StyleSheet.create({
   },
   title: {
     flex: 1,
-    color: LA_BLUE,
+    color: LA_RED,
     fontSize: 18,
     fontWeight: 'bold',
-    marginLeft: getScreenSize().width * 0.225,
   },
   leftIcon: {
     marginTop: 9,

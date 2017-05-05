@@ -13,6 +13,7 @@ import {
   Button,
 } from '../core-ui';
 import styles from './TextField-style';
+import {GREY} from '../constants/color';
 
 type State = {
   passwordVisible: boolean;
@@ -20,14 +21,19 @@ type State = {
 
 type Props = {
   placeholder?: string;
-  iconName?: string;
+  iconNamePre?: string;
+  iconNameEnd?: string;
   label?: string;
+  iconStylePre?: StyleSet;
+  iconStyleEnd?: StyleSet;
   itemLabelPre?: string;
   itemLabelEnd?: string;
   buttonLabel?: string;
   isPassword?: boolean;
   onButtonPress?: () => any;
-  onIconPress?: () => any;
+  onIconPressPre?: () => any;
+  onIconPressEnd?: () => any;
+  rootStyle?: StyleSet;
 };
 
 export default class TextField extends Component {
@@ -43,13 +49,24 @@ export default class TextField extends Component {
   }
 
   render() {
-    let {isPassword, placeholder, iconName, label, itemLabelPre, itemLabelEnd, buttonLabel, onButtonPress, onIconPress, ...otherProps} = this.props;
+    let {isPassword, placeholder, rootStyle, iconNameEnd, iconNamePre, label,
+      itemLabelPre, itemLabelEnd, buttonLabel, onButtonPress, onIconPressPre,
+      iconStylePre, iconStyleEnd, onIconPressEnd, ...otherProps
+    } = this.props;
     let {passwordVisible} = this.state;
-    let iconElement;
-    if (iconName) {
-      iconElement = (
-        <TouchableOpacity style={styles.iconBox} onPress={onIconPress}>
-          <Icon name={iconName} style={styles.icon} />
+    let iconElementEnd;
+    if (iconNameEnd) {
+      iconElementEnd = (
+        <TouchableOpacity onPress={onIconPressEnd}>
+          <Icon name={iconNameEnd} style={[styles.icon, iconStyleEnd]} />
+        </TouchableOpacity>
+      );
+    }
+    let iconElementPre;
+    if (iconNamePre) {
+      iconElementPre = (
+        <TouchableOpacity onPress={onIconPressPre}>
+          <Icon name={iconNamePre} style={[styles.icon, iconStylePre]} />
         </TouchableOpacity>
       );
     }
@@ -64,12 +81,13 @@ export default class TextField extends Component {
       </TouchableWithoutFeedback>
     );
     return (
-      <View style={styles.root}>
+      <View style={[styles.root, rootStyle]}>
         {label ? <View style={styles.label}><Text style={styles.textLabel}>{label}</Text></View> : null}
         <View style={styles.inputBox}>
           {itemLabelPre ? <View style={styles.labelItem}><Text>{itemLabelPre}</Text></View> : null}
-          <TextInput underlineColorAndroid="#c0c0c0" style={styles.input} placeholder={placeholder} {...secureTextEntry} {...otherProps} />
-          {iconElement}
+          {iconElementPre}
+          <TextInput underlineColorAndroid={GREY} style={styles.input} placeholder={placeholder} {...secureTextEntry} {...otherProps} />
+          {iconElementEnd}
           {itemLabelEnd ? <View style={styles.labelItem}><Text>{itemLabelEnd}</Text></View> : null}
           {buttonLabel ? <Button text={buttonLabel} style={styles.button} onPress={onButtonPress} /> : null}
           {isPassword ? passwordVisibleIcon : null}

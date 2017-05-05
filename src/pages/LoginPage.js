@@ -88,6 +88,7 @@ export default class LoginPage extends Component {
             placeholderStyle={styles.placeholderStyle}
             placeholderTextColor="#9a9a9a"
             value={this.state.password}
+            secureTextEntry
             onChangeText={this._onPasswordChange}
           />
         </View>

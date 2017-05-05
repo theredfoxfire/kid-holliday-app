@@ -14,11 +14,11 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   imageContainer: {
-    height: 300,
+    height: 150,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -60,
+    marginTop: 10,
   },
   image: {
     width: getScreenSize().width * 0.50,
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     resizeMode: 'cover'
   },
   formContainer: {
-    height: 200,
+    height: 230,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
