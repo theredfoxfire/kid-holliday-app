@@ -36,18 +36,18 @@ export default StyleSheet.create({
     resizeMode: 'cover'
   },
   formContainer: {
-    height: 230,
-    zIndex: 1,
+    height: 200,
+    zIndex: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -80,
+    marginTop: -20,
+    marginBottom: -20,
   },
   buttonContainer: {
     height: 300,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -20,
   },
   divider: {
     marginVertical: 5,

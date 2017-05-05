@@ -18,6 +18,10 @@ import LoginPageContainer from '../containers/LoginPageContainer';
 import HomePageContainer from '../containers/HomePageContainer';
 import PlacesPageContainer from '../containers/PlacesPageContainer';
 import NearbyPageContainer from '../containers/NearbyPageContainer';
+import TodoPageContainer from '../containers/TodoPageContainer';
+import PromoPageContainer from '../containers/PromoPageContainer';
+import ForgotPageContainer from '../containers/ForgotPageContainer';
+import SignupPageContainer from '../containers/SignupPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -37,6 +41,8 @@ type Props = {
   onPressPlaces: () => void;
   onPressLogout: () => void;
   onPressNearBy: () => void;
+  onPressTodo: () => void;
+  onPressPromo: () => void;
   autoLogin: (userAuth: {email: string; password: string}) => void;
 };
 
@@ -81,13 +87,17 @@ class RootNavigation extends Component {
       case 'homepage': return <HomePageContainer />;
       case 'places': return <PlacesPageContainer />;
       case 'nearby': return <NearbyPageContainer />;
+      case 'todo': return <TodoPageContainer />;
+      case 'promo': return <PromoPageContainer />;
+      case 'forgot': return <ForgotPageContainer />;
+      case 'signup': return <SignupPageContainer />;
     }
   }
 
   render() {
     let firstRouteKey = this.props.navigation.routes[0].key;
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, zIndex: 1}}>
         <Drawer
           open={this.props.isDrawerOpen}
           type="overlay"
@@ -170,6 +180,22 @@ function mapDispatchToProps(dispatch) {
     onPressPlaces() {
       dispatch({
         type: 'RESET_ROUTE', key: 'places',
+      });
+      dispatch({
+        type: 'CLOSE_DRAWER',
+      });
+    },
+    onPressTodo() {
+      dispatch({
+        type: 'RESET_ROUTE', key: 'todo',
+      });
+      dispatch({
+        type: 'CLOSE_DRAWER',
+      });
+    },
+    onPressPromo() {
+      dispatch({
+        type: 'RESET_ROUTE', key: 'promo',
       });
       dispatch({
         type: 'CLOSE_DRAWER',

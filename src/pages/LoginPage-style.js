@@ -15,8 +15,6 @@ export default StyleSheet.create({
     paddingBottom: (Platform.OS === 'ios') ? 15 : 50,
     height: 225,
   },
-  formContainer: {
-  },
   field: {
     width: 300,
   },

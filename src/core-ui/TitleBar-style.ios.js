@@ -1,6 +1,7 @@
 // @flow
 
 import {StyleSheet} from 'react-native';
+import {LA_RED} from '../constants/color';
 
 export default StyleSheet.create({
   container: {

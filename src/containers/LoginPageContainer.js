@@ -30,6 +30,12 @@ export function mapDispatchToProps(dispatch: Dispatch) {
     onLoginSubmit() {
       dispatch({type: 'RESET_ROUTE', key: 'homepage'});
     },
+    onPressForgot() {
+      dispatch({type: 'PUSH_ROUTE', key: 'forgot'});
+    },
+    onPressSignup() {
+      dispatch({type: 'PUSH_ROUTE', key: 'signup'});
+    },
   };
 }
 

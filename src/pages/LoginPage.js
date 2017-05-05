@@ -24,6 +24,8 @@ type Props = {
   isLoading: boolean;
   // onLoginSubmit: (user: {email: string; password: string}) => null;
   onLoginSubmit: () => null;
+  onPressSignup: () => void;
+  onPressForgot: () => void;
 };
 
 export default class LoginPage extends Component {
@@ -67,8 +69,9 @@ export default class LoginPage extends Component {
   //   });
   // }
   render() {
-    let {isLoading, onPressForgot} = this.props;
+    let {isLoading, onPressForgot, onPressSignup} = this.props;
     let pressForgot = onPressForgot ? onPressForgot : () => {};
+    let pressSignup = onPressSignup ? onPressSignup : () => {};
     // if (isLoading) {
     //   return <LoadingIndicator />;
     // }
@@ -93,12 +96,12 @@ export default class LoginPage extends Component {
           />
         </View>
         <View style={styles.forgot}>
-          <TouchableOpacity onPress={() => pressForgot()}>
+          <TouchableOpacity onPress={pressForgot}>
             <Text style={styles.labelForgot}>Forgot Password?</Text>
           </TouchableOpacity>
           <View style={styles.signUp}>
             <Text>Don't have any account? </Text>
-            <TouchableOpacity onPress={() => pressForgot()}>
+            <TouchableOpacity onPress={pressSignup}>
               <Text style={styles.labelForgot}>Sign Up.</Text>
             </TouchableOpacity>
           </View>

@@ -19,6 +19,8 @@ type Props = {
   onPressHome: () => void;
   onPressLogout: () => void;
   onPressNearBy: () => void;
+  onPressTodo: () => void;
+  onPressPromo: () => void;
 };
 
 export default class DrawerComponent extends Component {
@@ -30,7 +32,7 @@ export default class DrawerComponent extends Component {
   }
 
   render() {
-    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces} = this.props;
+    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo} = this.props;
     return (
       <View>
         <View style={styles.containerMenus}>
@@ -51,19 +53,19 @@ export default class DrawerComponent extends Component {
               <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Places</Text>
             </DrawerMenuItem>
             <DrawerMenuItem onPress={onPressNearBy} onSwipe={onPressClose}>
-              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Search Nearby</Text>
+              <Icon name="explore" style={styles.icon} /><Text style={styles.drawerItemLable}>Search Nearby</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
-              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
+            <DrawerMenuItem onPress={onPressTodo} onSwipe={onPressClose}>
+              <Icon name="done-all" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose}>
-              <Icon name="place" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
+            <DrawerMenuItem onPress={onPressPromo} onSwipe={onPressClose}>
+              <Icon name="monetization-on" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
             </DrawerMenuItem>
             <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose} style={styles.onClose} />
           </View>
           <View style={styles.drawerFooter}>
             <DrawerMenuItem onPress={() => onPressLogout()} onSwipe={() => onPressClose()}>
-              <Icon name="lock" style={styles.iconFooter} /><Text style={styles.footerText}>Keluar</Text>
+              <Icon name="exit-to-app" style={styles.iconFooter} /><Text style={styles.footerText}>Keluar</Text>
             </DrawerMenuItem>
           </View>
         </View>

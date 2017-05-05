@@ -9,6 +9,7 @@ import {
 import {
   Button,
   TitleBar,
+  ButtonRow,
 } from '../core-ui';
 import styles from './NearbyPage-style';
 import autobind from 'class-autobind';
@@ -38,7 +39,7 @@ export default class NearbyPage extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
           <TitleBar
-            title="Search Nearby"
+            title="Discounts & Promotions"
           />
         </View>
         <ScrollView>
@@ -51,21 +52,23 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
+                <ButtonRow>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
+                </ButtonRow>
               </View>
             </View>
           </View>
@@ -78,17 +81,17 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
@@ -105,17 +108,17 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
@@ -132,17 +135,17 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
@@ -159,17 +162,17 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
@@ -186,17 +189,17 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance 8.7 km</Text>
+                <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
-                    text="INFO"
+                    text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
                   />
                 <Button
-                    text="DIRECTION"
+                    text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
                     onPress={() => {}}
