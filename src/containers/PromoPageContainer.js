@@ -11,7 +11,11 @@ export function mapStateToProps(state: RootState) {
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
-  return {};
+  return {
+    promoDetails() {
+      dispatch({type: 'PUSH_ROUTE', key: 'promoDetail'});
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PromoPage);

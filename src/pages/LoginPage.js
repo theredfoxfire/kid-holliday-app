@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  AsyncStorage,
+  Alert,
 } from 'react-native';
 import {
   Button,
@@ -22,8 +22,7 @@ type State = {
 };
 type Props = {
   isLoading: boolean;
-  // onLoginSubmit: (user: {email: string; password: string}) => null;
-  onLoginSubmit: () => null;
+  onLoginSubmit: (user: {email: string; password: string}) => null;
   onPressSignup: () => void;
   onPressForgot: () => void;
 };
@@ -43,11 +42,22 @@ export default class LoginPage extends Component {
     });
   }
   _onLoginSubmit() {
-    // this.props.onLoginSubmit({
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // });
-    this.props.onLoginSubmit();
+    // let regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    // else if (!regexEmail.test(this.state.email)) {
+    //   Alert.alert('Liburan Anak', 'Periksa kolom email, isilah email dengan benar.', [
+    //     {text: 'OK!'},
+    //   ]);
+    // }
+    if ((this.state.email === '') || (this.state.password === '')) {
+      Alert.alert('Liburan Anak', 'Periksa form login, pastikan semua kolom sudah terisi.', [
+        {text: 'OK!'},
+      ]);
+    } else {
+      this.props.onLoginSubmit({
+        email: this.state.email,
+        password: this.state.password,
+      });
+    }
   }
   constructor() {
     super(...arguments);
@@ -72,9 +82,9 @@ export default class LoginPage extends Component {
     let {isLoading, onPressForgot, onPressSignup} = this.props;
     let pressForgot = onPressForgot ? onPressForgot : () => {};
     let pressSignup = onPressSignup ? onPressSignup : () => {};
-    // if (isLoading) {
-    //   return <LoadingIndicator />;
-    // }
+    if (isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.field}>
@@ -107,7 +117,7 @@ export default class LoginPage extends Component {
           </View>
           <Button
             text="MASUK"
-            onPress={this.props.onLoginSubmit}
+            onPress={() => this._onLoginSubmit()}
             style={{width: 300}}
           />
         </View>

@@ -40,4 +40,13 @@ export default StyleSheet.create({
     padding: 0,
     paddingBottom: 2,
   },
+  rightIcon: {
+    marginTop: 9,
+    padding: 0,
+    paddingBottom: 2,
+  },
+  icon: {
+    fontSize: 28,
+    color: LA_RED,
+  }
 });

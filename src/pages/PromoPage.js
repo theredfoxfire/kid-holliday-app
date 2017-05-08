@@ -22,10 +22,10 @@ type State = {
 
 };
 type Props = {
-
+  promoDetails?: () => void;
 };
 
-export default class NearbyPage extends Component {
+export default class PromoPage extends Component {
   state: State;
   props: Props;
 
@@ -35,6 +35,7 @@ export default class NearbyPage extends Component {
   }
 
   render() {
+    let {promoDetails} = this.props;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
@@ -55,12 +56,11 @@ export default class NearbyPage extends Component {
                 <Text style={styles.distance}>12 - 18 Mei 2017</Text>
               </View>
               <View style={styles.buttonContainer}>
-                <ButtonRow>
                 <Button
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"
@@ -68,7 +68,6 @@ export default class NearbyPage extends Component {
                     inverted
                     onPress={() => {}}
                   />
-                </ButtonRow>
               </View>
             </View>
           </View>
@@ -88,7 +87,7 @@ export default class NearbyPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"
@@ -115,7 +114,7 @@ export default class NearbyPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"
@@ -142,7 +141,7 @@ export default class NearbyPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"
@@ -169,7 +168,7 @@ export default class NearbyPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"
@@ -196,7 +195,7 @@ export default class NearbyPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={promoDetails}
                   />
                 <Button
                     text="ADD TO TODO LIST"

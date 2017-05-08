@@ -11,7 +11,11 @@ export function mapStateToProps(state: RootState) {
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
-  return {};
+  return {
+    placeDetail() {
+      dispatch({type: 'PUSH_ROUTE', key: 'placeDetail'});
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlacesPage);

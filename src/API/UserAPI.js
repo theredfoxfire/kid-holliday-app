@@ -2,8 +2,6 @@
 
 import fetchJSON from '../helpers/fetchJSON';
 import formatUrlEncoded from '../helpers/formatUrlEncoded';
-import type {Profile, UpdatePassword} from '../types/User';
-import type {Registration, FBUserRegistration} from '../types/Registration';
 import SERVER_API from '../constants/defaultServerAPIUrl';
 
 type Authentication = {
@@ -19,16 +17,7 @@ type FetchReturn = {
 
 const UserAPI = {
   postLogin(userAuth: Authentication): Promise<FetchReturn> {
-    let urlEncoded = formatUrlEncoded(userAuth);
-    let options = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: urlEncoded,
-    };
-    return fetchJSON(`/login`, options);
+    return fetchJSON(`/login.php?act=login&un=${userAuth.email}&pw=${userAuth.password}`);
   },
   updateUserID(token: string, playerID: string) {
     let urlEncoded = formatUrlEncoded({player_id: playerID});
@@ -135,7 +124,7 @@ const UserAPI = {
   },
 
   logout(token: string) {
-    return fetchJSON(`/logout?token=${token}`);
+    // return fetchJSON(`/logout?token=${token}`);
   },
 
   editUserProfile(token: string, profile: Profile) {

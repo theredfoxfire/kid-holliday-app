@@ -11,7 +11,11 @@ export function mapStateToProps(state: RootState) {
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
-  return {};
+  return {
+    todoDetails() {
+      dispatch({type: 'PUSH_ROUTE', key: 'todoDetail'});
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPage);

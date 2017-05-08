@@ -20,19 +20,6 @@ export default function currentUserReducer(state: User, action: Action) {
         token: '',
       };
     }
-    case 'EDIT_PROFILE_SUBMITTED': {
-      let {tempProfile} = action;
-      return {
-        ...state,
-        ...tempProfile,
-      };
-    }
-    case 'REGISTER_USER_SUCCESS': {
-      return {
-        ...state,
-        ...action.user,
-      };
-    }
   }
   return state;
 }

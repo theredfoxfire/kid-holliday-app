@@ -1,8 +1,6 @@
 // @flow
-
-export const SERVER_API = 'http://www.ingkarsa.com/api/v2';
-export const STAGING_API = 'http://karsa-staging.livepreview.org/api/v2';
 export const GOOGLE_MAPS_API = 'https://maps.googleapis.com/maps/api';
-export const GAMIFY_API = 'http://karsa-gamify.livepreview.org/api';
+export const LA_DEV_API = 'http://localhost/~Me/imajiku/liburan-anak-api';
+export const LA_API = 'http://www.liburananak.com/api';
 
-export default STAGING_API;
+export default LA_API;

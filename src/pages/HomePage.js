@@ -33,6 +33,7 @@ export default class HomePage extends Component {
   }
 
   render() {
+    let {currentUser} = this.props;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
@@ -46,6 +47,7 @@ export default class HomePage extends Component {
         <View style={styles.welcomeContainer}>
           <Text style={styles.title}>Welcome to</Text>
           <Text style={styles.subtitle}>Liburan Anak</Text>
+          <Text style={styles.subtitle}>{currentUser.first_name} {currentUser.last_name}</Text>
         </View>
         <View style={styles.wall}>
           <Image source={backroungCover} style={styles.backgroundImage} />

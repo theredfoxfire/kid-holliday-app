@@ -22,6 +22,10 @@ import TodoPageContainer from '../containers/TodoPageContainer';
 import PromoPageContainer from '../containers/PromoPageContainer';
 import ForgotPageContainer from '../containers/ForgotPageContainer';
 import SignupPageContainer from '../containers/SignupPageContainer';
+import NearbyDetailPageContainer from '../containers/NearbyDetailPageContainer';
+import TodoDetailPageContainer from '../containers/TodoDetailPageContainer';
+import PromoDetailPageContainer from '../containers/PromoDetailPageContainer';
+import PlaceDetailPageContainer from '../containers/PlaceDetailPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -36,7 +40,6 @@ type Props = {
   isDrawerOpen: boolean;
   popRoute: () => void;
   backToHome: () => void;
-  showWalkthrough: () => void;
   onPressClose: () => void;
   onPressPlaces: () => void;
   onPressLogout: () => void;
@@ -65,7 +68,7 @@ class RootNavigation extends Component {
   _handleBackAction() {
     if (this.props.navigation.index === 0) {
       let firstRouteKey = this.props.navigation.routes[0].key;
-      if (['walkthrough', 'initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
+      if (['initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
         Alert.alert('Liburan Anak', 'Keluar dari aplikasi?', [
           {text: 'Iya', onPress: () => BackAndroid.exitApp()},
           {text: 'Tidak'},
@@ -91,6 +94,10 @@ class RootNavigation extends Component {
       case 'promo': return <PromoPageContainer />;
       case 'forgot': return <ForgotPageContainer />;
       case 'signup': return <SignupPageContainer />;
+      case 'nearbyDetail': return <NearbyDetailPageContainer />;
+      case 'todoDetail': return <TodoDetailPageContainer />;
+      case 'promoDetail': return <PromoDetailPageContainer />;
+      case 'placeDetail': return <PlaceDetailPageContainer />;
     }
   }
 

@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Button,
@@ -22,8 +23,9 @@ import woodyKid from '../images/woody-kid-zone.jpg';
 type State = {
 
 };
-type Props = {
 
+type Props = {
+  placeDetail: () => void;
 };
 
 export default class PlacesPage extends Component {
@@ -36,6 +38,7 @@ export default class PlacesPage extends Component {
   }
 
   render() {
+    let {placeDetail} = this.props;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
@@ -55,36 +58,46 @@ export default class PlacesPage extends Component {
           </View>
         </View>
         <ScrollView>
-          <View style={styles.listContainer}>
-            <Image source={newKuta} style={styles.image} resizeMode="stretch" />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>New Kuta Green Park</Text>
+          <TouchableOpacity onPress={() => placeDetail()}>
+            <View style={styles.listContainer}>
+              <Image source={newKuta} style={styles.image} resizeMode="stretch" />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>New Kuta Green Park</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.listContainer}>
-            <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Woody Kids</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => placeDetail()}>
+            <View style={styles.listContainer}>
+              <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>Woody Kids</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.listContainer}>
-            <Image source={newKuta} style={styles.image} resizeMode="stretch" />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>New Kuta Green Park</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => placeDetail()}>
+            <View style={styles.listContainer}>
+              <Image source={newKuta} style={styles.image} resizeMode="stretch" />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>New Kuta Green Park</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.listContainer}>
-            <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Woody Kids</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => placeDetail()}>
+            <View style={styles.listContainer}>
+              <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>Woody Kids</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.listContainer}>
-            <Image source={newKuta} style={styles.image} resizeMode="stretch" />
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>New Kuta Green Park</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => placeDetail()}>
+            <View style={styles.listContainer}>
+              <Image source={newKuta} style={styles.image} resizeMode="stretch" />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>New Kuta Green Park</Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     );

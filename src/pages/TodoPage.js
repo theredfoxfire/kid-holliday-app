@@ -16,13 +16,13 @@ import styles from './TodoPage-style';
 import autobind from 'class-autobind';
 import newKuta from '../images/new-kuta.jpg';
 import woodyKid from '../images/woody-kid-zone.jpg';
-import ModalPicker from 'react-native-modal-picker'
+import ModalPicker from 'react-native-modal-picker';
 
 type State = {
 
 };
 type Props = {
-
+  todoDetails?: () => void;
 };
 
 export default class TodoPage extends Component {
@@ -33,16 +33,22 @@ export default class TodoPage extends Component {
     super(...arguments);
     autobind(this);
     this.state = {
-      textInputValue: ''
+      selectedOption: '',
     };
+  }
+
+  _selectedAction(selectedOption: number) {
+    if (selectedOption === 1) {
+      return this.props.todoDetails();
+    }
   }
 
   render() {
     let index = 0;
     const data = [
-        { key: index++, label: 'View details' },
-        { key: index++, label: 'Uncheck this item' },
-        { key: index++, label: 'Remove from list' },
+        { key: index++, label: 'View details', value: 1 },
+        { key: index++, label: 'Uncheck this item', value: 2 },
+        { key: index++, label: 'Remove from list', value: 3 },
     ];
     return (
       <View style={styles.mainContainer}>
@@ -55,7 +61,7 @@ export default class TodoPage extends Component {
         <ModalPicker
           data={data}
           initValue=""
-          onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+          onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={newKuta} style={styles.image} resizeMode="stretch" />
@@ -72,7 +78,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
@@ -89,7 +95,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={newKuta} style={styles.image} resizeMode="stretch" />
@@ -106,7 +112,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
@@ -115,6 +121,7 @@ export default class TodoPage extends Component {
                   <Text>Tanah Abang, Jakarta Selatan</Text>
                 </View>
                 <View style={styles.checklistContainer}>
+                 <Icon name="more-vert" style={styles.checlist} />
                 </View>
               </View>
             </View>
@@ -122,7 +129,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={newKuta} style={styles.image} resizeMode="stretch" />
@@ -131,6 +138,7 @@ export default class TodoPage extends Component {
                   <Text>Tanah Abang, Jakarta Selatan</Text>
                 </View>
                 <View style={styles.checklistContainer}>
+                 <Icon name="more-vert" style={styles.checlist} />
                 </View>
               </View>
             </View>
@@ -138,7 +146,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
@@ -147,6 +155,7 @@ export default class TodoPage extends Component {
                   <Text>Tanah Abang, Jakarta Selatan</Text>
                 </View>
                 <View style={styles.checklistContainer}>
+                 <Icon name="more-vert" style={styles.checlist} />
                 </View>
               </View>
             </View>
@@ -154,7 +163,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={newKuta} style={styles.image} resizeMode="stretch" />
@@ -163,6 +172,7 @@ export default class TodoPage extends Component {
                   <Text>Tanah Abang, Jakarta Selatan</Text>
                 </View>
                 <View style={styles.checklistContainer}>
+                 <Icon name="more-vert" style={styles.checlist} />
                 </View>
               </View>
             </View>
@@ -170,7 +180,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
@@ -179,6 +189,7 @@ export default class TodoPage extends Component {
                   <Text>Tanah Abang, Jakarta Selatan</Text>
                 </View>
                 <View style={styles.checklistContainer}>
+                 <Icon name="more-vert" style={styles.checlist} />
                 </View>
               </View>
             </View>
@@ -186,7 +197,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={newKuta} style={styles.image} resizeMode="stretch" />
@@ -203,7 +214,7 @@ export default class TodoPage extends Component {
           <ModalPicker
             data={data}
             initValue=""
-            onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+            onChange={(option)=>{this._selectedAction(option.value)}}>
             <View style={styles.placeContainer}>
               <View style={styles.itemPlaceContainer}>
                 <Image source={woodyKid} style={styles.image} resizeMode="stretch" />

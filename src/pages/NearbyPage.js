@@ -21,7 +21,7 @@ type State = {
 
 };
 type Props = {
-
+  onPressDetail: () => void;
 };
 
 export default class NearbyPage extends Component {
@@ -34,11 +34,12 @@ export default class NearbyPage extends Component {
   }
 
   render() {
+    let {onPressDetail} = this.props;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
           <TitleBar
-            title="Search Nearby"
+            title="Nearby Places"
           />
         </View>
         <ScrollView>
@@ -58,7 +59,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"
@@ -85,7 +86,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"
@@ -112,7 +113,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"
@@ -139,7 +140,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"
@@ -166,7 +167,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"
@@ -193,7 +194,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={onPressDetail}
                   />
                 <Button
                     text="DIRECTION"

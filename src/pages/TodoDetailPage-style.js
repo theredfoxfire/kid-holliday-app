@@ -14,33 +14,16 @@ export default StyleSheet.create({
     flex: 1,
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
-  wall: {
-    marginTop: -420,
-    zIndex: 0,
-    flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover'
-  },
   image: {
-    width: getScreenSize().width * 0.50,
+    width: getScreenSize().width * 0.9,
     height: height,
+    marginRight: -3,
+    marginBottom: 15,
   },
-  imageContainer: {
-    height: 200,
-    zIndex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: -10,
-  },
-  welcomeContainer: {
-    height: 90,
-    zIndex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  contentContainer: {
+    height: getScreenSize().height * 0.9,
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
   },
   barContainer: {
     height: 60,
@@ -50,12 +33,11 @@ export default StyleSheet.create({
     marginTop: -5,
   },
   title: {
-    fontSize: 25,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: LA_RED,
   },
-  subtitle: {
-    fontSize: 20,
-    color: LA_RED,
+  text: {
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
 });

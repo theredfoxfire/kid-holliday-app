@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import type {RootState} from '../types/RootState';
 import type {Dispatch} from '../types/Store';
-import NearbyPage from '../pages/NearbyPage';
+import NearbyDetailPage from '../pages/NearbyDetailPage';
 
 export function mapStateToProps(state: RootState) {
   return {};
@@ -12,10 +12,13 @@ export function mapStateToProps(state: RootState) {
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    onPressDetail() {
-      dispatch({type: 'PUSH_ROUTE', key: 'nearbyDetail'});
+    backToNearby: () => {
+      dispatch({
+        type: 'RESET_ROUTE',
+        key: 'nearby',
+      });
     },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NearbyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(NearbyDetailPage);
