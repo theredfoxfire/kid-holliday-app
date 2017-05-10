@@ -15,13 +15,10 @@ type FetchReturn = {
   message: Object | string | Array<Object>;
 };
 
-const UserAPI = {
-  postLogin(userAuth: Authentication): Promise<FetchReturn> {
-    return fetchJSON(`/login.php?act=login&un=${userAuth.email}&pw=${userAuth.password}`);
-  },
-  logout(token: string) {
-    // return fetchJSON(`/logout?token=${token}`);
+const SearchAPI = {
+  searchName(name: string): Promise<FetchReturn> {
+    return fetchJSON(`/search_area_new.php?act=search&name=${name}`);
   },
 };
 
-export default UserAPI;
+export default SearchAPI;

@@ -7,7 +7,10 @@ import type {Dispatch} from '../types/Store';
 import TodoPage from '../pages/TodoPage';
 
 export function mapStateToProps(state: RootState) {
-  return {};
+  return {
+    todo: state.todo,
+    isFetchTodoLoading: state.loadingIndicator.isFetchTodoLoading,
+  };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {

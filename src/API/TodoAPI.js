@@ -15,13 +15,10 @@ type FetchReturn = {
   message: Object | string | Array<Object>;
 };
 
-const UserAPI = {
-  postLogin(userAuth: Authentication): Promise<FetchReturn> {
-    return fetchJSON(`/login.php?act=login&un=${userAuth.email}&pw=${userAuth.password}`);
-  },
-  logout(token: string) {
-    // return fetchJSON(`/logout?token=${token}`);
+const TodoAPI = {
+  todoList(username: string): Promise<FetchReturn> {
+    return fetchJSON(`/todolist.php?act=list&un=${username}`);
   },
 };
 
-export default UserAPI;
+export default TodoAPI;

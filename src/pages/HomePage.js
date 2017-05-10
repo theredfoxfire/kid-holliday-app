@@ -20,7 +20,7 @@ type State = {
 
 };
 type Props = {
-
+  currentUser: Object;
 };
 
 export default class HomePage extends Component {

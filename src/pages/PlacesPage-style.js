@@ -27,7 +27,7 @@ export default StyleSheet.create({
     backgroundColor: LA_BLUE_LIGHT,
   },
   listContainer: {
-    height: 230,
+    height: 280,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
   },
   titleContainer: {
-    width: 300,
+    width: 350,
     marginTop: 5,
   },
   title: {
@@ -86,5 +86,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -5,
+  },
+  init: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
 });

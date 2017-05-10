@@ -21,6 +21,7 @@ type Props = {
   onPressNearBy: () => void;
   onPressTodo: () => void;
   onPressPromo: () => void;
+  currentUser: {};
 };
 
 export default class DrawerComponent extends Component {
@@ -32,7 +33,7 @@ export default class DrawerComponent extends Component {
   }
 
   render() {
-    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo} = this.props;
+    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo, currentUser} = this.props;
     return (
       <View>
         <View style={styles.containerMenus}>
@@ -55,7 +56,7 @@ export default class DrawerComponent extends Component {
             <DrawerMenuItem onPress={onPressNearBy} onSwipe={onPressClose}>
               <Icon name="explore" style={styles.icon} /><Text style={styles.drawerItemLable}>Search Nearby</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={onPressTodo} onSwipe={onPressClose}>
+            <DrawerMenuItem onPress={() => onPressTodo(currentUser.username)} onSwipe={onPressClose}>
               <Icon name="done-all" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
             </DrawerMenuItem>
             <DrawerMenuItem onPress={onPressPromo} onSwipe={onPressClose}>

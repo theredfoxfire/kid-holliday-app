@@ -135,10 +135,11 @@ class RootNavigation extends Component {
 }
 
 function mapStateToProps(state) {
-  let {navigation, isDrawerOpen} = state;
+  let {navigation, isDrawerOpen, currentUser} = state;
   return {
     navigation,
     isDrawerOpen,
+    currentUser,
   };
 }
 
@@ -192,13 +193,14 @@ function mapDispatchToProps(dispatch) {
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressTodo() {
+    onPressTodo(username: string) {
       dispatch({
         type: 'RESET_ROUTE', key: 'todo',
       });
       dispatch({
         type: 'CLOSE_DRAWER',
       });
+      dispatch({type: 'FETCH_TODO', username: username});
     },
     onPressPromo() {
       dispatch({
