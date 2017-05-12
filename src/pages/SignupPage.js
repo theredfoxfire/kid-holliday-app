@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
+  Keyboard,
 } from 'react-native';
 import {
   Button,
@@ -15,8 +16,6 @@ import styles from './SignupPage-style';
 import autobind from 'class-autobind';
 import backroungCover from '../images/la-background.png';
 import laLogo from '../images/la-logo.png';
-
-
 
 type State = {
 
@@ -29,6 +28,28 @@ type Props = {
 export default class SignupPage extends Component {
   state: State;
   props: Props;
+
+  componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
+  }
+
+  keyboardDidShow (e) {
+    this.setState({
+      topLogo: {height: 100}
+    })
+  }
+
+  keyboardDidHide (e) {
+    this.setState({
+      topLogo: {}
+    })
+  }
 
   _onEmailChange(text: string) {
     this.setState({
@@ -65,6 +86,7 @@ export default class SignupPage extends Component {
       username: '',
       password: '',
       repassword: '',
+      topLogo: {},
     };
   }
 
@@ -78,8 +100,8 @@ export default class SignupPage extends Component {
             onIconButtonPress={this.props.backToLogin}
           />
         </View>
-        <View style={styles.imageContainer}>
-          <Image source={laLogo} style={styles.image} resizeMode="contain" />
+        <View style={[styles.imageContainer, this.state.topLogo]}>
+          <Image source={laLogo} style={[styles.image, this.state.topLogo]} resizeMode="contain" />
         </View>
         <View style={styles.formContainer}>
           <ScrollView keyboardShouldPersistTaps="always">

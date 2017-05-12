@@ -23,6 +23,7 @@ export default StyleSheet.create({
     borderBottomColor: GREY,
     borderBottomWidth: 2,
     marginBottom: 10,
+    marginHorizontal:5,
     backgroundColor: '#fff',
   },
   barContainer: {
@@ -37,7 +38,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
   },
   titleContainer: {
-    width: 250,
+    width: 220,
     marginLeft: 10,
   },
   title: {
@@ -50,6 +51,7 @@ export default StyleSheet.create({
   checlist: {
     marginTop: 15,
     color: LA_BLUE_OLD,
+    marginRight: 5,
     fontSize: 30,
   },
   picker: {

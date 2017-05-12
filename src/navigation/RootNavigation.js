@@ -168,7 +168,7 @@ function mapDispatchToProps(dispatch) {
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressNearBy: () => {
+    onPressNearBy: (latLong: string) => {
       dispatch({
         type: 'RESET_ROUTE', key: 'nearby',
       });
@@ -195,12 +195,11 @@ function mapDispatchToProps(dispatch) {
     },
     onPressTodo(username: string) {
       dispatch({
-        type: 'RESET_ROUTE', key: 'todo',
-      });
-      dispatch({
         type: 'CLOSE_DRAWER',
       });
-      dispatch({type: 'FETCH_TODO', username: username});
+      dispatch({
+        type: 'RESET_ROUTE', key: 'todo',
+      });
     },
     onPressPromo() {
       dispatch({

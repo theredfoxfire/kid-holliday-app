@@ -24,6 +24,7 @@ type Props = {
   todoDetails?: () => void;
   todo: Array<Object>;
   isFetchTodoLoading: boolean;
+  fetchTodo?: (username: string) => void;
 };
 
 export default class TodoPage extends Component {
@@ -36,6 +37,10 @@ export default class TodoPage extends Component {
     this.state = {
       selectedOption: '',
     };
+  }
+
+  componentWillMount() {
+    this.props.fetchTodo(this.props.currentUser.username);
   }
 
   _selectedAction(selectedOption: number) {

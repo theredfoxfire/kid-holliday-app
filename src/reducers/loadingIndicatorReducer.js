@@ -9,6 +9,8 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
       isLoginLoading: false,
       isFetchTodoLoading: false,
       isFetchSearchNameLoading: false,
+      isFetchPromoLoading: false,
+      isFetchNearbyLoading: false,
     };
   } else {
     switch (action.type) {
@@ -53,6 +55,32 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         return {
           ...state,
           isFetchSearchNameLoading: false,
+        };
+      }
+      case 'FETCH_PROMO': {
+        return {
+          ...state,
+          isFetchPromoLoading: true,
+        };
+      }
+      case 'FETCH_PROMO_FAILED':
+      case 'FETCH_PROMO_SUCCESS': {
+        return {
+          ...state,
+          isFetchPromoLoading: false,
+        };
+      }
+      case 'FETCH_NEARBY': {
+        return {
+          ...state,
+          isFetchNearbyLoading: true,
+        };
+      }
+      case 'FETCH_NEARBY_FAILED':
+      case 'FETCH_NEARBY_SUCCESS': {
+        return {
+          ...state,
+          isFetchNearbyLoading: false,
         };
       }
 

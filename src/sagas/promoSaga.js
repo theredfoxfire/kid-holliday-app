@@ -3,22 +3,21 @@
 import {AsyncStorage, ToastAndroid} from 'react-native';
 import {put, call, take} from 'redux-saga/effects';
 
-import TodoAPI from '../API/TodoAPI';
+import PromoAPI from '../API/PromoAPI';
 import {encrypt} from '../helpers/encryption';
 
-export function* watchTodoSaga(): any {
+export function* watchPromoSaga(): any {
   while (true) { //eslint-disable-line
-    let action = yield take('FETCH_TODO');
+    let action = yield take('FETCH_PROMO');
     try {
-      let {username} = action;
-      let result = yield call(TodoAPI.todoList, username);
+      let result = yield call(PromoAPI.promoList);
       if (result.data.length > 0) {
-        yield put({type: 'FETCH_TODO_SUCCESS', todo: result.data});
+        yield put({type: 'FETCH_PROMO_SUCCESS', promo: result.data});
       } else {
-        throw new Error('Data Todo kosong.');
+        throw new Error('Data Promo kosong.');
       }
     } catch (error) {
-      yield put({type: 'FETCH_TODO_FAILED', error});
+      yield put({type: 'FETCH_PROMO_FAILED', error});
       ToastAndroid.show(error.message, ToastAndroid.LONG);
       continue;
     }

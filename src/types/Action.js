@@ -74,6 +74,17 @@ export type Action = {
   type: 'FETCH_SEARCH_NAME_SUCCESS';
   searchNameResult: {};
 } | {
+  type: 'FETCH_PROMO';
+} | {
+  type: 'FETCH_PROMO_SUCCESS';
+  promo: {};
+} | {
+  type: 'FETCH_NEARBY';
+  latLong: string,
+} | {
+  type: 'FETCH_NEARBY_SUCCESS';
+  nearby: {};
+} | {
   type: 'SAVE_ACTIVITIES';
   activities: Array<Activity>;
 };

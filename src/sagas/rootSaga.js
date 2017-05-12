@@ -5,10 +5,14 @@ import {watchLoginSaga} from './loginSaga';
 import {watchLogoutSaga} from './logoutSaga';
 import {watchSearchNameSaga} from './searchNameSaga';
 import {watchTodoSaga} from './todoSaga';
+import {watchPromoSaga} from './promoSaga';
+import {watchNearbySaga} from './nearbySaga';
 
 export default function* rootSaga(): any {
   yield fork(watchLoginSaga);
   yield fork(watchLogoutSaga);
   yield fork(watchSearchNameSaga);
   yield fork(watchTodoSaga);
+  yield fork(watchPromoSaga);
+  yield fork(watchNearbySaga);
 }

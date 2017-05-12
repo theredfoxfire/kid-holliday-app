@@ -5,7 +5,7 @@ import {
   Platform,
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
-import {GREY, LA_BLUE_OLD, DARK_GREY} from '../constants/color';
+import {GREY, LA_BLUE_OLD, DARK_GREY, LA_RED} from '../constants/color';
 
 export default StyleSheet.create({
   mainContainer: {
@@ -22,6 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: GREY,
     borderBottomWidth: 2,
+    marginHorizontal:5,
     marginBottom: 10,
     backgroundColor: '#fff',
   },
@@ -45,16 +46,28 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   distanceContainer: {
-    width: 150,
+    width: 140,
     marginTop: 10,
+    marginLeft: 5,
   },
   distance: {
     color: LA_BLUE_OLD,
   },
   buttonContainer: {
-    width: 220,
+    width: 210,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     flexDirection: 'row',
-  }
+    marginRight: 5,
+  },
+  init: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  lableText: {
+    color: LA_RED,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });

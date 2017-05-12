@@ -15,7 +15,7 @@ export function* watchSearchNameSaga(): any {
       if (result.data.length > 0) {
         yield put({type: 'FETCH_SEARCH_NAME_SUCCESS', searchNameResult: result.data[0]});
       } else {
-        throw new Error('Fetch data Places gagal.');
+        throw new Error('Data Places kosong.');
       }
     } catch (error) {
       yield put({type: 'FETCH_SEARCH_NAME_FAILED', error});

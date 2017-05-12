@@ -10,6 +10,7 @@ export function mapStateToProps(state: RootState) {
   return {
     todo: state.todo,
     isFetchTodoLoading: state.loadingIndicator.isFetchTodoLoading,
+    currentUser: state.currentUser,
   };
 }
 
@@ -17,6 +18,9 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     todoDetails() {
       dispatch({type: 'PUSH_ROUTE', key: 'todoDetail'});
+    },
+    fetchTodo(username: string) {
+      dispatch({type: 'FETCH_TODO', username: username});
     },
   };
 }
