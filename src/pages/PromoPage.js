@@ -38,7 +38,7 @@ export default class PromoPage extends Component {
     autobind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPromo();
   }
 

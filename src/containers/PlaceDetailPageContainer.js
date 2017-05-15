@@ -7,7 +7,10 @@ import type {Dispatch} from '../types/Store';
 import PlaceDetailPage from '../pages/PlaceDetailPage';
 
 export function mapStateToProps(state: RootState) {
-  return {};
+  return {
+    isFetchSearchNameDetaiLoading: state.loadingIndicator.isFetchSearchNameDetailLoading,
+    searchNameDetailResult: state.searchNameDetailResult,
+  };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {

@@ -10,13 +10,15 @@ export function mapStateToProps(state: RootState) {
   return {
     searchNameResult: state.searchNameResult,
     isFetchSearchNameLoading: state.loadingIndicator.isFetchSearchNameLoading,
+    isFetchSearchNameDetailLoading: state.loadingIndicator.isFetchSearchNameDetailLoading,
   };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    placeDetail() {
+    placeDetail(id: string) {
       dispatch({type: 'PUSH_ROUTE', key: 'placeDetail'});
+      dispatch({type: 'FETCH_SEARCH_NAME_DETAIL', id: id});
     },
     searchNameAction(name: string) {
       dispatch({type: 'FETCH_SEARCH_NAME', name: name});

@@ -19,6 +19,9 @@ const SearchAPI = {
   searchName(name: string): Promise<FetchReturn> {
     return fetchJSON(`/search_area_new.php?act=search&name=${name}`);
   },
+  searchNameDetail(id: string): Promise<FetchReturn> {
+    return fetchJSON(`/search_area_new.php?act=detail&type=holiday&id=${id}`);
+  },
 };
 
 export default SearchAPI;

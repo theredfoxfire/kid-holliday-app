@@ -39,7 +39,7 @@ export default class TodoPage extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTodo(this.props.currentUser.username);
   }
 

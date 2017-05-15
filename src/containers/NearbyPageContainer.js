@@ -10,13 +10,15 @@ export function mapStateToProps(state: RootState) {
   return {
     nearby: state.nearby,
     isFetchNearbyLoading: state.loadingIndicator.isFetchNearbyLoading,
+    isFetchNearbyDetailLoading: state.loadingIndicator.isFetchNearbyDetailLoading,
   };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    onPressDetail() {
+    onPressDetail(id: string) {
       dispatch({type: 'PUSH_ROUTE', key: 'nearbyDetail'});
+      dispatch({type: 'FETCH_NEARBY_DETAIL', id: id});
     },
     fetchNearby(latLong: string) {
       dispatch({

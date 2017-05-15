@@ -11,6 +11,8 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
       isFetchSearchNameLoading: false,
       isFetchPromoLoading: false,
       isFetchNearbyLoading: false,
+      isFetchSearchNameDetailLoading: false,
+      isFetchNearbyDetailLoading: false,
     };
   } else {
     switch (action.type) {
@@ -57,6 +59,19 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           isFetchSearchNameLoading: false,
         };
       }
+      case 'FETCH_SEARCH_NAME_DETAIL': {
+        return {
+          ...state,
+          isFetchSearchNameDetailLoading: true,
+        };
+      }
+      case 'FETCH_SEARCH_NAME_DETAIL_FAILED':
+      case 'FETCH_SEARCH_NAME_DETAIL_SUCCESS': {
+        return {
+          ...state,
+          isFetchSearchNameDetailLoading: false,
+        };
+      }
       case 'FETCH_PROMO': {
         return {
           ...state,
@@ -81,6 +96,19 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         return {
           ...state,
           isFetchNearbyLoading: false,
+        };
+      }
+      case 'FETCH_NEARBY_DETAIL': {
+        return {
+          ...state,
+          isFetchNearbyDetailLoading: true,
+        };
+      }
+      case 'FETCH_NEARBY_DETAIL_FAILED':
+      case 'FETCH_NEARBY_DETAIL_SUCCESS': {
+        return {
+          ...state,
+          isFetchNearbyDetailLoading: false,
         };
       }
 

@@ -25,6 +25,7 @@ type Props = {
   nearby?: Array<Object>;
   onPressDetail: () => void;
   isFetchNearbyLoading?: boolean;
+  isFetchNearbyDetailLoading?: boolean;
   fetchNearby?: () => void;
 };
 
@@ -56,27 +57,47 @@ export default class NearbyPage extends Component {
           this.props.fetchNearby(`${latitude},${longitude}`);
         }
       },
-      (error) => ToastAndroid.show(error.message, ToastAndroid.LONG),
-      { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
+      (error) => {
+        this.setState({error: error.message});
+        return ToastAndroid.show(`${error.message}, please TURN OFF your GPS for run faster.`, ToastAndroid.LONG);
+      },
+      { enableHighAccuracy: false, timeout: 30000, maximumAge: 1000 },
     );
   }
 
   render() {
-    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby} = this.props;
-    let {latitude, longitude} = this.state;
-    if (latitude === null || longitude === null || isFetchNearbyLoading) {
-      return (
-        <View style={styles.mainContainer}>
-          <View style={styles.barContainer}>
-            <TitleBar
-              title="Nearby Places"
-            />
+    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby, isFetchNearbyDetailLoading} = this.props;
+    let {latitude, longitude, error} = this.state;
+    if (latitude === null || longitude === null || isFetchNearbyLoading || isFetchNearbyDetailLoading) {
+      if (error !== null) {
+        return (
+          <View style={styles.mainContainer}>
+            <View style={styles.barContainer}>
+              <TitleBar
+                title="Nearby Places"
+              />
+            </View>
+            <ScrollView>
+              <View style={styles.init}>
+                <Text style={styles.lableText}>There is no place nearby you.</Text>
+              </View>
+            </ScrollView>
           </View>
-          <ScrollView>
-            <LoadingIndicator />
-          </ScrollView>
-        </View>
-      );
+        );
+      } else {
+        return (
+          <View style={styles.mainContainer}>
+            <View style={styles.barContainer}>
+              <TitleBar
+                title="Nearby Places"
+              />
+            </View>
+            <ScrollView>
+              <LoadingIndicator />
+            </ScrollView>
+          </View>
+        );
+      }
     } else {
       let list = [];
       Object.values(nearby).slice(0,-1).forEach((item, idx) => {
@@ -97,7 +118,7 @@ export default class NearbyPage extends Component {
                     text="INFO"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={onPressDetail}
+                    onPress={() => onPressDetail(item.id)}
                   />
                 <Button
                     text="DIRECTION"

@@ -24,10 +24,11 @@ type State = {
 };
 
 type Props = {
-  placeDetail: () => void;
+  placeDetail: (id: string) => void;
   searchNameAction: (name: string) => void;
   searchNameResult: {};
   isFetchSearchNameLoading: boolean;
+  isFetchSearchNameDetailLoading: boolean;
 };
 
 export default class PlacesPage extends Component {
@@ -49,8 +50,8 @@ export default class PlacesPage extends Component {
   }
 
   render() {
-    let {placeDetail, searchNameAction, isFetchSearchNameLoading, searchNameResult} = this.props;
-    if (isFetchSearchNameLoading) {
+    let {placeDetail, searchNameAction, isFetchSearchNameLoading, isFetchSearchNameDetailLoading, searchNameResult} = this.props;
+    if (isFetchSearchNameLoading || isFetchSearchNameDetailLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -85,7 +86,7 @@ export default class PlacesPage extends Component {
       let list = [];
       list.push(
         <View key={1}>
-        <TouchableOpacity onPress={() => placeDetail()}>
+        <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
           <View style={styles.listContainer}>
             <Image source={laLogo} style={styles.image} resizeMode="contain" />
             <View style={styles.titleContainer}>

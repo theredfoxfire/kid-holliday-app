@@ -74,6 +74,12 @@ export type Action = {
   type: 'FETCH_SEARCH_NAME_SUCCESS';
   searchNameResult: {};
 } | {
+  type: 'FETCH_SEARCH_NAME_DETAIL_SUCCESS';
+  searchNameDetailResult: {};
+} | {
+  type: 'FETCH_SEARCH_NAME_DETAIL';
+  id: string;
+} | {
   type: 'FETCH_PROMO';
 } | {
   type: 'FETCH_PROMO_SUCCESS';
@@ -84,6 +90,12 @@ export type Action = {
 } | {
   type: 'FETCH_NEARBY_SUCCESS';
   nearby: {};
+} | {
+  type: 'FETCH_NEARBY_DETAIL';
+  id: string,
+} | {
+  type: 'FETCH_NEARBY_DETAIL_SUCCESS';
+  nearbyDetailResult: {};
 } | {
   type: 'SAVE_ACTIVITIES';
   activities: Array<Activity>;

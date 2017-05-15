@@ -140,6 +140,7 @@ function mapStateToProps(state) {
     navigation,
     isDrawerOpen,
     currentUser,
+    isFetchTodoLoading: state.loadingIndicator.isFetchTodoLoading,
   };
 }
 
@@ -193,7 +194,7 @@ function mapDispatchToProps(dispatch) {
         type: 'CLOSE_DRAWER',
       });
     },
-    onPressTodo(username: string) {
+    onPressTodo() {
       dispatch({
         type: 'CLOSE_DRAWER',
       });

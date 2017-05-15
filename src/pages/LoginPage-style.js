@@ -10,10 +10,12 @@ import {INFO_TEXT} from '../constants/color';
 
 export default StyleSheet.create({
   mainContainer: {
-    justifyContent: 'space-between',
+    marginTop: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 15,
     paddingBottom: (Platform.OS === 'ios') ? 15 : 50,
-    height: 225,
+    height: 200,
   },
   field: {
     width: 300,

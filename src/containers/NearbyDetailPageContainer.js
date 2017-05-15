@@ -7,7 +7,10 @@ import type {Dispatch} from '../types/Store';
 import NearbyDetailPage from '../pages/NearbyDetailPage';
 
 export function mapStateToProps(state: RootState) {
-  return {};
+  return {
+    isFetchNearbyDetailLoading: state.loadingIndicator.isFetchNearbyDetailLoading,
+    nearbyDetailResult: state.nearbyDetailResult,
+  };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {

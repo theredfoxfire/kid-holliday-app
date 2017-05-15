@@ -11,6 +11,7 @@ import {Icon} from '../core-ui';
 import styles from './DrawerComponent-style';
 import bgMenu from '../images/bg-side-menu.png';
 import DrawerMenuItem from '../core-ui/DrawerMenuItem';
+import LoadingIndicator from './LoadingIndicator';
 
 type Props = {
   guestMode?: boolean;
@@ -21,6 +22,8 @@ type Props = {
   onPressNearBy: () => void;
   onPressTodo: () => void;
   onPressPromo: () => void;
+  currentUser?: Object;
+  isFetchTodoLoading?: boolean;
 };
 
 export default class DrawerComponent extends Component {
@@ -32,7 +35,10 @@ export default class DrawerComponent extends Component {
   }
 
   render() {
-    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo, currentUser} = this.props;
+    let {onPressClose, onPressLogout, isFetchTodoLoading, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo, currentUser} = this.props;
+    // if (isFetchTodoLoading) {
+    //   return <LoadingIndicator />;
+    // }
     return (
       <View>
         <View style={styles.containerMenus}>
