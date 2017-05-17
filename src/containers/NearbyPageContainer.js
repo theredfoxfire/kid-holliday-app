@@ -20,6 +20,10 @@ export function mapDispatchToProps(dispatch: Dispatch) {
       dispatch({type: 'PUSH_ROUTE', key: 'nearbyDetail'});
       dispatch({type: 'FETCH_NEARBY_DETAIL', id: id});
     },
+    onPressMap(id: string) {
+      dispatch({type: 'PUSH_ROUTE', key: 'mapDirection'});
+      dispatch({type: 'FETCH_NEARBY_DETAIL', id: id});
+    },
     fetchNearby(latLong: string) {
       dispatch({
         type: 'FETCH_NEARBY',

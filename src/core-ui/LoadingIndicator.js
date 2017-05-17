@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
-import {PRIMARY_GREEN} from '../constants/color';
+import {LA_RED} from '../constants/color';
 
 type Props = {
   style?: StyleSet;
@@ -20,7 +20,7 @@ export default function LoadingIndicator(props: Props) {
         padding: 10,
       }, props.style]}
       size={size}
-      color={PRIMARY_GREEN}
+      color={LA_RED}
     />
   );
 }

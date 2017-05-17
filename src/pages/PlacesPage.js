@@ -11,10 +11,12 @@ import {
   Button,
   TitleBar,
   TextField,
+  Dropdown,
 } from '../core-ui';
 import styles from './PlacesPage-style';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import autobind from 'class-autobind';
+import dismissKeyboard from 'dismissKeyboard';
 import backroungCover from '../images/la-background.png';
 import laLogo from '../images/bg-side-menu.png';
 import {LA_RED, LA_WHITE} from '../constants/color';
@@ -29,6 +31,11 @@ type Props = {
   searchNameResult: {};
   isFetchSearchNameLoading: boolean;
   isFetchSearchNameDetailLoading: boolean;
+  isFetchProvinceLoading: boolean;
+  province: Object;
+  fetchCity: (province: string) => void;
+  city: Object;
+  isFetchCityLoading: boolean;
 };
 
 export default class PlacesPage extends Component {
@@ -46,12 +53,33 @@ export default class PlacesPage extends Component {
     autobind(this);
     this.state = {
       keyword: '',
+      selectedProvince: '',
     };
   }
 
+  _onSelect(selectedItem) {
+    return (item: string | number) => {
+      this.setState({
+        [selectedItem]: item,
+      });
+      if (selectedItem === 'selectedProvince') {
+        this.props.fetchCity(item);
+      }
+    };
+  }
+
+  _onPressSearch() {
+    this.props.searchNameAction(this.state.keyword);
+    dismissKeyboard;
+  }
+
   render() {
-    let {placeDetail, searchNameAction, isFetchSearchNameLoading, isFetchSearchNameDetailLoading, searchNameResult} = this.props;
-    if (isFetchSearchNameLoading || isFetchSearchNameDetailLoading) {
+    let {placeDetail, searchNameAction, isFetchSearchNameLoading,
+      isFetchSearchNameDetailLoading, searchNameResult, province,
+      isFetchCityLoading, city,
+      isFetchProvinceLoading} = this.props;
+    let {selectedProvince, selectedCity} = this.state;
+    if (isFetchSearchNameLoading || isFetchSearchNameDetailLoading || isFetchProvinceLoading || isFetchCityLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -60,9 +88,6 @@ export default class PlacesPage extends Component {
             />
           </View>
           <View style={styles.formContainer}>
-            {/*<View style={styles.field}>
-              <TextField placeholder="Location" iconNamePre="room" iconStylePre={styles.iconStylePre} rootStyle={styles.rootField} />
-            </View>*/}
             <View style={styles.field}>
               <TextField placeholder="Type the name of place"
                 onIconPressEnd={() => searchNameAction(this.state.keyword)}
@@ -83,6 +108,14 @@ export default class PlacesPage extends Component {
       );
     } else {
       let searchData = searchNameResult.place ? searchNameResult.place : {};
+      let provinceOptions = [];
+      let cityOptions = [];
+      Object.values(province).forEach((item, idx) => {
+        provinceOptions.push({value: item.id, label: item.propinsi});
+      });
+      Object.values(city).forEach((item, idx) => {
+        cityOptions.push({value: item.id, label: item.kota_kabupaten});
+      });
       let list = [];
       list.push(
         <View key={1}>
@@ -97,21 +130,6 @@ export default class PlacesPage extends Component {
         </TouchableOpacity>
         </View>
       );
-      // Object.values(searchData).forEach((item, idx) => {
-      //   list.push(
-      //     <View key={idx}>
-      //     <TouchableOpacity onPress={() => placeDetail()}>
-      //       <View style={styles.listContainer}>
-      //         {/*<Image source={laLogo} style={styles.image} resizeMode="contain" />*/}
-      //         <View style={styles.titleContainer}>
-      //           <Text style={styles.title}>{item.title}</Text>
-      //           <Text style={styles.title}>{item.location}</Text>
-      //         </View>
-      //       </View>
-      //     </TouchableOpacity>
-      //     </View>
-      //   );
-      // });
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -120,12 +138,31 @@ export default class PlacesPage extends Component {
             />
           </View>
           <View style={styles.formContainer}>
-            {/*<View style={styles.field}>
-              <TextField placeholder="Location" iconNamePre="room" iconStylePre={styles.iconStylePre} rootStyle={styles.rootField} />
-            </View>*/}
+            <View style={styles.lableContainer}>
+              <Text style={styles.lableText}>Search place by city:</Text>
+            </View>
+            <View style={styles.field}>
+              <Dropdown
+                placeholder="Select Province"
+                onSelect={this._onSelect('selectedProvince')}
+                options={provinceOptions}
+                selectedValue={selectedProvince}
+              />
+            </View>
+            <View style={styles.field}>
+              <Dropdown
+                placeholder="Select City"
+                onSelect={this._onSelect('selectedCity')}
+                options={cityOptions}
+                selectedValue={selectedCity}
+              />
+            </View>
+            <View style={styles.lableContainer}>
+              <Text style={styles.lableText}>Search place by name:</Text>
+            </View>
             <View style={styles.field}>
               <TextField placeholder="Type the name of place"
-                onIconPressEnd={() => searchNameAction(this.state.keyword)}
+                onIconPressEnd={() => this._onPressSearch()}
                 iconNameEnd="search" iconStyleEnd={styles.iconStyleEnd}
                 onChangeText={this._onKeywordChange}
                 placeholderTextColor="#9a9a9a"

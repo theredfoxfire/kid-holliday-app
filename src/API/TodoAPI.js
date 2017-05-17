@@ -25,8 +25,15 @@ const TodoAPI = {
   async addTodo(module: string, module_id: string, user: string): Promise<FetchReturn> {
     return await fetchJSON(`/todolist.php?act=new&un=${user}&module=${module}&module_id=${module_id}`);
   },
-  async removeTodo(id: string): Promise<FetchReturn> {
-    return await fetchJSON(`/todolist.php?act=remove&id=${id}`);
+  async removeTodo(id: string, username: string): Promise<FetchReturn> {
+    await fetchJSON(`/todolist.php?act=remove&id=${id}`).catch((error) => console.log(error));
+    let data = await fetchJSON(`/todolist.php?act=list&un=${username}`);
+    return data;
+  },
+  async actionTodo(id: string, actionTodo: string, username: string): Promise<FetchReturn> {
+    await fetchJSON(`/todolist.php?act=${actionTodo}&id=${id}`).catch((error) => console.log(error));
+    let data = await fetchJSON(`/todolist.php?act=list&un=${username}`);
+    return data;
   },
 };
 

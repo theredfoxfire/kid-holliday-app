@@ -1,16 +1,16 @@
 // @flow
 import type {Action} from '../types/Action';
 
-export default function nearbyDetailReducer(state: {}, action: Action) {
+export default function provinceReducer(state: {}, action: Action) {
   if (state == null) {
     return {
       token: '',
     };
   }
   switch (action.type) {
-    case 'FETCH_NEARBY_DETAIL_SUCCESS': {
+    case 'FETCH_PROVINCE_SUCCESS': {
       return {
-        ...action.nearbyDetailResult,
+        ...action.province,
       };
     }
   }

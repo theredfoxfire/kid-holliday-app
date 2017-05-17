@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.vonovak.AddCalendarEventPackage;
-import com.calendarevents.CalendarEventsPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
@@ -30,7 +29,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new AddCalendarEventPackage(),
-            new CalendarEventsPackage(),
             new ReactNativePermissionsPackage(),
             new LinearGradientPackage(),
             new SplashScreenReactPackage(),

@@ -10,7 +10,6 @@ export default function todoDetailReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'FETCH_TODO_DETAIL_SUCCESS': {
       return {
-        ...state,
         ...action.todoDetailResult,
       };
     }

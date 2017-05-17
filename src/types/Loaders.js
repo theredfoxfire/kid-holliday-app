@@ -13,4 +13,7 @@ export type Loaders = {
   isPostTodoLoading: boolean;
   isRemoveTodoLoading: boolean;
   isRemoveTodoDone: boolean;
+  isActionTodoLoading: boolean;
+  isFetchProvinceLoading: boolean;
+  isFetchCityLoading: boolean;
 };

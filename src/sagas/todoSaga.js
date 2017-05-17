@@ -65,14 +65,42 @@ export function* watchRemoveTodoSaga(): any {
   while (true) { //eslint-disable-line
     let action = yield take('REMOVE_TODO');
     try {
-      let {id} = action;
-      let result = yield call(TodoAPI.removeTodo, id);
+      let {id, username} = action;
+      let result = yield call(TodoAPI.removeTodo, id, username);
+      yield put({type: 'ACTION_TODO_SUCCESS'});
+      if (result.data.length > 0) {
+        yield put({type: 'FETCH_TODO_SUCCESS', todo: result.data});
+      } else {
+        throw new Error('Data Todo kosong.');
+      }
       yield put({type: 'REMOVE_TODO_SUCCESS'});
       ToastAndroid.show('Remove Todo success', ToastAndroid.LONG);
     } catch (error) {
       yield put({type: 'REMOVE_TODO_FAILED', error});
       // ToastAndroid.show(error.message, ToastAndroid.LONG);
       ToastAndroid.show('Remove Todo success', ToastAndroid.LONG);
+      continue;
+    }
+  }
+}
+
+export function* watchActionTodoSaga(): any {
+  while (true) { //eslint-disable-line
+    let action = yield take('ACTION_TODO');
+    try {
+      let {id, actionTodo, username} = action;
+      let result = yield call(TodoAPI.actionTodo, id, actionTodo, username);
+      yield put({type: 'ACTION_TODO_SUCCESS'});
+      if (result.data.length > 0) {
+        yield put({type: 'FETCH_TODO_SUCCESS', todo: result.data});
+      } else {
+        throw new Error('Data Todo kosong.');
+      }
+      ToastAndroid.show('Update Todo success', ToastAndroid.LONG);
+    } catch (error) {
+      yield put({type: 'ACTION_TODO_FAILED', error});
+      // ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.show('Update Todo success', ToastAndroid.LONG);
       continue;
     }
   }

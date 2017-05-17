@@ -10,7 +10,6 @@ export default function promoDetailReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'FETCH_PROMO_DETAIL_SUCCESS': {
       return {
-        ...state,
         ...action.promoDetailResult,
       };
     }

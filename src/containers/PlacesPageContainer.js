@@ -11,6 +11,10 @@ export function mapStateToProps(state: RootState) {
     searchNameResult: state.searchNameResult,
     isFetchSearchNameLoading: state.loadingIndicator.isFetchSearchNameLoading,
     isFetchSearchNameDetailLoading: state.loadingIndicator.isFetchSearchNameDetailLoading,
+    isFetchProvinceLoading: state.loadingIndicator.isFetchProvinceLoading,
+    isFetchCityLoading: state.loadingIndicator.isFetchCityLoading,
+    province: state.province,
+    city: state.city,
   };
 }
 
@@ -18,11 +22,14 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     placeDetail(id: string) {
       dispatch({type: 'PUSH_ROUTE', key: 'placeDetail'});
-      dispatch({type: 'FETCH_SEARCH_NAME_DETAIL', id: id});
+      dispatch({type: 'FETCH_SEARCH_NAME_DETAIL', id});
     },
     searchNameAction(name: string) {
-      dispatch({type: 'FETCH_SEARCH_NAME', name: name});
+      dispatch({type: 'FETCH_SEARCH_NAME', name});
     },
+    fetchCity(province: string) {
+      dispatch({type: 'FETCH_CITY', province});
+    }
   };
 }
 

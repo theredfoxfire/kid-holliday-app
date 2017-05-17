@@ -1,6 +1,8 @@
 // @flow
 import {combineReducers} from 'redux';
 import currentUserReducer from './currentUserReducer';
+import provinceReducer from './provinceReducer';
+import cityReducer from './cityReducer';
 import todoReducer from './todoReducer';
 import todoDetailReducer from './todoDetailReducer';
 import promoReducer from './promoReducer';
@@ -25,5 +27,7 @@ export default combineReducers({
   searchNameDetailResult: searchNameDetailReducer,
   nearbyDetailResult: nearbyDetailReducer,
   navigation: navigationReducer,
+  province: provinceReducer,
+  city: cityReducer,
   loadingIndicator: loadingIndicatorReducer,
 });

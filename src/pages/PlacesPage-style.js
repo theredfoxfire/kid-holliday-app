@@ -20,7 +20,7 @@ export default StyleSheet.create({
     marginRight: -3,
   },
   formContainer: {
-    height: 185,
+    height: 310,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',

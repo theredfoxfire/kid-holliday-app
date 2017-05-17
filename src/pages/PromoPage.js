@@ -25,6 +25,9 @@ type Props = {
   isFetchPromoDetailLoading?: boolean;
   promo?: Array<Object>;
   fetchPromo?: () => void;
+  currentUser?: Object;
+  isPostTodoLoading?: boolean;
+  newTodo: () => void;
 };
 
 export default class PromoPage extends Component {
@@ -41,8 +44,8 @@ export default class PromoPage extends Component {
   }
 
   render() {
-    let {promoDetails, promo, isFetchPromoLoading, isFetchPromoDetailLoading} = this.props;
-    if (isFetchPromoLoading || isFetchPromoDetailLoading) {
+    let {promoDetails, promo, isFetchPromoLoading, isFetchPromoDetailLoading, newTodo, currentUser, isPostTodoLoading} = this.props;
+    if (isFetchPromoLoading || isFetchPromoDetailLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -82,7 +85,7 @@ export default class PromoPage extends Component {
                     text="ADD TO TODO LIST"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={() => newTodo('discount_promotion', item.id, currentUser.username)}
                   />
               </View>
             </View>

@@ -96,6 +96,7 @@ export type Action = {
 } | {
   type: 'REMOVE_TODO';
   id: string;
+  username: string;
 } | {
   type: 'POST_NEW_TODO';
   module: string;
@@ -109,8 +110,22 @@ export type Action = {
   id: string;
   todoType: string;
 } | {
+  type: 'ACTION_TODO';
+  id: string;
+  actionTodo: string;
+  username: string;
+} | {
   type: 'FETCH_TODO_DETAIL_SUCCESS';
   todoDetailResult: {};
+} | {
+  type: 'FETCH_PROVINCE_SUCCESS';
+  province: {};
+} | {
+  type: 'FETCH_CITY';
+  province: string;
+} | {
+  type: 'FETCH_CITY_SUCCESS';
+  city: {};
 } | {
   type: 'SAVE_ACTIVITIES';
   activities: Array<Activity>;

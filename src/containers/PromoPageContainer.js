@@ -11,6 +11,8 @@ export function mapStateToProps(state: RootState) {
     promo: state.promo,
     isFetchPromoLoading: state.loadingIndicator.isFetchPromoLoading,
     isFetchPromoDetailLoading: state.loadingIndicator.isFetchPromoDetailLoading,
+    currentUser: state.currentUser,
+    isPostTodoLoading: state.loadingIndicator.isPostTodoLoading,
   };
 }
 
@@ -22,6 +24,10 @@ export function mapDispatchToProps(dispatch: Dispatch) {
     },
     fetchPromo() {
       dispatch({type: 'FETCH_PROMO'});
+    },
+    newTodo(module: string, module_id: string, user: string) {
+      dispatch({type: 'POST_NEW_TODO', module, module_id, user});
+      dispatch({type: 'FETCH_TODO', username: user});
     },
   };
 }

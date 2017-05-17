@@ -10,12 +10,8 @@ export default function todoReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'FETCH_TODO_SUCCESS': {
       return {
-        ...state,
         ...action.todo,
       };
-    }
-    case 'FETCH_TODO': {
-      return {};
     }
 
     default: return state;

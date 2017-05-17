@@ -18,6 +18,9 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
       isPostTodoLoading: false,
       isRemoveTodoLoading: false,
       isRemoveTodoDone: false,
+      isActionTodoLoading: false,
+      isFetchProvinceLoading: false,
+      isFetchCityLoading: false,
     };
   } else {
     switch (action.type) {
@@ -155,6 +158,32 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           isFetchNearbyDetailLoading: false,
         };
       }
+      case 'FETCH_PROVINCE': {
+        return {
+          ...state,
+          isFetchProvinceLoading: true,
+        };
+      }
+      case 'FETCH_PROVINCE_FAILED':
+      case 'FETCH_PROVINCE_SUCCESS': {
+        return {
+          ...state,
+          isFetchProvinceLoading: false,
+        };
+      }
+      case 'FETCH_CITY': {
+        return {
+          ...state,
+          isFetchCityLoading: true,
+        };
+      }
+      case 'FETCH_CITY_FAILED':
+      case 'FETCH_CITY_SUCCESS': {
+        return {
+          ...state,
+          isFetchCityLoading: false,
+        };
+      }
       case 'REMOVE_TODO': {
         return {
           ...state,
@@ -168,6 +197,19 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           ...state,
           isRemoveTodoLoading: false,
           isRemoveTodoDone: true,
+        };
+      }
+      case 'ACTION_TODO': {
+        return {
+          ...state,
+          isActionTodoLoading: true,
+        };
+      }
+      case 'ACTION_TODO_FAILED':
+      case 'ACTION_TODO_SUCCESS': {
+        return {
+          ...state,
+          isActionTodoLoading: false,
         };
       }
 

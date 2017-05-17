@@ -16,7 +16,7 @@ import styles from './NearbyPage-style';
 import autobind from 'class-autobind';
 import newKuta from '../images/new-kuta.jpg';
 import woodyKid from '../images/woody-kid-zone.jpg';
-import Permissions from 'react-native-permissions';
+import getDirections from 'react-native-google-maps-directions'
 
 type State = {
 
@@ -24,6 +24,7 @@ type State = {
 type Props = {
   nearby?: Array<Object>;
   onPressDetail: () => void;
+  onPressMap: () => void;
   isFetchNearbyLoading?: boolean;
   isFetchNearbyDetailLoading?: boolean;
   fetchNearby?: () => void;
@@ -65,8 +66,28 @@ export default class NearbyPage extends Component {
     );
   }
 
+  _handleGetDirections = (lat, long) => {
+    const data = {
+      source: {
+       latitude: this.state.latitude,
+       longitude: this.state.longitude
+      },
+      destination: {
+       latitude: Number(lat),
+       longitude: Number(long)
+      },
+        params: [
+          {
+            key: "dirflg",
+            value: "w"
+          }
+        ]
+      };
+      getDirections(data);
+    };
+
   render() {
-    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby, isFetchNearbyDetailLoading} = this.props;
+    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby, isFetchNearbyDetailLoading, onPressMap} = this.props;
     let {latitude, longitude, error} = this.state;
     if (latitude === null || longitude === null || isFetchNearbyLoading || isFetchNearbyDetailLoading) {
       if (error !== null) {
@@ -124,7 +145,7 @@ export default class NearbyPage extends Component {
                     text="DIRECTION"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={() => {}}
+                    onPress={() => this._handleGetDirections(item.lat, item.long)}
                   />
               </View>
             </View>

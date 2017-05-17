@@ -26,6 +26,7 @@ import NearbyDetailPageContainer from '../containers/NearbyDetailPageContainer';
 import TodoDetailPageContainer from '../containers/TodoDetailPageContainer';
 import PromoDetailPageContainer from '../containers/PromoDetailPageContainer';
 import PlaceDetailPageContainer from '../containers/PlaceDetailPageContainer';
+import MapDirectionPageContainer from '../containers/MapDirectionPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -98,6 +99,7 @@ class RootNavigation extends Component {
       case 'todoDetail': return <TodoDetailPageContainer />;
       case 'promoDetail': return <PromoDetailPageContainer />;
       case 'placeDetail': return <PlaceDetailPageContainer />;
+      case 'mapDirection': return <MapDirectionPageContainer />;
     }
   }
 
@@ -187,12 +189,9 @@ function mapDispatchToProps(dispatch) {
       });
     },
     onPressPlaces() {
-      dispatch({
-        type: 'RESET_ROUTE', key: 'places',
-      });
-      dispatch({
-        type: 'CLOSE_DRAWER',
-      });
+      dispatch({type: 'RESET_ROUTE', key: 'places'});
+      dispatch({type: 'FETCH_PROVINCE'});
+      dispatch({type: 'CLOSE_DRAWER'});
     },
     onPressTodo() {
       dispatch({

@@ -12,6 +12,7 @@ export function mapStateToProps(state: RootState) {
     isFetchTodoLoading: state.loadingIndicator.isFetchTodoLoading,
     isFetchTodoDetailLoading: state.loadingIndicator.isFetchTodoDetailLoading,
     isRemoveTodoLoading: state.loadingIndicator.isRemoveTodoLoading,
+    isActionTodoLoading: state.loadingIndicator.isActionTodoLoading,
     isRemoveTodoDone: state.loadingIndicator.isRemoveTodoDone,
     currentUser: state.currentUser,
   };
@@ -27,8 +28,10 @@ export function mapDispatchToProps(dispatch: Dispatch) {
       dispatch({type: 'FETCH_TODO', username: username});
     },
     removeTodo(id: string, username: string) {
-      dispatch({type: 'REMOVE_TODO', id});
-      dispatch({type: 'FETCH_TODO', username: username});
+      dispatch({type: 'REMOVE_TODO', id, username});
+    },
+    actionTodo(id: string, action: string, username) {
+      dispatch({type: 'ACTION_TODO', id, actionTodo: action, username});
     },
   };
 }

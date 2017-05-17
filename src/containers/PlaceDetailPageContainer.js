@@ -25,7 +25,6 @@ export function mapDispatchToProps(dispatch: Dispatch) {
     },
     newTodo(module: string, module_id: string, user: string) {
       dispatch({type: 'POST_NEW_TODO', module, module_id, user});
-      dispatch({type: 'FETCH_TODO', username: user});
     },
   };
 }

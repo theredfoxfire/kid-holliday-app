@@ -10,7 +10,6 @@ export default function nearbyReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'FETCH_NEARBY_SUCCESS': {
       return {
-        ...state,
         ...action.nearby,
       };
     }

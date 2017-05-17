@@ -10,7 +10,6 @@ export default function searchNameReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'FETCH_SEARCH_NAME_SUCCESS': {
       return {
-        ...state,
         ...action.searchNameResult,
       };
     }

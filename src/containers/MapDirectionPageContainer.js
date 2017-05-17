@@ -4,28 +4,26 @@ import {connect} from 'react-redux';
 
 import type {RootState} from '../types/RootState';
 import type {Dispatch} from '../types/Store';
-import PromoDetailPage from '../pages/PromoDetailPage';
+import MapDirectionPage from '../pages/MapDirectionPage';
 
 export function mapStateToProps(state: RootState) {
   return {
-    promoDetailResult: state.promoDetailResult,
-    currentUser: state.currentUser,
+    isFetchNearbyDetailLoading: state.loadingIndicator.isFetchNearbyDetailLoading,
     isPostTodoLoading: state.loadingIndicator.isPostTodoLoading,
+    nearbyDetailResult: state.nearbyDetailResult,
+    currentUser: state.currentUser,
   };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    backToPromo: () => {
+    backToNearby: () => {
       dispatch({
         type: 'RESET_ROUTE',
-        key: 'promo',
+        key: 'nearby',
       });
-    },
-    newTodo(module: string, module_id: string, user: string) {
-      dispatch({type: 'POST_NEW_TODO', module, module_id, user});
     },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PromoDetailPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MapDirectionPage);
