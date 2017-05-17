@@ -25,6 +25,9 @@ type Props = {
   todo: Array<Object>;
   isFetchTodoLoading: boolean;
   fetchTodo?: (username: string) => void;
+  removeTodo?: (id: string) => void;
+  isRemoveTodoLoading?: boolean;
+  isRemoveTodoDone?: boolean;
 };
 
 export default class TodoPage extends Component {
@@ -43,21 +46,24 @@ export default class TodoPage extends Component {
     this.props.fetchTodo(this.props.currentUser.username);
   }
 
-  _selectedAction(selectedOption: number) {
+  _selectedAction(selectedOption: number, id: string, type: string, todoID: string) {
+    let {currentUser, todoDetails, removeTodo} = this.props;
     if (selectedOption === 1) {
-      return this.props.todoDetails();
+      this.props.todoDetails(id, type);
+    } else if (selectedOption === 3) {
+      this.props.removeTodo(todoID, this.props.currentUser.username);
     }
   }
 
   render() {
-    let {todo, isFetchTodoLoading} = this.props;
+    let {todo, isFetchTodoLoading, isFetchTodoDetailLoading, isRemoveTodoLoading} = this.props;
     let index = 0;
     const data = [
         { key: index++, label: 'View details', value: 1 },
         { key: index++, label: 'Uncheck this item', value: 2 },
         { key: index++, label: 'Remove from list', value: 3 },
     ];
-    if (isFetchTodoLoading) {
+    if (isFetchTodoLoading || isFetchTodoDetailLoading || isRemoveTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -73,12 +79,20 @@ export default class TodoPage extends Component {
     } else {
       let list = [];
       Object.values(todo).slice(0,-1).forEach((item, idx) => {
+        let todoType;
+         if (item.module === 'la_holiday_spots') {
+           todoType = 'holiday';
+         } else if (item.module === 'la_fun_courses') {
+           todoType = 'fun';
+         } else if (item.module === 'la_discounts_promotions') {
+           todoType = 'promo'
+         }
         list.push(
           <View key={idx}>
             <ModalPicker
               data={data}
               initValue=""
-              onChange={(option)=>{this._selectedAction(option.value)}}>
+              onChange={(option)=>{this._selectedAction(option.value, item.module_id, 'holiday', item.id)}}>
               <View style={styles.placeContainer}>
                 <View style={styles.itemPlaceContainer}>
                   <Image source={{uri: item.thumb}} style={styles.image} resizeMode="stretch" />

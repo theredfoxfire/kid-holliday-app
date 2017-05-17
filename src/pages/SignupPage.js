@@ -41,7 +41,8 @@ export default class SignupPage extends Component {
 
   keyboardDidShow (e) {
     this.setState({
-      topLogo: {height: 100}
+      topLogo: {height: 0},
+      topLogoContainer: {height: 30},
     })
   }
 
@@ -100,7 +101,7 @@ export default class SignupPage extends Component {
             onIconButtonPress={this.props.backToLogin}
           />
         </View>
-        <View style={[styles.imageContainer, this.state.topLogo]}>
+        <View style={[styles.imageContainer, this.state.topLogoContainer]}>
           <Image source={laLogo} style={[styles.image, this.state.topLogo]} resizeMode="contain" />
         </View>
         <View style={styles.formContainer}>

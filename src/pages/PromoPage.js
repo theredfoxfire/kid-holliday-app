@@ -14,17 +14,15 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PromoPage-style';
 import autobind from 'class-autobind';
-import newKuta from '../images/new-kuta.jpg';
-import woodyKid from '../images/woody-kid-zone.jpg';
-
-
+import newKuta from '../images/bg-side-menu.png';
 
 type State = {
 
 };
 type Props = {
-  promoDetails?: () => void;
+  promoDetails?: (id: string) => void;
   isFetchPromoLoading?: boolean;
+  isFetchPromoDetailLoading?: boolean;
   promo?: Array<Object>;
   fetchPromo?: () => void;
 };
@@ -43,8 +41,8 @@ export default class PromoPage extends Component {
   }
 
   render() {
-    let {promoDetails, promo, isFetchPromoLoading} = this.props;
-    if (isFetchPromoLoading) {
+    let {promoDetails, promo, isFetchPromoLoading, isFetchPromoDetailLoading} = this.props;
+    if (isFetchPromoLoading || isFetchPromoDetailLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -63,7 +61,7 @@ export default class PromoPage extends Component {
         list.push(
           <View style={styles.placeContainer} key={idx}>
             <View style={styles.itemPlaceContainer}>
-              <Image source={newKuta} style={styles.image} resizeMode="stretch" />
+              <Image source={{uri: `http://liburananak.com/images/events/${item.image_small}`}} style={styles.image} resizeMode="stretch" />
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>{item.title_promotion}</Text>
                 <Text>{item.location}</Text>
@@ -78,7 +76,7 @@ export default class PromoPage extends Component {
                     text="DETAIL"
                     textStyle={styles.centeredButton}
                     inverted
-                    onPress={promoDetails}
+                    onPress={() => promoDetails(item.id)}
                   />
                 <Button
                     text="ADD TO TODO LIST"

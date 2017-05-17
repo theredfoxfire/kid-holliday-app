@@ -8,4 +8,9 @@ export type Loaders = {
   isFetchPromoLoading: boolean;
   isFetchNearbyLoading: boolean;
   isFetchNearbyDetailLoading: boolean;
+  isFetchTodoDetailLoading: boolean;
+  isFetchPromoDetailLoading: boolean;
+  isPostTodoLoading: boolean;
+  isRemoveTodoLoading: boolean;
+  isRemoveTodoDone: boolean;
 };

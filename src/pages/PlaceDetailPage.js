@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import {
   Button,
@@ -16,6 +17,7 @@ import autobind from 'class-autobind';
 import newKuta from '../images/bg-side-menu.png';
 import {ContentView} from './ContentView';
 import getContentFromHTML from '../selectors/getContentFromHTML';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 type State = {
 
@@ -24,6 +26,9 @@ type Props = {
   backToPlace: () => void;
   isFetchSearchNameDetailLoading: boolean;
   searchNameDetailResult: Object;
+  isPostTodoLoading: boolean;
+  currentUser: boolean;
+  newTodo: (module: string, module_id: string, user: string) => void;
 };
 
 export default class PlaceDetailPage extends Component {
@@ -35,14 +40,34 @@ export default class PlaceDetailPage extends Component {
     autobind(this);
   }
 
+  _onOptionSelect(value: string) {
+    let {searchNameDetailResult, currentUser, newTodo} = this.props;
+    if (value === 1) {
+      const eventConfig = {
+        title: searchNameDetailResult.title,
+        location: searchNameDetailResult.location,
+      };
+
+      AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
+        .then(eventId => {
+          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+        })
+        .catch((error: string) => {
+          ToastAndroid.show(error, ToastAndroid.LONG);
+      });
+    } else if (value === 2) {
+      newTodo('kids_holiday_spots', searchNameDetailResult.id, currentUser.username);
+    }
+  }
+
   render() {
     let index = 0;
     const data = [
-        { key: index++, label: 'Add to calendar' },
-        { key: index++, label: 'Add to my todo list' },
+        { key: index++, label: 'Add to calendar', value: 1 },
+        { key: index++, label: 'Add to my todo list', value: 2 },
     ];
-    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult} = this.props;
-    if (isFetchSearchNameDetailLoading) {
+    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult, isPostTodoLoading} = this.props;
+    if (isFetchSearchNameDetailLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -52,6 +77,7 @@ export default class PlaceDetailPage extends Component {
               onIconButtonPress={backToPlace}
               rightIcon="more-vert"
               optionData={data}
+              onRighIconPress={this._onOptionSelect}
             />
           </View>
           <View style={styles.contentContainer}>
@@ -72,6 +98,7 @@ export default class PlaceDetailPage extends Component {
               onIconButtonPress={backToPlace}
               rightIcon="more-vert"
               optionData={data}
+              onRighIconPress={this._onOptionSelect}
             />
           </View>
           <View style={styles.contentContainer}>

@@ -13,6 +13,11 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
       isFetchNearbyLoading: false,
       isFetchSearchNameDetailLoading: false,
       isFetchNearbyDetailLoading: false,
+      isFetchTodoDetailLoading: false,
+      isFetchPromoDetailLoading: false,
+      isPostTodoLoading: false,
+      isRemoveTodoLoading: false,
+      isRemoveTodoDone: false,
     };
   } else {
     switch (action.type) {
@@ -44,6 +49,19 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         return {
           ...state,
           isFetchTodoLoading: false,
+        };
+      }
+      case 'FETCH_TODO_DETAIL': {
+        return {
+          ...state,
+          isFetchTodoDetailLoading: true,
+        };
+      }
+      case 'FETCH_TODO_DETAIL_FAILED':
+      case 'FETCH_TODO_DETAIL_SUCCESS': {
+        return {
+          ...state,
+          isFetchTodoDetailLoading: false,
         };
       }
       case 'FETCH_SEARCH_NAME': {
@@ -85,6 +103,32 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           isFetchPromoLoading: false,
         };
       }
+      case 'FETCH_PROMO_DETAIL': {
+        return {
+          ...state,
+          isFetchPromoDetailLoading: true,
+        };
+      }
+      case 'FETCH_PROMO_DETAIL_FAILED':
+      case 'FETCH_PROMO_DETAIL_SUCCESS': {
+        return {
+          ...state,
+          isFetchPromoDetailLoading: false,
+        };
+      }
+      case 'POST_NEW_TODO': {
+        return {
+          ...state,
+          isPostTodoLoading: true,
+        };
+      }
+      case 'POST_NEW_TODO_FAILED':
+      case 'POST_NEW_TODO_SUCCESS': {
+        return {
+          ...state,
+          isPostTodoLoading: false,
+        };
+      }
       case 'FETCH_NEARBY': {
         return {
           ...state,
@@ -109,6 +153,21 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         return {
           ...state,
           isFetchNearbyDetailLoading: false,
+        };
+      }
+      case 'REMOVE_TODO': {
+        return {
+          ...state,
+          isRemoveTodoLoading: true,
+          isRemoveTodoDone: false,
+        };
+      }
+      case 'REMOVE_TODO_FAILED':
+      case 'REMOVE_TODO_SUCCESS': {
+        return {
+          ...state,
+          isRemoveTodoLoading: false,
+          isRemoveTodoDone: true,
         };
       }
 

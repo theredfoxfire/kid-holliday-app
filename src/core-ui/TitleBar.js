@@ -41,7 +41,7 @@ export default class TitleBar extends Component {
           <ModalPicker
             data={optionData}
             initValue=""
-            onChange={() => {}} >
+            onChange={(option) => {onRighIconPress(option.value)}} >
             <View style={styles.rightIcon}>
               {rightIconComponent}
             </View>

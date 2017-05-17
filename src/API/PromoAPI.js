@@ -16,8 +16,11 @@ type FetchReturn = {
 };
 
 const PromoAPI = {
-  promoList(): Promise<FetchReturn> {
-    return fetchJSON(`/promo.php?act=list`);
+  async promoList(): Promise<FetchReturn> {
+    return await fetchJSON(`/promo.php?act=list`);
+  },
+  async promoDetails(id: string): Promise<FetchReturn> {
+    return await fetchJSON(`/promo.php?act=detail&id=${id}`);
   },
 };
 

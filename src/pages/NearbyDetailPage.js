@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import {
   Button,
@@ -16,6 +17,7 @@ import autobind from 'class-autobind';
 import newKuta from '../images/bg-side-menu.png';
 import {ContentView} from './ContentView';
 import getContentFromHTML from '../selectors/getContentFromHTML';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 type State = {
 
@@ -24,6 +26,8 @@ type Props = {
   backToNearby: () => void;
   isFetchNearbyDetailLoading: boolean;
   nearbyDetailResult: Object;
+  newTodo: (module: string, module_id: string, user: string) => void;
+  currentUser: Object;
 };
 
 export default class NearbyDetailPage extends Component {
@@ -35,14 +39,34 @@ export default class NearbyDetailPage extends Component {
     autobind(this);
   }
 
+  _onOptionSelect(value: string) {
+    let {nearbyDetailResult, currentUser, newTodo} = this.props;
+    if (value === 1) {
+      const eventConfig = {
+        title: nearbyDetailResult.title,
+        location: nearbyDetailResult.location,
+      };
+
+      AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
+        .then(eventId => {
+          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+        })
+        .catch((error: string) => {
+          ToastAndroid.show(error, ToastAndroid.LONG);
+      });
+    } else if (value === 2) {
+      newTodo('kids_holiday_spots', nearbyDetailResult.id, currentUser.username);
+    }
+  }
+
   render() {
     let index = 0;
     const data = [
-        { key: index++, label: 'Add to calendar' },
-        { key: index++, label: 'Add to my todo list' },
+        { key: index++, label: 'Add to calendar', value: 1},
+        { key: index++, label: 'Add to my todo list', value: 2},
     ];
-    let {backToNearby, isFetchNearbyDetailLoading, nearbyDetailResult} = this.props;
-    if (isFetchNearbyDetailLoading) {
+    let {backToNearby, isFetchNearbyDetailLoading, nearbyDetailResult, isPostTodoLoading} = this.props;
+    if (isFetchNearbyDetailLoading, isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -52,6 +76,7 @@ export default class NearbyDetailPage extends Component {
               onIconButtonPress={backToNearby}
               rightIcon="more-vert"
               optionData={data}
+              onRighIconPress={this._onOptionSelect}
             />
           </View>
           <View style={styles.contentContainer}>
@@ -72,6 +97,7 @@ export default class NearbyDetailPage extends Component {
               onIconButtonPress={backToNearby}
               rightIcon="more-vert"
               optionData={data}
+              onRighIconPress={this._onOptionSelect}
             />
           </View>
           <View style={styles.contentContainer}>

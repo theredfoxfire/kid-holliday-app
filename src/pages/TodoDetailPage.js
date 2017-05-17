@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
 import {
   Button,
@@ -12,14 +13,17 @@ import {
 } from '../core-ui';
 import styles from './TodoDetailPage-style';
 import autobind from 'class-autobind';
-import newKuta from '../images/new-kuta.jpg';
-import woodyKid from '../images/woody-kid-zone.jpg';
+import {ContentView} from './ContentView';
+import getContentFromHTML from '../selectors/getContentFromHTML';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 type State = {
 
 };
 type Props = {
   backToTodo: () => void;
+  isFetchTodoDetailLoading: boolean;
+  todoDetailResult: Object;
 };
 
 export default class TodoDetailPage extends Component {
@@ -31,11 +35,30 @@ export default class TodoDetailPage extends Component {
     autobind(this);
   }
 
+  _onOptionSelect(value: string) {
+    let {todoDetailResult} = this.props;
+    if (value === 1) {
+      const eventConfig = {
+        title: todoDetailResult.title,
+        location: todoDetailResult.location,
+      };
+
+      AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
+        .then(eventId => {
+          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+        })
+        .catch((error: string) => {
+          ToastAndroid.show(error, ToastAndroid.LONG);
+      });
+    }
+  }
+
   render() {
-    let {backToTodo} = this.props;
+    let {backToTodo, todoDetailResult} = this.props;
+    let {content} = getContentFromHTML(todoDetailResult.content);
     let index = 0;
     const data = [
-        { key: index++, label: 'Add to calendar' },
+        { key: index++, label: 'Add to calendar', value: 1 },
     ];
     return (
       <View style={styles.mainContainer}>
@@ -46,26 +69,15 @@ export default class TodoDetailPage extends Component {
             onIconButtonPress={backToTodo}
             rightIcon="more-vert"
             optionData={data}
+            onRighIconPress={this._onOptionSelect}
           />
         </View>
         <View style={styles.contentContainer}>
           <ScrollView>
-            <Text style={styles.title}>New Kuta Green Park</Text>
-            <Text style={styles.text}>Bali</Text>
-            <Image source={newKuta} style={styles.image} resizeMode="stretch" />
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ipsum ligula, congue ut ultricies consequat, feugiat ac sem. Nunc faucibus enim et ullamcorper volutpat. Fusce malesuada, eros vel rutrum mattis, libero odio accumsan lacus, eget aliquam enim mauris et sapien. Cras ultricies ut ipsum vel faucibus. Nunc feugiat neque non justo maximus cursus. Aliquam bibendum sem enim, a accumsan quam sollicitudin ac. Donec tempus, neque ut convallis dictum, metus ipsum ultricies lorem, ac tempor nibh lacus non lectus. Phasellus sit amet lectus odio. Ut eu imperdiet lacus. Curabitur egestas magna ac odio dignissim aliquet. Duis non lorem aliquam tellus condimentum convallis.
-            </Text>
-            <Text style={styles.text}>
-              Nullam mattis consectetur ligula et venenatis. Nunc sed pharetra dolor, ac porta est. Vestibulum sagittis tellus quis vulputate tincidunt. Aenean ut felis quis urna euismod eleifend. Aliquam non est sodales, elementum nisl non, viverra sapien. Sed nibh ex, ullamcorper sit amet turpis sed, ultricies tincidunt purus. Pellentesque id interdum eros.
-            </Text>
-            <Image source={woodyKid} style={styles.image} resizeMode="stretch" />
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ipsum ligula, congue ut ultricies consequat, feugiat ac sem. Nunc faucibus enim et ullamcorper volutpat. Fusce malesuada, eros vel rutrum mattis, libero odio accumsan lacus, eget aliquam enim mauris et sapien. Cras ultricies ut ipsum vel faucibus. Nunc feugiat neque non justo maximus cursus. Aliquam bibendum sem enim, a accumsan quam sollicitudin ac. Donec tempus, neque ut convallis dictum, metus ipsum ultricies lorem, ac tempor nibh lacus non lectus. Phasellus sit amet lectus odio. Ut eu imperdiet lacus. Curabitur egestas magna ac odio dignissim aliquet. Duis non lorem aliquam tellus condimentum convallis.
-            </Text>
-            <Text style={styles.text}>
-              Nullam mattis consectetur ligula et venenatis. Nunc sed pharetra dolor, ac porta est. Vestibulum sagittis tellus quis vulputate tincidunt. Aenean ut felis quis urna euismod eleifend. Aliquam non est sodales, elementum nisl non, viverra sapien. Sed nibh ex, ullamcorper sit amet turpis sed, ultricies tincidunt purus. Pellentesque id interdum eros.
-            </Text>
+            <Text style={styles.title}>{todoDetailResult.title}</Text>
+            <Text style={styles.text}>{todoDetailResult.location}</Text>
+            <ContentView content={content} />
+            <View style={{height: 50}}/>
           </ScrollView>
         </View>
       </View>

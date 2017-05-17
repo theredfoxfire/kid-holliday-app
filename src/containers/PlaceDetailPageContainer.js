@@ -9,7 +9,9 @@ import PlaceDetailPage from '../pages/PlaceDetailPage';
 export function mapStateToProps(state: RootState) {
   return {
     isFetchSearchNameDetaiLoading: state.loadingIndicator.isFetchSearchNameDetailLoading,
+    isPostTodoLoading: state.loadingIndicator.isPostTodoLoading,
     searchNameDetailResult: state.searchNameDetailResult,
+    currentUser: state.currentUser,
   };
 }
 
@@ -20,6 +22,10 @@ export function mapDispatchToProps(dispatch: Dispatch) {
         type: 'RESET_ROUTE',
         key: 'places',
       });
+    },
+    newTodo(module: string, module_id: string, user: string) {
+      dispatch({type: 'POST_NEW_TODO', module, module_id, user});
+      dispatch({type: 'FETCH_TODO', username: user});
     },
   };
 }

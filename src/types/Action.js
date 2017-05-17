@@ -86,16 +86,31 @@ export type Action = {
   promo: {};
 } | {
   type: 'FETCH_NEARBY';
-  latLong: string,
+  latLong: string;
 } | {
   type: 'FETCH_NEARBY_SUCCESS';
   nearby: {};
 } | {
   type: 'FETCH_NEARBY_DETAIL';
-  id: string,
+  id: string;
+} | {
+  type: 'REMOVE_TODO';
+  id: string;
+} | {
+  type: 'POST_NEW_TODO';
+  module: string;
+  module_id: string;
+  user: string;
 } | {
   type: 'FETCH_NEARBY_DETAIL_SUCCESS';
   nearbyDetailResult: {};
+} | {
+  type: 'FETCH_TODO_DETAIL';
+  id: string;
+  todoType: string;
+} | {
+  type: 'FETCH_TODO_DETAIL_SUCCESS';
+  todoDetailResult: {};
 } | {
   type: 'SAVE_ACTIVITIES';
   activities: Array<Activity>;

@@ -12,6 +12,8 @@
     "html-to-content-model": "^0.3.5",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
+    "react-native-add-calendar-event": "^0.1.2",
+    "react-native-calendar-events": "^1.3.6",
     "react-native-drawer": "^2.3.0",
     "react-native-htmlview": "^0.9.0",
     "react-native-linear-gradient": "^2.0.0",

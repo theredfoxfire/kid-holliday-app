@@ -24,6 +24,7 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     marginBottom: 10,
     backgroundColor: '#fff',
+    marginHorizontal: 5,
   },
   barContainer: {
     height: 60,
@@ -42,7 +43,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
   },
   titleContainer: {
-    width: 270,
+    width: 260,
     marginLeft: 10,
   },
   title: {
@@ -50,7 +51,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   distanceContainer: {
-    width: 150,
+    width: 120,
     marginTop: 10,
   },
   distance: {

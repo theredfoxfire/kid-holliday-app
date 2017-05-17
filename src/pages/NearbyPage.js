@@ -111,7 +111,7 @@ export default class NearbyPage extends Component {
             </View>
             <View style={styles.itemPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance {item.dist} km</Text>
+                <Text style={styles.distance}>Distance {item.dist.toString()} km</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
