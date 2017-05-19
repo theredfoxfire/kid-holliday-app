@@ -4,7 +4,6 @@ import type {Action} from '../types/Action';
 export default function promoDetailReducer(state: {}, action: Action) {
   if (state == null) {
     return {
-      token: '',
     };
   }
   switch (action.type) {
@@ -13,6 +12,10 @@ export default function promoDetailReducer(state: {}, action: Action) {
         ...action.promoDetailResult,
       };
     }
+    case 'FETCH_PROMO_DETAIL': {
+      return {};
+    }
+
+    default: return state;
   }
-  return state;
 }

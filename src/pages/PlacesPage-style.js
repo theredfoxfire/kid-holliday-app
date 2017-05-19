@@ -7,43 +7,39 @@ import {
 import {getScreenSize} from '../helpers/getSize';
 import {LA_RED, LA_BLUE_LIGHT, GREY, LA_WHITE} from '../constants/color';
 
-const height = Platform.OS === 'ios' ? 175 : 200;
-
 export default StyleSheet.create({
   mainContainer: {
     flex: 1,
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
-  image: {
-    width: getScreenSize().width,
-    height: height,
-    marginRight: -3,
-  },
   formContainer: {
-    height: 310,
+    height: 180,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: LA_BLUE_LIGHT,
   },
   listContainer: {
-    height: 280,
+    height: 80,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -5,
-    marginBottom: 15,
+    marginBottom: 5,
     backgroundColor: '#fff',
     borderBottomColor: GREY,
     borderBottomWidth: 2,
   },
   titleContainer: {
-    width: 350,
+    width: 300,
     marginTop: 5,
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: LA_RED,
+  },
+  subtitle: {
     color: LA_RED,
   },
   field: {

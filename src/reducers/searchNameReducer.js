@@ -4,7 +4,6 @@ import type {Action} from '../types/Action';
 export default function searchNameReducer(state: {}, action: Action) {
   if (state == null) {
     return {
-      token: '',
     };
   }
   switch (action.type) {
@@ -13,6 +12,10 @@ export default function searchNameReducer(state: {}, action: Action) {
         ...action.searchNameResult,
       };
     }
+    case 'FETCH_SEARCH_NAME': {
+      return {};
+    }
+
+    default: return state;
   }
-  return state;
 }

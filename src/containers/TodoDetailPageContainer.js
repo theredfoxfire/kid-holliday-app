@@ -10,6 +10,7 @@ export function mapStateToProps(state: RootState) {
   return {
     todoDetailResult: state.todoDetailResult,
     isFetchTodoDetailLoading: state.loadingIndicator.isFetchTodoDetailLoading,
+    todoDetailID: state.todoDetailID,
   };
 }
 
@@ -20,6 +21,9 @@ export function mapDispatchToProps(dispatch: Dispatch) {
         type: 'RESET_ROUTE',
         key: 'todo',
       });
+    },
+    fetchDetail(id: string, todoType: string) {
+      dispatch({type: 'FETCH_TODO_DETAIL', id, todoType});
     },
   };
 }

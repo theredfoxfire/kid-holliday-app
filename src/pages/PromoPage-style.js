@@ -24,7 +24,8 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     marginBottom: 10,
     backgroundColor: '#fff',
-    marginHorizontal: 5,
+    marginRight: 10,
+    marginLeft: 12,
   },
   barContainer: {
     height: 60,
@@ -70,7 +71,6 @@ export default StyleSheet.create({
   },
   lableText: {
     color: LA_RED,
-    fontSize: 16,
     fontWeight: 'bold',
   },
 });

@@ -42,3 +42,22 @@ export function* watchCitySaga(): any {
     }
   }
 }
+
+export function* watchPlaceByCitySaga(): any {
+  while (true) { //eslint-disable-line
+    let action = yield take('FETCH_PLACE_BY_CITY');
+    try {
+      let {province, city} = action;
+      let result = yield call(LocationAPI.placeByCity, province, city);
+      if (result.data.length > 0) {
+        yield put({type: 'FETCH_PLACE_BY_CITY_SUCCESS', city: result.data});
+      } else {
+        throw new Error('Data City kosong.');
+      }
+    } catch (error) {
+      yield put({type: 'FETCH_PLACE_BY_CITY_FAILED', error});
+      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      continue;
+    }
+  }
+}

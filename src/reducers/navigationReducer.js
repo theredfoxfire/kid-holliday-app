@@ -66,9 +66,9 @@ function navigationReducer(state: NavigationState = initialState, action: Action
         ],
       };
     }
-  }
 
-  return state;
+    default: return state;
+  }
 }
 
 export default navigationReducer;

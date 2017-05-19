@@ -12,10 +12,13 @@ type FetchReturn = {
 
 const LocationAPI = {
   async provinceList(): Promise<FetchReturn> {
-    return await fetchJSON(`/search_area.php?act=prop`);
+    return await fetchJSON(`/search_area_new.php?act=prop`);
   },
   async cityList(province: string): Promise<FetchReturn> {
-    return await fetchJSON(`/search_area.php?act=city&prop_id=${province}`);
+    return await fetchJSON(`/search_area_new.php?act=city&prop_id=${province}`);
+  },
+  async placeByCity(province: string, city: string): Promise<FetchReturn> {
+    return await fetchJSON(`/search_area_new.php?act=merchant&prop_id=${province}&city_id=${city}`);
   },
 };
 

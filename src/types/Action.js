@@ -127,6 +127,25 @@ export type Action = {
   type: 'FETCH_CITY_SUCCESS';
   city: {};
 } | {
+  type: 'SEARCH_NAME_DETAIL';
+  placeDetailID: string;
+} | {
+  type: 'TODO_DETAIL';
+  todoDetailID: Object;
+} | {
+  type: 'NEARBY_DETAIL';
+  selectedNearbyID: string;
+} | {
+  type: 'PROMO_DETAIL';
+  selectedPromoID: string;
+} | {
+  type: 'FETCH_PLACE_BY_CITY';
+  province: string;
+  city: string;
+} | {
+  type: 'FETCH_PLACE_BY_CITY_SUCCESS';
+  placeByCityResult: {};
+} | {
   type: 'SAVE_ACTIVITIES';
   activities: Array<Activity>;
 };

@@ -12,6 +12,7 @@ export function mapStateToProps(state: RootState) {
     isPostTodoLoading: state.loadingIndicator.isPostTodoLoading,
     nearbyDetailResult: state.nearbyDetailResult,
     currentUser: state.currentUser,
+    selectedNearbyID: state.selectedNearbyID,
   };
 }
 
@@ -26,6 +27,9 @@ export function mapDispatchToProps(dispatch: Dispatch) {
     newTodo(module: string, module_id: string, user: string) {
       dispatch({type: 'POST_NEW_TODO', module, module_id, user});
     },
+    fetchDetail(id: string) {
+      dispatch({type: 'FETCH_NEARBY_DETAIL', id: id});
+    }
   };
 }
 

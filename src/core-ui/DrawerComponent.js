@@ -23,7 +23,6 @@ type Props = {
   onPressTodo: () => void;
   onPressPromo: () => void;
   currentUser?: Object;
-  isFetchTodoLoading?: boolean;
 };
 
 export default class DrawerComponent extends Component {
@@ -35,10 +34,11 @@ export default class DrawerComponent extends Component {
   }
 
   render() {
-    let {onPressClose, onPressLogout, isFetchTodoLoading, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo, currentUser} = this.props;
-    // if (isFetchTodoLoading) {
-    //   return <LoadingIndicator />;
-    // }
+    let {onPressClose, onPressLogout, onPressHome, onPressNearBy, onPressPlaces, onPressTodo, onPressPromo, currentUser} = this.props;
+    let todos = currentUser.username ?
+      <DrawerMenuItem onPress={() => onPressTodo()} onSwipe={onPressClose}>
+        <Icon name="done-all" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
+      </DrawerMenuItem> : null;
     return (
       <View>
         <View style={styles.containerMenus}>
@@ -61,9 +61,7 @@ export default class DrawerComponent extends Component {
             <DrawerMenuItem onPress={onPressNearBy} onSwipe={onPressClose}>
               <Icon name="explore" style={styles.icon} /><Text style={styles.drawerItemLable}>Search Nearby</Text>
             </DrawerMenuItem>
-            <DrawerMenuItem onPress={() => onPressTodo()} onSwipe={onPressClose}>
-              <Icon name="done-all" style={styles.icon} /><Text style={styles.drawerItemLable}>Todo List</Text>
-            </DrawerMenuItem>
+            {todos}
             <DrawerMenuItem onPress={onPressPromo} onSwipe={onPressClose}>
               <Icon name="monetization-on" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
             </DrawerMenuItem>

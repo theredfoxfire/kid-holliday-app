@@ -10,7 +10,6 @@ export function mapStateToProps(state: RootState) {
   return {
     promo: state.promo,
     isFetchPromoLoading: state.loadingIndicator.isFetchPromoLoading,
-    isFetchPromoDetailLoading: state.loadingIndicator.isFetchPromoDetailLoading,
     currentUser: state.currentUser,
     isPostTodoLoading: state.loadingIndicator.isPostTodoLoading,
   };
@@ -20,7 +19,7 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     promoDetails(id: string) {
       dispatch({type: 'PUSH_ROUTE', key: 'promoDetail'});
-      dispatch({type: 'FETCH_PROMO_DETAIL', id});
+      dispatch({type: 'PROMO_DETAIL', selectedPromoID: id});
     },
     fetchPromo() {
       dispatch({type: 'FETCH_PROMO'});

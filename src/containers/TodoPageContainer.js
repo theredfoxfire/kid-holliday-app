@@ -22,7 +22,7 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     todoDetails(id: string, todoType: string) {
       dispatch({type: 'PUSH_ROUTE', key: 'todoDetail'});
-      dispatch({type: 'FETCH_TODO_DETAIL', id, todoType});
+      dispatch({type: 'TODO_DETAIL', todoDetailID: {id, todoType}});
     },
     fetchTodo(username: string) {
       dispatch({type: 'FETCH_TODO', username: username});

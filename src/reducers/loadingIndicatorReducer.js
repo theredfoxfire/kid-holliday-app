@@ -21,6 +21,7 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
       isActionTodoLoading: false,
       isFetchProvinceLoading: false,
       isFetchCityLoading: false,
+      isFetchPlaceByCity: false,
     };
   } else {
     switch (action.type) {
@@ -30,6 +31,30 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           ...state,
           isLoginLoading: true,
         };
+      }
+      case 'PUSH_ROUTE': {
+        if (action.key === 'nearbyDetail') {
+          return {
+            ...state,
+            isFetchNearbyDetailLoading: true,
+          };
+        } else if (action.key === 'todoDetail') {
+          return {
+            ...state,
+            isFetchTodoDetailLoading: true,
+          };
+        } else if (action.key === 'placeDetail') {
+          return {
+            ...state,
+            isFetchSearchNameDetaiLoading: true,
+          };
+        } else if (action.key === 'promoDetail') {
+          return {
+            ...state,
+            isFetchPromoDetailLoadingDetaiLoading: true,
+          };
+        }
+        return state;
       }
       case 'FACEBOOK_LOGIN_ERROR':
       case 'FACEBOOK_LOGIN_CANCEL':
@@ -210,6 +235,19 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         return {
           ...state,
           isActionTodoLoading: false,
+        };
+      }
+      case 'FETCH_PLACE_BY_CITY': {
+        return {
+          ...state,
+          isFetchPlaceByCity: true,
+        };
+      }
+      case 'FETCH_PLACE_BY_CITY_FAILED':
+      case 'FETCH_PLACE_BY_CITY_SUCCESS': {
+        return {
+          ...state,
+          isFetchPlaceByCity: false,
         };
       }
 

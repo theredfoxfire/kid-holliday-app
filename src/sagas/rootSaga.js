@@ -6,7 +6,7 @@ import {watchLogoutSaga} from './logoutSaga';
 import {watchSearchNameSaga, watchSearchNameDetailSaga} from './searchNameSaga';
 import {watchTodoSaga, watchTodoDetailSaga, watchNewTodoSaga, watchRemoveTodoSaga, watchActionTodoSaga} from './todoSaga';
 import {watchPromoSaga, watchPromoDetailSaga} from './promoSaga';
-import {watchProvinceSaga, watchCitySaga} from './provinceSaga';
+import {watchProvinceSaga, watchCitySaga, watchPlaceByCitySaga} from './provinceSaga';
 import {watchNearbySaga, watchNearbyDetailSaga} from './nearbySaga';
 
 export default function* rootSaga(): any {
@@ -17,6 +17,7 @@ export default function* rootSaga(): any {
   yield fork(watchTodoSaga);
   yield fork(watchProvinceSaga);
   yield fork(watchCitySaga);
+  yield fork(watchPlaceByCitySaga);
   yield fork(watchActionTodoSaga);
   yield fork(watchRemoveTodoSaga);
   yield fork(watchNewTodoSaga);

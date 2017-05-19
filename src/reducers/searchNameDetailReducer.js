@@ -1,11 +1,9 @@
 // @flow
 import type {Action} from '../types/Action';
 
-export default function searchNameDetailReducer(state: {}, action: Action) {
+export function searchNameDetailReducer(state: {}, action: Action) {
   if (state == null) {
-    return {
-      token: '',
-    };
+    return {};
   }
   switch (action.type) {
     case 'FETCH_SEARCH_NAME_DETAIL_SUCCESS': {
@@ -13,6 +11,22 @@ export default function searchNameDetailReducer(state: {}, action: Action) {
         ...action.searchNameDetailResult,
       };
     }
+    case 'FETCH_SEARCH_NAME_DETAIL': {
+      return {};
+    }
+    default: return state;
   }
-  return state;
+}
+
+export function selectedPlaceReducer(state: string, action: Action) {
+  if (state == null) {
+    return '';
+  }
+  switch (action.type) {
+    case 'SEARCH_NAME_DETAIL': {
+      return action.placeDetailID;
+    }
+
+    default: return state;
+  }
 }

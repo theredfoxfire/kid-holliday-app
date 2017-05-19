@@ -60,7 +60,7 @@ export default class TodoPage extends Component {
   }
 
   render() {
-    let {todo, isFetchTodoLoading, isFetchTodoDetailLoading, isRemoveTodoLoading, isActionTodoLoading} = this.props;
+    let {todo, isFetchTodoLoading, isRemoveTodoLoading, isActionTodoLoading} = this.props;
     let index = 0;
     let isDone = (isDone: boolean) => {
       return {
@@ -68,7 +68,7 @@ export default class TodoPage extends Component {
         action: isDone === 'true' ? 'undone' : 'done',
       };
     };
-    if (isFetchTodoLoading || isFetchTodoDetailLoading || isRemoveTodoLoading || isActionTodoLoading) {
+    if (isFetchTodoLoading || isRemoveTodoLoading || isActionTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>

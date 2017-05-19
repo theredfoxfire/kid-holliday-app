@@ -13,6 +13,7 @@ import {
 } from '../core-ui';
 import styles from './TodoDetailPage-style';
 import autobind from 'class-autobind';
+import LoadingIndicator from '../core-ui/LoadingIndicator';
 import {ContentView} from './ContentView';
 import getContentFromHTML from '../selectors/getContentFromHTML';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
@@ -24,6 +25,8 @@ type Props = {
   backToTodo: () => void;
   isFetchTodoDetailLoading: boolean;
   todoDetailResult: Object;
+  todoDetailID: Object;
+  fetchDetail: () => void;
 };
 
 export default class TodoDetailPage extends Component {
@@ -33,6 +36,10 @@ export default class TodoDetailPage extends Component {
   constructor() {
     super(...arguments);
     autobind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchDetail(this.props.todoDetailID.id, this.props.todoDetailID.todoType);
   }
 
   _onOptionSelect(value: string) {
@@ -45,7 +52,9 @@ export default class TodoDetailPage extends Component {
 
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
-          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          if (eventId) {
+            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          }
         })
         .catch((error: string) => {
           ToastAndroid.show(error, ToastAndroid.LONG);
@@ -54,12 +63,33 @@ export default class TodoDetailPage extends Component {
   }
 
   render() {
-    let {backToTodo, todoDetailResult} = this.props;
+    let {backToTodo, todoDetailResult, isFetchTodoDetailLoading} = this.props;
     let {content} = getContentFromHTML(todoDetailResult.content);
     let index = 0;
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
     ];
+    if (isFetchTodoDetailLoading) {
+      return (
+        <View style={styles.mainContainer}>
+          <View style={styles.barContainer}>
+            <TitleBar
+              title="Todo Detail"
+              iconName="arrow-back"
+              onIconButtonPress={backToTodo}
+              rightIcon="more-vert"
+              optionData={data}
+              onRighIconPress={this._onOptionSelect}
+            />
+          </View>
+          <View style={styles.contentContainer}>
+            <ScrollView>
+              <LoadingIndicator />
+            </ScrollView>
+          </View>
+        </View>
+      );
+    }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>

@@ -1,10 +1,9 @@
 // @flow
 import type {Action} from '../types/Action';
 
-export default function nearbyReducer(state: {}, action: Action) {
+export function nearbyReducer(state: {}, action: Action) {
   if (state == null) {
     return {
-      token: '',
     };
   }
   switch (action.type) {
@@ -13,6 +12,23 @@ export default function nearbyReducer(state: {}, action: Action) {
         ...action.nearby,
       };
     }
+    case 'FETCH_NEARBY': {
+      return {};
+    }
+
+    default: return state;
   }
-  return state;
+}
+
+export function selectedNearbyReducer(state: string, action: Action) {
+  if (state == null) {
+    return '';
+  }
+  switch (action.type) {
+    case 'NEARBY_DETAIL': {
+      return action.selectedNearbyID;
+    }
+
+    default: return state;
+  }
 }

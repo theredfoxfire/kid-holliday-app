@@ -1,17 +1,32 @@
 // @flow
 import type {Action} from '../types/Action';
 
-export default function todoReducer(state: {}, action: Action) {
+export function todoReducer(state: {}, action: Action) {
   if (state == null) {
-    return {
-      token: '',
-    };
+    return {};
   }
   switch (action.type) {
     case 'FETCH_TODO_SUCCESS': {
       return {
         ...action.todo,
       };
+    }
+    case 'FETCH_TODO': {
+      return {
+      };
+    }
+
+    default: return state;
+  }
+}
+
+export function selectedTodoReducer(state: {}, action: Action) {
+  if (state == null) {
+    return {};
+  }
+  switch (action.type) {
+    case 'TODO_DETAIL': {
+      return action.todoDetailID;
     }
 
     default: return state;

@@ -14,7 +14,6 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PlaceDetailPage-style';
 import autobind from 'class-autobind';
-import newKuta from '../images/bg-side-menu.png';
 import {ContentView} from './ContentView';
 import getContentFromHTML from '../selectors/getContentFromHTML';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
@@ -29,6 +28,7 @@ type Props = {
   isPostTodoLoading: boolean;
   currentUser: boolean;
   newTodo: (module: string, module_id: string, user: string) => void;
+  placeDetailID: string;
 };
 
 export default class PlaceDetailPage extends Component {
@@ -50,7 +50,9 @@ export default class PlaceDetailPage extends Component {
 
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
-          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          if (eventId) {
+            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          }
         })
         .catch((error: string) => {
           ToastAndroid.show(error, ToastAndroid.LONG);
@@ -60,13 +62,17 @@ export default class PlaceDetailPage extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchDetail(this.props.placeDetailID);
+  }
+
   render() {
     let index = 0;
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
         { key: index++, label: 'Add to my todo list', value: 2 },
     ];
-    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult, isPostTodoLoading} = this.props;
+    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult, isPostTodoLoading, placeDetailID} = this.props;
     if (isFetchSearchNameDetailLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
@@ -105,7 +111,6 @@ export default class PlaceDetailPage extends Component {
             <ScrollView>
               <Text style={styles.title}>{searchNameDetailResult.title}</Text>
               <Text style={styles.text}>{searchNameDetailResult.location}</Text>
-              <Image source={newKuta} style={styles.image} resizeMode="stretch" />
               <ContentView content={content} />
             </ScrollView>
             <View style={{height: 50}}/>

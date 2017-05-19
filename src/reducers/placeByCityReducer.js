@@ -1,16 +1,16 @@
 // @flow
 import type {Action} from '../types/Action';
 
-export default function cityReducer(state: {}, action: Action) {
+export default function placeByCityReducer(state: {}, action: Action) {
   if (state == null) {
     return {
       token: '',
     };
   }
   switch (action.type) {
-    case 'FETCH_CITY_SUCCESS': {
+    case 'FETCH_PLACE_BY_CITY_SUCCESS': {
       return {
-        ...action.city,
+        ...action.placeByCityResult,
       };
     }
 

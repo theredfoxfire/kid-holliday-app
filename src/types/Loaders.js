@@ -16,4 +16,5 @@ export type Loaders = {
   isActionTodoLoading: boolean;
   isFetchProvinceLoading: boolean;
   isFetchCityLoading: boolean;
+  isFetchPlaceByCity: boolean;
 };

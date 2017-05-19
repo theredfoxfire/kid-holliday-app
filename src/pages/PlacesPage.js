@@ -17,8 +17,6 @@ import styles from './PlacesPage-style';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import autobind from 'class-autobind';
 import dismissKeyboard from 'dismissKeyboard';
-import backroungCover from '../images/la-background.png';
-import laLogo from '../images/bg-side-menu.png';
 import {LA_RED, LA_WHITE} from '../constants/color';
 
 type State = {
@@ -30,12 +28,13 @@ type Props = {
   searchNameAction: (name: string) => void;
   searchNameResult: {};
   isFetchSearchNameLoading: boolean;
-  isFetchSearchNameDetailLoading: boolean;
   isFetchProvinceLoading: boolean;
   province: Object;
   fetchCity: (province: string) => void;
   city: Object;
   isFetchCityLoading: boolean;
+  isFetchPlaceByCity: booelan;
+  searchByCity: () => void;
 };
 
 export default class PlacesPage extends Component {
@@ -64,6 +63,8 @@ export default class PlacesPage extends Component {
       });
       if (selectedItem === 'selectedProvince') {
         this.props.fetchCity(item);
+      } else if (selectedItem === 'selectedCity') {
+        this.props.searchByCity(this.state.selectedProvince, item);
       }
     };
   }
@@ -75,11 +76,11 @@ export default class PlacesPage extends Component {
 
   render() {
     let {placeDetail, searchNameAction, isFetchSearchNameLoading,
-      isFetchSearchNameDetailLoading, searchNameResult, province,
-      isFetchCityLoading, city,
+      searchNameResult, province,
+      isFetchCityLoading, city, isFetchPlaceByCity, placeByCityResult,
       isFetchProvinceLoading} = this.props;
     let {selectedProvince, selectedCity} = this.state;
-    if (isFetchSearchNameLoading || isFetchSearchNameDetailLoading || isFetchProvinceLoading || isFetchCityLoading) {
+    if (isFetchSearchNameLoading || isFetchProvinceLoading || isFetchCityLoading || isFetchPlaceByCity) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -121,10 +122,9 @@ export default class PlacesPage extends Component {
         <View key={1}>
         <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
           <View style={styles.listContainer}>
-            <Image source={laLogo} style={styles.image} resizeMode="contain" />
             <View style={styles.titleContainer}>
               <Text style={styles.title}>{searchData.title}</Text>
-              <Text style={styles.title}>{searchData.location}</Text>
+              <Text style={styles.subtitle}>{searchData.location}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -138,10 +138,7 @@ export default class PlacesPage extends Component {
             />
           </View>
           <View style={styles.formContainer}>
-            <View style={styles.lableContainer}>
-              <Text style={styles.lableText}>Search place by city:</Text>
-            </View>
-            <View style={styles.field}>
+            {/*<View style={styles.field}>
               <Dropdown
                 placeholder="Select Province"
                 onSelect={this._onSelect('selectedProvince')}
@@ -156,7 +153,7 @@ export default class PlacesPage extends Component {
                 options={cityOptions}
                 selectedValue={selectedCity}
               />
-            </View>
+            </View>*/}
             <View style={styles.lableContainer}>
               <Text style={styles.lableText}>Search place by name:</Text>
             </View>

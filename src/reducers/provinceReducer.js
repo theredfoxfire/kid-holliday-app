@@ -13,6 +13,7 @@ export default function provinceReducer(state: {}, action: Action) {
         ...action.province,
       };
     }
+
+    default: return state;
   }
-  return state;
 }

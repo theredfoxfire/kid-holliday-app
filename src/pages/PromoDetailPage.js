@@ -26,6 +26,9 @@ type Props = {
   promoDetailResult: Object;
   newTodo: (module: string, module_id: string, user: string) => void;
   isPostTodoLoading: void;
+  isFetchPromoDetailLoading: boolean;
+  fetchDetail: () => void;
+  selectedPromoID: boolean;
 };
 
 export default class PromoDetailPage extends Component {
@@ -50,7 +53,9 @@ export default class PromoDetailPage extends Component {
 
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
-          ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          if (eventId) {
+            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+          }
         })
         .catch((error: string) => {
           ToastAndroid.show(error, ToastAndroid.LONG);
@@ -60,15 +65,19 @@ export default class PromoDetailPage extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchDetail(this.props.selectedPromoID);
+  }
+
   render() {
-    let {backToPromo, promoDetailResult, isPostTodoLoading} = this.props;
+    let {backToPromo, promoDetailResult, isPostTodoLoading, isFetchPromoDetailLoading} = this.props;
     let index = 0;
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
         { key: index++, label: 'Add to my todo list', value: 2 },
     ];
     let {content} = getContentFromHTML(promoDetailResult.content);
-    if (isPostTodoLoading) {
+    if (isPostTodoLoading, isFetchPromoDetailLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
