@@ -39,7 +39,9 @@ export default class TodoDetailPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchDetail(this.props.todoDetailID.id, this.props.todoDetailID.todoType);
+    setTimeout(() => {
+      this.props.fetchDetail(this.props.todoDetailID.id, this.props.todoDetailID.todoType);
+    }, 400);
   }
 
   _onOptionSelect(value: string) {

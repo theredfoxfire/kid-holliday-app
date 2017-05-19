@@ -45,16 +45,20 @@ export default class TodoPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTodo(this.props.currentUser.username);
+    setTimeout(() => {
+      this.props.fetchTodo(this.props.currentUser.username);
+    }, 400);
   }
 
   _selectedAction(selectedOption: number, id: string, type: string, todoID: string, action: string) {
     let {currentUser, todoDetails, removeTodo, actionTodo} = this.props;
     if (selectedOption === 1) {
       todoDetails(id, type);
-    } else if (selectedOption === 3) {
+    }
+    if (selectedOption === 3) {
       removeTodo(todoID, currentUser.username);
-    } else if (selectedOption === 2) {
+    }
+    if (selectedOption === 2) {
       actionTodo(todoID, action, currentUser.username);
     }
   }

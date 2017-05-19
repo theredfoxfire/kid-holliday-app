@@ -11,9 +11,11 @@ export function todoReducer(state: {}, action: Action) {
         ...action.todo,
       };
     }
-    case 'FETCH_TODO': {
-      return {
-      };
+    case 'PUSH_ROUTE': {
+      if (action.key === 'todo') {
+        return {};
+      }
+      return state;
     }
 
     default: return state;

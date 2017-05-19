@@ -66,7 +66,9 @@ export default class PromoDetailPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchDetail(this.props.selectedPromoID);
+    setTimeout(() => {
+      this.props.fetchDetail(this.props.selectedPromoID);
+    }, 400);
   }
 
   render() {

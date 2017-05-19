@@ -11,9 +11,14 @@ export function searchNameDetailReducer(state: {}, action: Action) {
         ...action.searchNameDetailResult,
       };
     }
-    case 'FETCH_SEARCH_NAME_DETAIL': {
-      return {};
+    case 'PUSH_ROUTE': {
+      if (action.key === 'placeDetail') {
+        return {};
+      }
+      return state;
     }
+
+      break;
     default: return state;
   }
 }

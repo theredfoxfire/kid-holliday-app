@@ -63,7 +63,9 @@ export default class PlaceDetailPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchDetail(this.props.placeDetailID);
+    setTimeout(() => {
+      this.props.fetchDetail(this.props.placeDetailID);
+    }, 400);
   }
 
   render() {

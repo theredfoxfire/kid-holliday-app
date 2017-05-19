@@ -12,8 +12,11 @@ export function nearbyReducer(state: {}, action: Action) {
         ...action.nearby,
       };
     }
-    case 'FETCH_NEARBY': {
-      return {};
+    case 'PUSH_ROUTE': {
+      if (action.key === 'nearby') {
+        return {};
+      }
+      return state;
     }
 
     default: return state;

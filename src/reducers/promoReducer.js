@@ -12,8 +12,11 @@ export function promoReducer(state: {}, action: Action) {
         ...action.promo,
       };
     }
-    case 'FETCH_PROMO': {
-      return {};
+    case 'PUSH_ROUTE': {
+      if (action.key === 'promo') {
+        return {};
+      }
+      return state;
     }
 
     default: return state;

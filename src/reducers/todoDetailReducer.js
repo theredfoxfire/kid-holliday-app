@@ -12,9 +12,11 @@ export default function todoDetailReducer(state: {}, action: Action) {
         ...action.todoDetailResult,
       };
     }
-    case 'FETCH_TODO_DETAIL': {
-      return {
-      };
+    case 'PUSH_ROUTE': {
+      if (action.key === 'todoDetail') {
+        return {};
+      }
+      return state;
     }
 
     default: return state;

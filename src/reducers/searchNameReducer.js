@@ -12,8 +12,11 @@ export default function searchNameReducer(state: {}, action: Action) {
         ...action.searchNameResult,
       };
     }
-    case 'FETCH_SEARCH_NAME': {
-      return {};
+    case 'PUSH_ROUTE': {
+      if (action.key === 'place') {
+        return {};
+      }
+      return state;
     }
 
     default: return state;

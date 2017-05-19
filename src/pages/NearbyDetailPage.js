@@ -63,7 +63,9 @@ export default class NearbyDetailPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchDetail(this.props.selectedNearbyID);
+    setTimeout(() => {
+      this.props.fetchDetail(this.props.selectedNearbyID);
+    }, 400);
   }
 
   render() {

@@ -38,17 +38,20 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
             ...state,
             isFetchNearbyDetailLoading: true,
           };
-        } else if (action.key === 'todoDetail') {
+        }
+        if (action.key === 'todoDetail') {
           return {
             ...state,
             isFetchTodoDetailLoading: true,
           };
-        } else if (action.key === 'placeDetail') {
+        }
+        if (action.key === 'placeDetail') {
           return {
             ...state,
             isFetchSearchNameDetaiLoading: true,
           };
-        } else if (action.key === 'promoDetail') {
+        }
+        if (action.key === 'promoDetail') {
           return {
             ...state,
             isFetchPromoDetailLoadingDetaiLoading: true,
