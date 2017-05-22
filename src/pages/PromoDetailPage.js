@@ -29,6 +29,7 @@ type Props = {
   isFetchPromoDetailLoading: boolean;
   fetchDetail: () => void;
   selectedPromoID: boolean;
+  currentUser: Object;
 };
 
 export default class PromoDetailPage extends Component {
@@ -72,14 +73,15 @@ export default class PromoDetailPage extends Component {
   }
 
   render() {
-    let {backToPromo, promoDetailResult, isPostTodoLoading, isFetchPromoDetailLoading} = this.props;
+    let {backToPromo, promoDetailResult, isPostTodoLoading, isFetchPromoDetailLoading, currentUser} = this.props;
     let index = 0;
+    let todoOption = currentUser.username ? { key: index++, label: 'Add to my todo list', value: 2 } : {key: index++};
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
-        { key: index++, label: 'Add to my todo list', value: 2 },
+        todoOption,
     ];
     let {content} = getContentFromHTML(promoDetailResult.content);
-    if (isPostTodoLoading, isFetchPromoDetailLoading) {
+    if (isPostTodoLoading || isFetchPromoDetailLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>

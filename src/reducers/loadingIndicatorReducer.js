@@ -59,14 +59,17 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         }
         return state;
       }
-      case 'RESET_ROUTE': {
-        if (action.key === 'todo') {
-          return {
-            ...state,
-            isFetchTodoLoading: true,
-          };
-        }
-        return state;
+      case 'GOTO_TODO': {
+        return {
+          ...state,
+          isFetchTodoLoading: true,
+        };
+      }
+      case 'GOTO_PROMO': {
+        return {
+          ...state,
+          isFetchPromoLoading: true,
+        };
       }
       case 'FACEBOOK_LOGIN_ERROR':
       case 'FACEBOOK_LOGIN_CANCEL':

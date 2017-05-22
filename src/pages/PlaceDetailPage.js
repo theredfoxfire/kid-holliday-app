@@ -69,12 +69,13 @@ export default class PlaceDetailPage extends Component {
   }
 
   render() {
+    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult, isPostTodoLoading, currentUser, placeDetailID} = this.props;
     let index = 0;
+    let todoOption = currentUser.username ? { key: index++, label: 'Add to my todo list', value: 2 } : { key: index++};
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
-        { key: index++, label: 'Add to my todo list', value: 2 },
+        todoOption,
     ];
-    let {backToPlace, isFetchSearchNameDetailLoading, searchNameDetailResult, isPostTodoLoading, placeDetailID} = this.props;
     if (isFetchSearchNameDetailLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>

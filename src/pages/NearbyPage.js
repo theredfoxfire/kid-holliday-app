@@ -120,7 +120,7 @@ export default class NearbyPage extends Component {
       }
     } else {
       let list = [];
-      Object.values(nearby).slice(0,-1).forEach((item, idx) => {
+      Object.values(nearby).forEach((item, idx) => {
         list.push(
           <View style={styles.placeContainer} key={idx}>
             <View style={styles.itemPlaceContainer}>

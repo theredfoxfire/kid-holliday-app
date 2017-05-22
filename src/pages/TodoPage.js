@@ -47,7 +47,7 @@ export default class TodoPage extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.fetchTodo(this.props.currentUser.username);
-    }, 400);
+    }, 800);
   }
 
   _selectedAction(selectedOption: number, id: string, type: string, todoID: string, action: string) {
@@ -87,7 +87,7 @@ export default class TodoPage extends Component {
     );
     } else {
       let list = [];
-      Object.values(todo).slice(0,-1).forEach((item, idx) => {
+      Object.values(todo).forEach((item, idx) => {
         const data = [
             { key: index++, label: 'View details', value: 1 },
             { key: index++, label: isDone(item.done).label, value: 2 },

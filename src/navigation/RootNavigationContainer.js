@@ -70,6 +70,9 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: 'RESET_ROUTE', key: 'todo',
       });
+      dispatch({
+        type: 'GOTO_TODO',
+      });
     },
     onPressPromo() {
       dispatch({
@@ -77,6 +80,9 @@ function mapDispatchToProps(dispatch) {
       });
       dispatch({
         type: 'CLOSE_DRAWER',
+      });
+      dispatch({
+        type: 'GOTO_PROMO',
       });
     },
     closeDrawer() {

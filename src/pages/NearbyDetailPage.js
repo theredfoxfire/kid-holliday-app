@@ -69,12 +69,13 @@ export default class NearbyDetailPage extends Component {
   }
 
   render() {
+    let {backToNearby, isFetchNearbyDetailLoading, nearbyDetailResult, currentUser, isPostTodoLoading} = this.props;
     let index = 0;
+    let todoOption = currentUser.username ? { key: index++, label: 'Add to my todo list', value: 2 } : { key: index++};
     const data = [
-        { key: index++, label: 'Add to calendar', value: 1},
-        { key: index++, label: 'Add to my todo list', value: 2},
+        { key: index++, label: 'Add to calendar', value: 1 },
+        todoOption,
     ];
-    let {backToNearby, isFetchNearbyDetailLoading, nearbyDetailResult, isPostTodoLoading} = this.props;
     if (isFetchNearbyDetailLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>

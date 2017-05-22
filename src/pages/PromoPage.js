@@ -9,7 +9,6 @@ import {
 import {
   Button,
   TitleBar,
-  ButtonRow,
 } from '../core-ui';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PromoPage-style';
@@ -22,7 +21,6 @@ type State = {
 type Props = {
   promoDetails?: (id: string) => void;
   isFetchPromoLoading?: boolean;
-  isFetchPromoDetailLoading?: boolean;
   promo?: Array<Object>;
   fetchPromo?: () => void;
   currentUser?: Object;
@@ -44,8 +42,8 @@ export default class PromoPage extends Component {
   }
 
   render() {
-    let {promoDetails, promo, isFetchPromoLoading, isFetchPromoDetailLoading, newTodo, currentUser, isPostTodoLoading} = this.props;
-    if (isFetchPromoLoading || isFetchPromoDetailLoading || isPostTodoLoading) {
+    let {promoDetails, promo, isFetchPromoLoading, newTodo, currentUser, isPostTodoLoading} = this.props;
+    if (isFetchPromoLoading || isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -60,7 +58,7 @@ export default class PromoPage extends Component {
       );
     } else {
       let list = [];
-      Object.values(promo).slice(0,-1).forEach((item, idx) => {
+      Object.values(promo).forEach((item, idx) => {
         list.push(
           <View style={styles.placeContainer} key={idx}>
             <View style={styles.itemPlaceContainer}>
@@ -77,16 +75,18 @@ export default class PromoPage extends Component {
               <View style={styles.buttonContainer}>
                 <Button
                     text="DETAIL"
-                    textStyle={styles.centeredButton}
+                    style={{width: 10}}
                     inverted
                     onPress={() => promoDetails(item.id)}
                   />
-                <Button
-                    text="ADD TO TODO LIST"
-                    textStyle={styles.centeredButton}
-                    inverted
-                    onPress={() => newTodo('discount_promotion', item.id, currentUser.username)}
-                  />
+                {
+                  currentUser.username ?
+                  <Button
+                      text="ADD TO TODO LIST"
+                      inverted
+                      onPress={() => newTodo('discount_promotion', item.id, currentUser.username)}
+                    /> : <View />
+                }
               </View>
             </View>
           </View>
