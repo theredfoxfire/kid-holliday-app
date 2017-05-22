@@ -12,11 +12,8 @@ export function promoReducer(state: {}, action: Action) {
         ...action.promo,
       };
     }
-    case 'PUSH_ROUTE': {
-      if (action.key === 'promo') {
-        return {};
-      }
-      return state;
+    case 'RESET_ROUTE': {
+      return {};
     }
 
     default: return state;
@@ -30,6 +27,12 @@ export function selectedPromoReducer(state: string, action: Action) {
   switch (action.type) {
     case 'PROMO_DETAIL': {
       return action.selectedPromoID;
+    }
+    case 'RESET_ROUTE': {
+      if (action.key === 'promo') {
+        return state;
+      }
+      return {};
     }
 
     default: return state;

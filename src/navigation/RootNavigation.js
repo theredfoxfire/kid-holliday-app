@@ -47,6 +47,7 @@ type Props = {
   onPressNearBy: () => void;
   onPressTodo: () => void;
   onPressPromo: () => void;
+  closeDrawer: () => void;
   autoLogin: (userAuth: {email: string; password: string}) => void;
 };
 
@@ -67,18 +68,22 @@ export default class RootNavigation extends Component {
   }
 
   _handleBackAction() {
-    if (this.props.navigation.index === 0) {
-      let firstRouteKey = this.props.navigation.routes[0].key;
-      if (['initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
-        Alert.alert('Liburan Anak', 'Keluar dari aplikasi?', [
-          {text: 'Iya', onPress: () => BackAndroid.exitApp()},
-          {text: 'Tidak'},
-        ]);
-      } else {
-        this.props.backToHome();
-      }
+    if (this.props.isDrawerOpen) {
+      this.props.closeDrawer();
     } else {
-      this.props.popRoute();
+      if (this.props.navigation.index === 0) {
+        let firstRouteKey = this.props.navigation.routes[0].key;
+        if (['initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
+          Alert.alert('Liburan Anak', 'Keluar dari aplikasi?', [
+            {text: 'Iya', onPress: () => BackAndroid.exitApp()},
+            {text: 'Tidak'},
+          ]);
+        } else {
+          this.props.backToHome();
+        }
+      } else {
+        this.props.popRoute();
+      }
     }
     return true;
   }

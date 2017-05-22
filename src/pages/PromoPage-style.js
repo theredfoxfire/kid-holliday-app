@@ -17,7 +17,7 @@ export default StyleSheet.create({
     height: 60,
   },
   placeContainer: {
-    height: 130,
+    height: 140,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: GREY,

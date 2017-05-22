@@ -11,11 +11,11 @@ export function todoReducer(state: {}, action: Action) {
         ...action.todo,
       };
     }
-    case 'PUSH_ROUTE': {
+    case 'RESET_ROUTE': {
       if (action.key === 'todo') {
-        return {};
+        return state;
       }
-      return state;
+      return {};
     }
 
     default: return state;
@@ -29,6 +29,9 @@ export function selectedTodoReducer(state: {}, action: Action) {
   switch (action.type) {
     case 'TODO_DETAIL': {
       return action.todoDetailID;
+    }
+    case 'RESET_ROUTE': {
+      return {};
     }
 
     default: return state;

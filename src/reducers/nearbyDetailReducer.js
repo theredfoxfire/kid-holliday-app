@@ -11,11 +11,11 @@ export default function nearbyDetailReducer(state: {}, action: Action) {
         ...action.nearbyDetailResult,
       };
     }
+    case 'RESET_ROUTE': {
+      return {};
+    }
     case 'PUSH_ROUTE': {
-      if (action.key === 'nearbyDetail') {
-        return {};
-      }
-      return state;
+      return {};
     }
 
     default: return state;

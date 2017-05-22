@@ -12,11 +12,11 @@ export default function promoDetailReducer(state: {}, action: Action) {
         ...action.promoDetailResult,
       };
     }
+    case 'RESET_ROUTE': {
+      return {};
+    }
     case 'PUSH_ROUTE': {
-      if (action.key === 'promoDetail') {
-        return {};
-      }
-      return state;
+      return {};
     }
 
     default: return state;

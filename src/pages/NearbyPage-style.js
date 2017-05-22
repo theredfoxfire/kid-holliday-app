@@ -14,10 +14,10 @@ export default StyleSheet.create({
   },
   image: {
     width: 90,
-    height: 50,
+    height: 60,
   },
   placeContainer: {
-    height: 100,
+    height: 130,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: GREY,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     marginTop: -5,
   },
   itemPlaceContainer: {
-    height: 45,
+    height: 60,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },

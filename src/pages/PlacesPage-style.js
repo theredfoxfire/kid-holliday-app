@@ -20,7 +20,7 @@ export default StyleSheet.create({
     backgroundColor: LA_BLUE_LIGHT,
   },
   listContainer: {
-    height: 80,
+    height: 110,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',

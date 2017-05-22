@@ -12,11 +12,11 @@ export function nearbyReducer(state: {}, action: Action) {
         ...action.nearby,
       };
     }
-    case 'PUSH_ROUTE': {
+    case 'RESET_ROUTE': {
       if (action.key === 'nearby') {
-        return {};
+        return state;
       }
-      return state;
+      return {};
     }
 
     default: return state;
@@ -30,6 +30,9 @@ export function selectedNearbyReducer(state: string, action: Action) {
   switch (action.type) {
     case 'NEARBY_DETAIL': {
       return action.selectedNearbyID;
+    }
+    case 'RESET_ROUTE': {
+      return {};
     }
 
     default: return state;

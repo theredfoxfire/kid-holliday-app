@@ -12,11 +12,11 @@ export default function todoDetailReducer(state: {}, action: Action) {
         ...action.todoDetailResult,
       };
     }
+    case 'RESET_ROUTE': {
+      return {};
+    }
     case 'PUSH_ROUTE': {
-      if (action.key === 'todoDetail') {
-        return {};
-      }
-      return state;
+      return {};
     }
 
     default: return state;

@@ -18,8 +18,7 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     backToTodo: () => {
       dispatch({
-        type: 'RESET_ROUTE',
-        key: 'todo',
+        type: 'POP_ROUTE',
       });
     },
     fetchDetail(id: string, todoType: string) {

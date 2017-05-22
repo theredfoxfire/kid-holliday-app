@@ -11,14 +11,13 @@ export function searchNameDetailReducer(state: {}, action: Action) {
         ...action.searchNameDetailResult,
       };
     }
+    case 'RESET_ROUTE': {
+      return {};
+    }
     case 'PUSH_ROUTE': {
-      if (action.key === 'placeDetail') {
-        return {};
-      }
-      return state;
+      return {};
     }
 
-      break;
     default: return state;
   }
 }
@@ -30,6 +29,9 @@ export function selectedPlaceReducer(state: string, action: Action) {
   switch (action.type) {
     case 'SEARCH_NAME_DETAIL': {
       return action.placeDetailID;
+    }
+    case 'RESET_ROUTE': {
+      return {};
     }
 
     default: return state;

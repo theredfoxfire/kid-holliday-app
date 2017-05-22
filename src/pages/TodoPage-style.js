@@ -14,10 +14,10 @@ export default StyleSheet.create({
   },
   image: {
     width: 90,
-    height: 60,
+    height: 70,
   },
   placeContainer: {
-    height: 90,
+    height: 110,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: GREY,
@@ -33,13 +33,14 @@ export default StyleSheet.create({
     marginTop: -5,
   },
   itemPlaceContainer: {
-    height: 60,
+    height: 70,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   titleContainer: {
     width: 220,
     marginLeft: 10,
+    marginTop: -5,
   },
   title: {
     fontSize: 16,

@@ -20,8 +20,7 @@ export function mapDispatchToProps(dispatch: Dispatch) {
   return {
     backToPromo: () => {
       dispatch({
-        type: 'RESET_ROUTE',
-        key: 'promo',
+        type: 'POP_ROUTE',
       });
     },
     newTodo(module: string, module_id: string, user: string) {

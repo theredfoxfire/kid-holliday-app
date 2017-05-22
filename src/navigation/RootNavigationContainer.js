@@ -79,6 +79,11 @@ function mapDispatchToProps(dispatch) {
         type: 'CLOSE_DRAWER',
       });
     },
+    closeDrawer() {
+      dispatch({
+        type: 'CLOSE_DRAWER',
+      });
+    },
     autoLogin(userAuth) {
       dispatch({type: 'LOGIN', userAuth});
     },
