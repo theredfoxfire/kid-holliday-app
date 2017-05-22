@@ -1,4 +1,4 @@
-package com.liburananak;
+package com.imajiku.la2;
 
 import com.facebook.react.ReactActivity;
 import com.cboy.rn.splashscreen.SplashScreen;

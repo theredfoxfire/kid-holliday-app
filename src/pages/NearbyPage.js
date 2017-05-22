@@ -26,7 +26,6 @@ type Props = {
   onPressDetail: () => void;
   onPressMap: () => void;
   isFetchNearbyLoading?: boolean;
-  isFetchNearbyDetailLoading?: boolean;
   fetchNearby?: () => void;
 };
 
@@ -87,9 +86,9 @@ export default class NearbyPage extends Component {
     };
 
   render() {
-    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby, isFetchNearbyDetailLoading, onPressMap} = this.props;
+    let {onPressDetail, isFetchNearbyLoading, fetchNearby, nearby, onPressMap} = this.props;
     let {latitude, longitude, error} = this.state;
-    if (latitude === null || longitude === null || isFetchNearbyLoading || isFetchNearbyDetailLoading) {
+    if (latitude === null || longitude === null || isFetchNearbyLoading) {
       if (error !== null) {
         return (
           <View style={styles.mainContainer}>

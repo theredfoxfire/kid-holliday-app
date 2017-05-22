@@ -18,6 +18,7 @@ export default function LoadingIndicator(props: Props) {
       style={[{
         flex: 1,
         padding: 10,
+        // backgroundColor: 'rgba(255, 0, 0, 0.3)',
       }, props.style]}
       size={size}
       color={LA_RED}

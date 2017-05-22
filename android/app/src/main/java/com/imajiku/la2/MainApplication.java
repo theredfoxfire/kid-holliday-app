@@ -1,7 +1,6 @@
-package com.liburananak;
+package com.imajiku.la2;
 
 import android.app.Application;
-
 import com.facebook.react.ReactApplication;
 import com.vonovak.AddCalendarEventPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
@@ -19,6 +18,7 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;

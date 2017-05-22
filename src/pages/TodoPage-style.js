@@ -5,7 +5,7 @@ import {
   Platform,
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
-import {GREY, LA_BLUE_OLD, DARK_GREY} from '../constants/color';
+import {GREY, LA_BLUE_OLD, DARK_GREY, LA_RED} from '../constants/color';
 
 export default StyleSheet.create({
   mainContainer: {
@@ -57,5 +57,14 @@ export default StyleSheet.create({
   },
   picker: {
     width: 100,
+  },
+  init: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  lableText: {
+    color: LA_RED,
+    fontWeight: 'bold',
   },
 });

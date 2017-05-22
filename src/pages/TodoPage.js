@@ -131,7 +131,12 @@ export default class TodoPage extends Component {
             />
           </View>
           <ScrollView>
-            {list}
+            {
+              list.length > 0 ? list :
+              <View style={styles.init}>
+                <Text style={styles.lableText}>Your todo list is empty.</Text>
+              </View>
+            }
           </ScrollView>
         </View>
       );

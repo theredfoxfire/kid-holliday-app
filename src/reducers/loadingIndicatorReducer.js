@@ -59,6 +59,15 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         }
         return state;
       }
+      case 'RESET_ROUTE': {
+        if (action.key === 'todo') {
+          return {
+            ...state,
+            isFetchTodoLoading: true,
+          };
+        }
+        return state;
+      }
       case 'FACEBOOK_LOGIN_ERROR':
       case 'FACEBOOK_LOGIN_CANCEL':
       case 'LOGOUT_SUCCESS':
