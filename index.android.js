@@ -15,7 +15,7 @@ export default class LiburanAnak extends Component {
   componentDidMount() {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 500);
+    }, 100);
   }
 
   render() {

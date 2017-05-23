@@ -17,7 +17,7 @@ export default StyleSheet.create({
     height: 60,
   },
   placeContainer: {
-    height: 130,
+    height: 110,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: GREY,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     marginTop: -5,
   },
   itemPlaceContainer: {
-    height: 60,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },

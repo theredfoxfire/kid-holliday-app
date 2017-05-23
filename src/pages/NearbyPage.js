@@ -126,7 +126,7 @@ export default class NearbyPage extends Component {
             <View style={styles.itemPlaceContainer}>
               <Image source={{uri: `http://liburananak.com/images/holiday_spots/tn/${item.thumb}`}} style={styles.image} resizeMode="stretch" />
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.title}>{item.title.substr(0,45)}{item.title.length > 45 ? '...' : null}</Text>
               </View>
             </View>
             <View style={styles.itemPlaceContainer}>

@@ -47,7 +47,7 @@ export default class TodoPage extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.fetchTodo(this.props.currentUser.username);
-    }, 800);
+    }, 400);
   }
 
   _selectedAction(selectedOption: number, id: string, type: string, todoID: string, action: string) {
@@ -111,8 +111,8 @@ export default class TodoPage extends Component {
                 <View style={styles.itemPlaceContainer}>
                   <Image source={{uri: item.thumb}} style={styles.image} resizeMode="stretch" />
                   <View style={styles.titleContainer}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text>{item.location}</Text>
+                    <Text style={styles.title}>{item.title.substr(0,45)}{item.title.length > 45 ? '...' : null}</Text>
+                    <Text>{item.location.substr(0,60)}{item.location.length > 60 ? '...' : null}</Text>
                   </View>
                   <View style={styles.checklistContainer}>
                     {item.done === 'true' ? <Icon name="done" style={styles.checlist} /> : <Icon name="more-vert" style={styles.checlist} />}

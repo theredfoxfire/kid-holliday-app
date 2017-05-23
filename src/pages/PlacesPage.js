@@ -123,8 +123,8 @@ export default class PlacesPage extends Component {
         <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
           <View style={styles.listContainer}>
             <View style={styles.titleContainer}>
-              <Text style={styles.title}>{searchData.title}</Text>
-              <Text style={styles.subtitle}>{searchData.location}</Text>
+              <Text style={styles.title}>{searchData.title ? searchData.title.substr(0,55) : null}{searchData.title ? searchData.title.length > 55 ? '...' : null : null}</Text>
+              <Text style={styles.subtitle}>{searchData.location ? searchData.location.substr(0,70) : null}{searchData.location ? searchData.location.length > 75 ? '...' : null : null}</Text>
             </View>
           </View>
         </TouchableOpacity>

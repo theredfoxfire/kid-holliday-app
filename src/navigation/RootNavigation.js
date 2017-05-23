@@ -26,7 +26,6 @@ import NearbyDetailPageContainer from '../containers/NearbyDetailPageContainer';
 import TodoDetailPageContainer from '../containers/TodoDetailPageContainer';
 import PromoDetailPageContainer from '../containers/PromoDetailPageContainer';
 import PlaceDetailPageContainer from '../containers/PlaceDetailPageContainer';
-import MapDirectionPageContainer from '../containers/MapDirectionPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -104,7 +103,6 @@ export default class RootNavigation extends Component {
       case 'todoDetail': return <TodoDetailPageContainer />;
       case 'promoDetail': return <PromoDetailPageContainer />;
       case 'placeDetail': return <PlaceDetailPageContainer />;
-      case 'mapDirection': return <MapDirectionPageContainer />;
     }
   }
 

@@ -64,8 +64,8 @@ export default class PromoPage extends Component {
             <View style={styles.itemPlaceContainer}>
               <Image source={{uri: `http://liburananak.com/images/events/${item.image_small}`}} style={styles.image} resizeMode="stretch" />
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{item.title_promotion}</Text>
-                <Text>{item.location}</Text>
+                <Text style={styles.title}>{item.title_promotion.substr(0,25)}{item.title_promotion.length > 25 ? '...' : null}</Text>
+                <Text>{item.location.substr(0,60)}{item.location.length > 60 ? '...' : null}</Text>
               </View>
             </View>
             <View style={styles.bottomPlaceContainer}>
