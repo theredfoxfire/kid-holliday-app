@@ -3,7 +3,6 @@ package com.imajiku.la2;
 import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.vonovak.AddCalendarEventPackage;
-import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new AddCalendarEventPackage(),
-            new ReactNativePermissionsPackage(),
             new LinearGradientPackage(),
             new SplashScreenReactPackage(),
             new VectorIconsPackage()
