@@ -48,7 +48,8 @@ export default class SignupPage extends Component {
 
   keyboardDidHide (e) {
     this.setState({
-      topLogo: {}
+      topLogo: {},
+      topLogoContainer: {},
     })
   }
 
