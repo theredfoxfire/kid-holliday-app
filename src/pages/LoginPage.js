@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  Linking,
 } from 'react-native';
 import {
   Button,
@@ -78,6 +79,17 @@ export default class LoginPage extends Component {
   //     }
   //   });
   // }
+  handleClick = (url: string) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        Alert.alert('Liburan Anak', 'Tidak bisa membuka link.', [
+          {text: 'OK!'},
+        ]);
+      }
+    });
+  };
   render() {
     let {isLoading, onPressForgot, onPressSignup} = this.props;
     let pressForgot = onPressForgot ? onPressForgot : () => {};
@@ -106,12 +118,12 @@ export default class LoginPage extends Component {
           />
         </View>
         <View style={styles.forgot}>
-          <TouchableOpacity onPress={pressForgot}>
+          <TouchableOpacity onPress={() => this.handleClick('http://www.liburananak.com/id/users/forgot')}>
             <Text style={styles.labelForgot}>Forgot Password?</Text>
           </TouchableOpacity>
           <View style={styles.signUp}>
             <Text>Don't have any account? </Text>
-            <TouchableOpacity onPress={pressSignup}>
+            <TouchableOpacity onPress={() => this.handleClick('http://www.liburananak.com/id/users/registration')}>
               <Text style={styles.labelForgot}>Sign Up.</Text>
             </TouchableOpacity>
           </View>

@@ -34,7 +34,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    marginLeft: -18,
+    marginRight: 2,
     backgroundColor: '#f7f7f7',
+    width: getScreenSize().width * 0.80,
+    height: 80,
   },
   headerBottomRight: {
     marginLeft: 10,
@@ -43,7 +47,7 @@ export default StyleSheet.create({
   },
   image: {
     width: getScreenSize().width * 0.80,
-    height: 220,
+    height: 100,
   },
   logoTop: {
     fontSize: 30,

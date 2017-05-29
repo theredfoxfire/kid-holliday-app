@@ -43,7 +43,7 @@ export default StyleSheet.create({
     marginBottom: -20,
   },
   buttonContainer: {
-    height: 300,
+    height: 220,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',

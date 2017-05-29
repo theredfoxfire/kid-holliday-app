@@ -14,8 +14,6 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './NearbyPage-style';
 import autobind from 'class-autobind';
-import newKuta from '../images/new-kuta.jpg';
-import woodyKid from '../images/woody-kid-zone.jpg';
 import getDirections from 'react-native-google-maps-directions'
 
 type State = {
@@ -61,7 +59,7 @@ export default class NearbyPage extends Component {
         this.setState({error: error.message});
         return ToastAndroid.show(`${error.message}, please TURN OFF your GPS for run faster.`, ToastAndroid.LONG);
       },
-      { enableHighAccuracy: false, timeout: 30000, maximumAge: 1000 },
+      { enableHighAccuracy: false, timeout: 15000, maximumAge: 1000 },
     );
   }
 
@@ -99,7 +97,7 @@ export default class NearbyPage extends Component {
             </View>
             <ScrollView>
               <View style={styles.init}>
-                <Text style={styles.lableText}>There is no place nearby you.</Text>
+                <Text style={styles.lableText}>There is no place near you.</Text>
               </View>
             </ScrollView>
           </View>
@@ -162,7 +160,7 @@ export default class NearbyPage extends Component {
             {
               list.length > 0 ? list :
               <View style={styles.init}>
-                <Text style={styles.lableText}>There is no place nearby you.</Text>
+                <Text style={styles.lableText}>There is no place near you.</Text>
               </View>
             }
           </ScrollView>

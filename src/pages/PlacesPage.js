@@ -173,7 +173,7 @@ export default class PlacesPage extends Component {
           <ScrollView>
             {!searchData.title ?
               <View style={styles.init}>
-                <Text style={styles.lableText}>Try to type a name of location.</Text>
+                <Text style={styles.lableText}>Where to, what todo...</Text>
               </View>:
               list
             }

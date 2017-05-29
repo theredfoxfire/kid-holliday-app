@@ -13,7 +13,6 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PromoPage-style';
 import autobind from 'class-autobind';
-import newKuta from '../images/bg-side-menu.png';
 
 type State = {
 

@@ -9,7 +9,7 @@ import {
 import {Icon} from '../core-ui';
 
 import styles from './DrawerComponent-style';
-import bgMenu from '../images/bg-side-menu.png';
+import bgMenu from '../images/promosocmed.jpg';
 import DrawerMenuItem from '../core-ui/DrawerMenuItem';
 import LoadingIndicator from './LoadingIndicator';
 
@@ -42,15 +42,6 @@ export default class DrawerComponent extends Component {
     return (
       <View>
         <View style={styles.containerMenus}>
-          <View style={styles.drawerHeader}>
-            <View style={styles.headerBottom}>
-                <Image
-                  source={bgMenu}
-                  style={styles.image}
-                  resizeMode="cover"
-                />
-            </View>
-          </View>
           <View style={styles.drawerBody}>
             <DrawerMenuItem onPress={onPressHome} onSwipe={onPressClose} style={styles.home}>
               <Icon name="home" style={styles.iconFooter} /><Text style={styles.footerText}>Home</Text>
@@ -65,6 +56,13 @@ export default class DrawerComponent extends Component {
             <DrawerMenuItem onPress={onPressPromo} onSwipe={onPressClose}>
               <Icon name="monetization-on" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
             </DrawerMenuItem>
+            <View style={styles.headerBottom}>
+              <Image
+                source={bgMenu}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            </View>
             <DrawerMenuItem onPress={() => {}} onSwipe={onPressClose} style={styles.onClose} />
           </View>
           <View style={styles.drawerFooter}>

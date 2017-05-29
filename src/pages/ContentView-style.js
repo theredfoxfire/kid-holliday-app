@@ -3,14 +3,14 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: 3,
   },
   textItalic: {
     fontStyle: 'italic',
   },
   textBlock: {
-    marginTop: 10,
+    marginTop: 0,
     paddingHorizontal: 10,
-    paddingTop: 20,
+    paddingTop: 0,
   },
 });
