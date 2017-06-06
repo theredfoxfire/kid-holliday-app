@@ -37,7 +37,9 @@ export default class PromoPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchPromo();
+    setTimeout(() => {
+      this.props.fetchPromo();
+    }, 400);
   }
 
   render() {
@@ -47,7 +49,7 @@ export default class PromoPage extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
             <TitleBar
-              title="Discounts & Promotions"
+              title="Events"
             />
           </View>
           <ScrollView>
@@ -63,7 +65,7 @@ export default class PromoPage extends Component {
             <View style={styles.itemPlaceContainer}>
               <Image source={{uri: `http://liburananak.com/images/events/${item.image_small}`}} style={styles.image} resizeMode="stretch" />
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{item.title_promotion.substr(0,25)}{item.title_promotion.length > 25 ? '...' : null}</Text>
+                <Text style={styles.title}>{item.title_event.substr(0,25)}{item.title_event.length > 25 ? '...' : null}</Text>
                 <Text>{item.location.substr(0,60)}{item.location.length > 60 ? '...' : null}</Text>
               </View>
             </View>
@@ -83,7 +85,7 @@ export default class PromoPage extends Component {
                   <Button
                       text="ADD TO TODO LIST"
                       inverted
-                      onPress={() => newTodo('discount_promotion', item.id, currentUser.username)}
+                      onPress={() => newTodo('kids_parent_event', item.id, currentUser.username)}
                     /> : <View />
                 }
               </View>
@@ -95,7 +97,7 @@ export default class PromoPage extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
             <TitleBar
-              title="Discounts & Promotions"
+              title="Events"
             />
           </View>
           <ScrollView>

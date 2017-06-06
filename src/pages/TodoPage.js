@@ -100,6 +100,8 @@ export default class TodoPage extends Component {
            todoType = 'fun';
          } else if (item.module === 'la_discounts_promotions') {
            todoType = 'promo';
+         } else if (item.module === 'la_kids_parents') {
+           todoType = 'event';
          }
         list.push(
           <View key={idx}>

@@ -54,7 +54,7 @@ export default class DrawerComponent extends Component {
             </DrawerMenuItem>
             {todos}
             <DrawerMenuItem onPress={onPressPromo} onSwipe={onPressClose}>
-              <Icon name="monetization-on" style={styles.icon} /><Text style={styles.drawerItemLable}>Discounts & Promotions</Text>
+              <Icon name="monetization-on" style={styles.icon} /><Text style={styles.drawerItemLable}>Events</Text>
             </DrawerMenuItem>
             <View style={styles.headerBottom}>
               <Image

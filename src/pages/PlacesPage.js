@@ -118,18 +118,20 @@ export default class PlacesPage extends Component {
         cityOptions.push({value: item.id, label: item.kota_kabupaten});
       });
       let list = [];
-      list.push(
-        <View key={1}>
-        <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
-          <View style={styles.listContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{searchData.title ? searchData.title.substr(0,55) : null}{searchData.title ? searchData.title.length > 55 ? '...' : null : null}</Text>
-              <Text style={styles.subtitle}>{searchData.location ? searchData.location.substr(0,70) : null}{searchData.location ? searchData.location.length > 70 ? '...' : null : null}</Text>
+      Object.values(searchData).forEach((item, idx) => {
+        list.push(
+          <View key={1}>
+          <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
+            <View style={styles.listContainer}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{searchData.title ? searchData.title.substr(0,55) : null}{searchData.title ? searchData.title.length > 55 ? '...' : null : null}</Text>
+                <Text style={styles.subtitle}>{searchData.location ? searchData.location.substr(0,70) : null}{searchData.location ? searchData.location.length > 70 ? '...' : null : null}</Text>
+              </View>
             </View>
+          </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        </View>
-      );
+        );
+      });
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>

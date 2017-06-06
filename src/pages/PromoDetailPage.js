@@ -62,7 +62,7 @@ export default class PromoDetailPage extends Component {
           ToastAndroid.show(error, ToastAndroid.LONG);
       });
     } else if (value === 2) {
-      newTodo('discount_promotion', promoDetailResult.id, currentUser.username);
+      newTodo('kids_parent_event', promoDetailResult.id, currentUser.username);
     }
   }
 
@@ -86,7 +86,7 @@ export default class PromoDetailPage extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
             <TitleBar
-              title="Discounts & Promotions Detail"
+              title="Events Detail"
               iconName="arrow-back"
               onIconButtonPress={backToPromo}
               rightIcon="more-vert"
@@ -108,7 +108,7 @@ export default class PromoDetailPage extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
           <TitleBar
-            title="Discounts & Promotions Detail"
+            title="Events Detail"
             iconName="arrow-back"
             onIconButtonPress={backToPromo}
             rightIcon="more-vert"

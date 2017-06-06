@@ -36,9 +36,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginLeft: -18,
     marginRight: 2,
+    marginTop: 10,
     backgroundColor: '#f7f7f7',
     width: getScreenSize().width * 0.80,
-    height: 80,
+    height: 90,
   },
   headerBottomRight: {
     marginLeft: 10,
