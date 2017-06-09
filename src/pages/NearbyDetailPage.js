@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   ToastAndroid,
+  WebView,
 } from 'react-native';
 import {
   Button,
@@ -14,8 +15,7 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PlaceDetailPage-style';
 import autobind from 'class-autobind';
-import {ContentView} from './ContentView';
-import getContentFromHTML from '../selectors/getContentFromHTML';
+import SERVER_API from '../constants/defaultServerAPIUrl';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 type State = {
@@ -51,11 +51,11 @@ export default class NearbyDetailPage extends Component {
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
           if (eventId) {
-            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+            ToastAndroid.showWithGravity('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG, ToastAndroid.CENTER);
           }
         })
         .catch((error: string) => {
-          ToastAndroid.show(error, ToastAndroid.LONG);
+          ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     } else if (value === 2) {
       newTodo('kids_holiday_spots', nearbyDetailResult.id, currentUser.username);
@@ -63,20 +63,18 @@ export default class NearbyDetailPage extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.fetchDetail(this.props.selectedNearbyID);
-    }, 400);
+    this.props.fetchDetail(this.props.selectedNearbyID);
   }
 
   render() {
-    let {backToNearby, isFetchNearbyDetailLoading, nearbyDetailResult, currentUser, isPostTodoLoading} = this.props;
+    let {backToNearby, nearbyDetailResult, currentUser, isPostTodoLoading} = this.props;
     let index = 0;
     let todoOption = currentUser.username ? { key: index++, label: 'Add to my todo list', value: 2 } : { key: index++};
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
         todoOption,
     ];
-    if (isFetchNearbyDetailLoading || isPostTodoLoading) {
+    if (isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -97,7 +95,6 @@ export default class NearbyDetailPage extends Component {
         </View>
       );
     } else {
-      let {content} = getContentFromHTML(nearbyDetailResult.content);
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -112,11 +109,11 @@ export default class NearbyDetailPage extends Component {
           </View>
           <View style={styles.contentContainer}>
             <ScrollView>
-              <Text style={styles.title}>{nearbyDetailResult.title}</Text>
-              <Text style={styles.text}>{nearbyDetailResult.location}</Text>
-              <ContentView content={content} />
+              <WebView
+                source={{uri: `${SERVER_API}/detail.php?act=detail&type=holiday&id=${this.props.selectedNearbyID}`}}
+                style={styles.textContainer}
+              />
             </ScrollView>
-            <View style={{height: 50}}/>
           </View>
         </View>
       );

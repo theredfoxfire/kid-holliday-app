@@ -18,7 +18,7 @@ export function* watchProvinceSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_PROVINCE_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -37,7 +37,7 @@ export function* watchCitySaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_CITY_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -56,7 +56,7 @@ export function* watchPlaceByCitySaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_PLACE_BY_CITY_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

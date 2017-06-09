@@ -18,7 +18,7 @@ export function* watchPromoSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_PROMO_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -37,7 +37,7 @@ export function* watchPromoDetailSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_PROMO_DETAIL_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

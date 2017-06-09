@@ -21,9 +21,9 @@ export default StyleSheet.create({
     marginBottom: 15,
   },
   contentContainer: {
-    height: getScreenSize().height * 0.9,
-    marginHorizontal: 10,
-    paddingHorizontal: 10,
+    height: getScreenSize().height,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   barContainer: {
     height: 60,
@@ -39,5 +39,9 @@ export default StyleSheet.create({
   text: {
     fontWeight: 'bold',
     marginBottom: 15,
+  },
+  textContainer: {
+    height: getScreenSize().height,
+    width: getScreenSize().width * 0.95,
   },
 });

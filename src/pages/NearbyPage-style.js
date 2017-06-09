@@ -13,8 +13,8 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   image: {
-    width: 90,
-    height: 60,
+    width: getScreenSize().width * 0.20,
+    height: 55,
   },
   placeContainer: {
     height: 110,
@@ -34,11 +34,12 @@ export default StyleSheet.create({
   },
   itemPlaceContainer: {
     height: 50,
+    width: getScreenSize().width * 0.90,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   titleContainer: {
-    width: 270,
+    width: getScreenSize().width * 0.70,
     marginLeft: 10,
   },
   title: {
@@ -46,7 +47,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   distanceContainer: {
-    width: 140,
+    width: 120,
     marginTop: 10,
     marginLeft: 5,
   },
@@ -54,11 +55,11 @@ export default StyleSheet.create({
     color: LA_BLUE_OLD,
   },
   buttonContainer: {
-    width: 210,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    width: getScreenSize().width * 0.90,
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
-    marginRight: 5,
+    marginTop: 15,
   },
   init: {
     justifyContent: 'center',

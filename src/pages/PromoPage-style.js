@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   image: {
-    width: 90,
+    width: getScreenSize().width * 0.20,
     height: 60,
   },
   placeContainer: {
@@ -24,8 +24,6 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     marginBottom: 10,
     backgroundColor: '#fff',
-    marginRight: 10,
-    marginLeft: 12,
   },
   barContainer: {
     height: 60,
@@ -36,15 +34,17 @@ export default StyleSheet.create({
   itemPlaceContainer: {
     height: 65,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    width: getScreenSize().width * 0.90,
   },
   bottomPlaceContainer: {
     height: 45,
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    width: getScreenSize().width * 0.90,
   },
   titleContainer: {
-    width: 260,
+    width: getScreenSize().width * 0.70,
     marginLeft: 10,
   },
   title: {
@@ -52,14 +52,15 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   distanceContainer: {
-    width: 120,
+    width: getScreenSize().width * 0.20,
     marginTop: 10,
   },
   distance: {
     color: LA_BLUE_OLD,
   },
   buttonContainer: {
-    width: 220,
+    marginTop: 20,
+    width: getScreenSize().width * 0.70,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     flexDirection: 'row',

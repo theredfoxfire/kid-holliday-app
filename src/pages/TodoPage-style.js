@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   image: {
-    width: 90,
+    width: getScreenSize().width * 0.20,
     height: 70,
   },
   placeContainer: {
@@ -33,12 +33,13 @@ export default StyleSheet.create({
     marginTop: -5,
   },
   itemPlaceContainer: {
+    width: getScreenSize().width * 0.90,
     height: 70,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   titleContainer: {
-    width: 220,
+    width: getScreenSize().width * 0.55,
     marginLeft: 10,
     marginTop: -5,
   },
@@ -47,7 +48,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   checklistContainer: {
-    width: 30,
+    width: getScreenSize().width * 0.15,
   },
   checlist: {
     marginTop: 15,

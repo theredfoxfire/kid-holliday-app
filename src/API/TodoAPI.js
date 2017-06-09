@@ -20,7 +20,7 @@ const TodoAPI = {
     return await fetchJSON(`/todolist.php?act=list&un=${username}`);
   },
   async todoDetails(id: string, type: string): Promise<FetchReturn> {
-    return await fetchJSON(`/detail.php?act=detail&id=${id}&type=${type}`);
+    return await fetchJSON(`/detail.php?act=detail&id=${id}&type=${type}&is_todo=1`);
   },
   async addTodo(module: string, module_id: string, user: string): Promise<FetchReturn> {
     return await fetchJSON(`/todolist.php?act=new&un=${user}&module=${module}&module_id=${module_id}`);

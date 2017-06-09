@@ -19,7 +19,7 @@ export function* watchTodoSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_TODO_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -38,7 +38,7 @@ export function* watchTodoDetailSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_TODO_DETAIL_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -51,11 +51,11 @@ export function* watchNewTodoSaga(): any {
       let {module, module_id, user} = action;
       let result = yield call(TodoAPI.addTodo, module, module_id, user);
       yield put({type: 'POST_NEW_TODO_SUCCESS'});
-      ToastAndroid.show('Add new Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity('Add new Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
     } catch (error) {
       yield put({type: 'POST_NEW_TODO_FAILED', error});
-      // ToastAndroid.show(error.message, ToastAndroid.LONG);
-      ToastAndroid.show('Add new Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
+      // ToastAndroid.showWithGravity('Add new Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -74,11 +74,11 @@ export function* watchRemoveTodoSaga(): any {
         throw new Error('Data Todo kosong.');
       }
       yield put({type: 'REMOVE_TODO_SUCCESS'});
-      ToastAndroid.show('Remove Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity('Remove Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
     } catch (error) {
       yield put({type: 'REMOVE_TODO_FAILED', error});
-      // ToastAndroid.show(error.message, ToastAndroid.LONG);
-      ToastAndroid.show('Remove Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
+      // ToastAndroid.showWithGravity('Remove Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -96,11 +96,11 @@ export function* watchActionTodoSaga(): any {
       } else {
         throw new Error('Data Todo kosong.');
       }
-      ToastAndroid.show('Update Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity('Update Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
     } catch (error) {
       yield put({type: 'ACTION_TODO_FAILED', error});
-      // ToastAndroid.show(error.message, ToastAndroid.LONG);
-      ToastAndroid.show('Update Todo success', ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
+      // ToastAndroid.showWithGravity('Update Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

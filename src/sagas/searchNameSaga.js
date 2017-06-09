@@ -12,14 +12,14 @@ export function* watchSearchNameSaga(): any {
     try {
       let {name} = action;
       let result = yield call(SearchAPI.searchName, name);
-      if (result.data.length > 0) {
-        yield put({type: 'FETCH_SEARCH_NAME_SUCCESS', searchNameResult: result.data[0]});
+      if (Object.keys(result.data.place).length > 0) {
+        yield put({type: 'FETCH_SEARCH_NAME_SUCCESS', searchNameResult: result.data.place});
       } else {
-        throw new Error('Data Places kosong.');
+        throw new Error('Data dengan keyword tersebut kosong.');
       }
     } catch (error) {
       yield put({type: 'FETCH_SEARCH_NAME_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -38,7 +38,7 @@ export function* watchSearchNameDetailSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_SEARCH_NAME_DETAIL_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

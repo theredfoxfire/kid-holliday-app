@@ -20,7 +20,7 @@ export function* watchNearbySaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_NEARBY_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }
@@ -39,7 +39,7 @@ export function* watchNearbyDetailSaga(): any {
       }
     } catch (error) {
       yield put({type: 'FETCH_NEARBY_DETAIL_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

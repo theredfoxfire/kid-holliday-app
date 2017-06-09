@@ -130,7 +130,7 @@ export default class LoginPage extends Component {
           <Button
             text="MASUK"
             onPress={() => this._onLoginSubmit()}
-            style={{width: 300}}
+            style={styles.buttonWidth}
           />
         </View>
       </View>

@@ -54,7 +54,16 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
         if (action.key === 'promoDetail') {
           return {
             ...state,
-            isFetchPromoDetailLoadingDetaiLoading: true,
+            isFetchPromoDetailLoading: true,
+          };
+        }
+        return state;
+      }
+      case 'RESET_ROUTE': {
+        if (action.key === 'places') {
+          return {
+            ...state,
+            isFetchSearchNameLoading: true,
           };
         }
         return state;

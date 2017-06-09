@@ -9,6 +9,7 @@ import {
 import {
   Button,
   TitleBar,
+  ResponsiveImage,
 } from '../core-ui';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PromoPage-style';
@@ -49,7 +50,7 @@ export default class PromoPage extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
             <TitleBar
-              title="Events"
+              title="Kids Events"
             />
           </View>
           <ScrollView>
@@ -63,15 +64,15 @@ export default class PromoPage extends Component {
         list.push(
           <View style={styles.placeContainer} key={idx}>
             <View style={styles.itemPlaceContainer}>
-              <Image source={{uri: `http://liburananak.com/images/events/${item.image_small}`}} style={styles.image} resizeMode="stretch" />
+              <ResponsiveImage source={{uri: `http://liburananak.com/images/events/${item.image_small}`}} style={styles.image} />
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>{item.title_event.substr(0,25)}{item.title_event.length > 25 ? '...' : null}</Text>
-                <Text>{item.location.substr(0,60)}{item.location.length > 60 ? '...' : null}</Text>
+                <Text>{item.location.substr(0,32)}{item.location.length > 32 ? '...' : null}</Text>
+                <Text style={styles.distance}>{item.event_start} s/d {item.event_end}</Text>
               </View>
             </View>
             <View style={styles.bottomPlaceContainer}>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>{item.event_start} s/d {item.event_end}</Text>
               </View>
               <View style={styles.buttonContainer}>
                 <Button
@@ -97,14 +98,14 @@ export default class PromoPage extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
             <TitleBar
-              title="Events"
+              title="Kids Events"
             />
           </View>
           <ScrollView>
             {
               list.length > 0 ? list :
               <View style={styles.init}>
-                <Text style={styles.lableText}>There is no promotions or discounts for today.</Text>
+                <Text style={styles.lableText}>There is no available event.</Text>
               </View>
             }
           </ScrollView>

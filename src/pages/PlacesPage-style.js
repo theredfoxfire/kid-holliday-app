@@ -3,9 +3,11 @@
 import {
   StyleSheet,
   Platform,
+  Dimensions,
 } from 'react-native';
 import {getScreenSize} from '../helpers/getSize';
-import {LA_RED, LA_BLUE_LIGHT, GREY, LA_WHITE} from '../constants/color';
+import {LA_RED, LA_BLUE_LIGHT, GREY, LA_WHITE, LA_GREY} from '../constants/color';
+const mainWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   mainContainer: {
@@ -13,7 +15,7 @@ export default StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
   formContainer: {
-    height: 180,
+    height: 150,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -31,19 +33,19 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
   },
   titleContainer: {
-    width: 300,
+    width: mainWidth * 0.9,
     marginTop: 5,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: LA_RED,
   },
   subtitle: {
-    color: LA_RED,
   },
   field: {
-    width: 300,
+    width: mainWidth * 0.9,
     backgroundColor: GREY,
     marginTop: 15,
     height: 50,
@@ -68,7 +70,7 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   lableContainer: {
-    width: 300,
+    width: mainWidth * 0.9,
     marginTop: 15,
   },
   lableText: {

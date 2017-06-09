@@ -10,6 +10,8 @@ const height = Platform.OS === 'ios' ? 175 : 250;
 
 export default StyleSheet.create({
   mainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
   },
@@ -31,11 +33,11 @@ export default StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover'
+    width: getScreenSize().width,
+    height: getScreenSize().height,
   },
   formContainer: {
+    width: getScreenSize().width * 0.9,
     height: 200,
     zIndex: 2,
     justifyContent: 'center',
@@ -43,6 +45,7 @@ export default StyleSheet.create({
     marginBottom: -20,
   },
   buttonContainer: {
+    width: getScreenSize().width * 0.9,
     height: 220,
     zIndex: 1,
     justifyContent: 'center',

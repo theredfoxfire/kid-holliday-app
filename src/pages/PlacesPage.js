@@ -69,6 +69,12 @@ export default class PlacesPage extends Component {
     };
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.searchNameAction(this.state.keyword);
+    }, 400);
+  }
+
   _onPressSearch() {
     this.props.searchNameAction(this.state.keyword);
     dismissKeyboard;
@@ -89,6 +95,9 @@ export default class PlacesPage extends Component {
             />
           </View>
           <View style={styles.formContainer}>
+            <View style={styles.lableContainer}>
+              <Text style={styles.lableText}>Search place by name:</Text>
+            </View>
             <View style={styles.field}>
               <TextField placeholder="Type the name of place"
                 onIconPressEnd={() => searchNameAction(this.state.keyword)}
@@ -108,7 +117,6 @@ export default class PlacesPage extends Component {
         </View>
       );
     } else {
-      let searchData = searchNameResult.place ? searchNameResult.place : {};
       let provinceOptions = [];
       let cityOptions = [];
       Object.values(province).forEach((item, idx) => {
@@ -118,14 +126,14 @@ export default class PlacesPage extends Component {
         cityOptions.push({value: item.id, label: item.kota_kabupaten});
       });
       let list = [];
-      Object.values(searchData).forEach((item, idx) => {
+      Object.values(searchNameResult).forEach((item, idx) => {
         list.push(
-          <View key={1}>
-          <TouchableOpacity onPress={() => placeDetail(searchData.id)}>
+          <View key={idx}>
+          <TouchableOpacity onPress={() => placeDetail(item.id)}>
             <View style={styles.listContainer}>
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{searchData.title ? searchData.title.substr(0,55) : null}{searchData.title ? searchData.title.length > 55 ? '...' : null : null}</Text>
-                <Text style={styles.subtitle}>{searchData.location ? searchData.location.substr(0,70) : null}{searchData.location ? searchData.location.length > 70 ? '...' : null : null}</Text>
+                <Text style={styles.title}>{item.title ? item.title.substr(0,55) : null}{item.title ? item.title.length > 55 ? '...' : null : null}</Text>
+                <Text style={styles.subtitle}>{item.location ? item.location.substr(0,70) : null}{item.location ? item.location.length > 70 ? '...' : null : null}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -160,7 +168,7 @@ export default class PlacesPage extends Component {
               <Text style={styles.lableText}>Search place by name:</Text>
             </View>
             <View style={styles.field}>
-              <TextField placeholder="Type the name of place"
+              <TextField placeholder="Where to, what todo..."
                 onIconPressEnd={() => this._onPressSearch()}
                 iconNameEnd="search" iconStyleEnd={styles.iconStyleEnd}
                 onChangeText={this._onKeywordChange}
@@ -173,11 +181,10 @@ export default class PlacesPage extends Component {
             </View>
           </View>
           <ScrollView>
-            {!searchData.title ?
+            {list.length > 0 ? list :
               <View style={styles.init}>
                 <Text style={styles.lableText}>Where to, what todo...</Text>
-              </View>:
-              list
+              </View>
             }
           </ScrollView>
         </View>

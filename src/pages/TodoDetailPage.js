@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   ToastAndroid,
+  WebView,
 } from 'react-native';
 import {
   Button,
@@ -14,9 +15,8 @@ import {
 import styles from './TodoDetailPage-style';
 import autobind from 'class-autobind';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
-import {ContentView} from './ContentView';
-import getContentFromHTML from '../selectors/getContentFromHTML';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
+import SERVER_API from '../constants/defaultServerAPIUrl';
 
 type State = {
 
@@ -39,9 +39,7 @@ export default class TodoDetailPage extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.fetchDetail(this.props.todoDetailID.id, this.props.todoDetailID.todoType);
-    }, 400);
+    this.props.fetchDetail(this.props.todoDetailID.id, this.props.todoDetailID.todoType);
   }
 
   _onOptionSelect(value: string) {
@@ -55,43 +53,21 @@ export default class TodoDetailPage extends Component {
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
           if (eventId) {
-            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+            ToastAndroid.showWithGravity('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG, ToastAndroid.CENTER);
           }
         })
         .catch((error: string) => {
-          ToastAndroid.show(error, ToastAndroid.LONG);
+          ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     }
   }
 
   render() {
-    let {backToTodo, todoDetailResult, isFetchTodoDetailLoading} = this.props;
-    let {content} = getContentFromHTML(todoDetailResult.content);
+    let {backToTodo, todoDetailResult} = this.props;
     let index = 0;
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
     ];
-    if (isFetchTodoDetailLoading) {
-      return (
-        <View style={styles.mainContainer}>
-          <View style={styles.barContainer}>
-            <TitleBar
-              title="Todo Detail"
-              iconName="arrow-back"
-              onIconButtonPress={backToTodo}
-              rightIcon="more-vert"
-              optionData={data}
-              onRighIconPress={this._onOptionSelect}
-            />
-          </View>
-          <View style={styles.contentContainer}>
-            <ScrollView>
-              <LoadingIndicator />
-            </ScrollView>
-          </View>
-        </View>
-      );
-    }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
@@ -106,10 +82,10 @@ export default class TodoDetailPage extends Component {
         </View>
         <View style={styles.contentContainer}>
           <ScrollView>
-            <Text style={styles.title}>{todoDetailResult.title}</Text>
-            <Text style={styles.text}>{todoDetailResult.location}</Text>
-            <ContentView content={content} />
-            <View style={{height: 50}}/>
+            <WebView
+              source={{uri: `${SERVER_API}/detail.php?act=detail&type=${this.props.todoDetailID.todoType}&id=${this.props.todoDetailID.id}`}}
+              style={styles.textContainer}
+            />
           </ScrollView>
         </View>
       </View>

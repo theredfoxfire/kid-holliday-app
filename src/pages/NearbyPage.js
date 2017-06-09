@@ -57,7 +57,7 @@ export default class NearbyPage extends Component {
       },
       (error) => {
         this.setState({error: error.message});
-        return ToastAndroid.show(`${error.message}, please TURN OFF your GPS for run faster.`, ToastAndroid.LONG);
+        return ToastAndroid.showWithGravity(`${error.message}, please TURN OFF your GPS for run faster.`, ToastAndroid.LONG, ToastAndroid.CENTER);
       },
       { enableHighAccuracy: false, timeout: 15000, maximumAge: 1000 },
     );
@@ -125,12 +125,10 @@ export default class NearbyPage extends Component {
               <Image source={{uri: `http://liburananak.com/images/holiday_spots/tn/${item.thumb}`}} style={styles.image} resizeMode="stretch" />
               <View style={styles.titleContainer}>
                 <Text style={styles.title}>{item.title.substr(0,45)}{item.title.length > 45 ? '...' : null}</Text>
+                <Text style={styles.distance}>Distance {item.dist.toString()} km</Text>
               </View>
             </View>
             <View style={styles.itemPlaceContainer}>
-              <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>Distance {item.dist.toString()} km</Text>
-              </View>
               <View style={styles.buttonContainer}>
                 <Button
                     text="INFO"

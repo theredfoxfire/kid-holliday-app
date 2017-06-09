@@ -19,7 +19,7 @@ export function* watchLoginSaga(): any {
       }
     } catch (error) {
       yield put({type: 'LOGIN_FAILED', error});
-      ToastAndroid.show(error.message, ToastAndroid.LONG);
+      ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
     yield take('LOGOUT_SUCCESS');

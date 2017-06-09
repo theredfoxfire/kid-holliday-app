@@ -6,6 +6,7 @@ import {
   Text,
   ScrollView,
   ToastAndroid,
+  WebView,
 } from 'react-native';
 import {
   Button,
@@ -14,8 +15,7 @@ import {
 import LoadingIndicator from '../core-ui/LoadingIndicator';
 import styles from './PromoDetailPage-style';
 import autobind from 'class-autobind';
-import {ContentView} from './ContentView';
-import getContentFromHTML from '../selectors/getContentFromHTML';
+import SERVER_API from '../constants/defaultServerAPIUrl';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 type State = {
@@ -48,18 +48,18 @@ export default class PromoDetailPage extends Component {
     let {promoDetailResult, currentUser, newTodo} = this.props;
     if (value === 1) {
       const eventConfig = {
-        title: promoDetailResult.title_promotion,
+        title: promoDetailResult.title_event,
         location: promoDetailResult.location,
       };
 
       AddCalendarEvent.presentNewCalendarEventDialog(eventConfig)
         .then(eventId => {
           if (eventId) {
-            ToastAndroid.show('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG);
+            ToastAndroid.showWithGravity('Event berhasil ditambahkan ke kalender.', ToastAndroid.LONG, ToastAndroid.CENTER);
           }
         })
         .catch((error: string) => {
-          ToastAndroid.show(error, ToastAndroid.LONG);
+          ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     } else if (value === 2) {
       newTodo('kids_parent_event', promoDetailResult.id, currentUser.username);
@@ -67,21 +67,18 @@ export default class PromoDetailPage extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.fetchDetail(this.props.selectedPromoID);
-    }, 400);
+    this.props.fetchDetail(this.props.selectedPromoID);
   }
 
   render() {
-    let {backToPromo, promoDetailResult, isPostTodoLoading, isFetchPromoDetailLoading, currentUser} = this.props;
+    let {backToPromo, promoDetailResult, isPostTodoLoading, currentUser} = this.props;
     let index = 0;
     let todoOption = currentUser.username ? { key: index++, label: 'Add to my todo list', value: 2 } : {key: index++};
     const data = [
         { key: index++, label: 'Add to calendar', value: 1 },
         todoOption,
     ];
-    let {content} = getContentFromHTML(promoDetailResult.content);
-    if (isPostTodoLoading || isFetchPromoDetailLoading) {
+    if (isPostTodoLoading) {
       return (
         <View style={styles.mainContainer}>
           <View style={styles.barContainer}>
@@ -96,8 +93,6 @@ export default class PromoDetailPage extends Component {
           </View>
           <View style={styles.contentContainer}>
             <ScrollView>
-              <Text style={styles.title}>{promoDetailResult.title_promotion}</Text>
-              <Text style={styles.text}>{promoDetailResult.location}</Text>
               <LoadingIndicator />
             </ScrollView>
           </View>
@@ -118,11 +113,10 @@ export default class PromoDetailPage extends Component {
         </View>
         <View style={styles.contentContainer}>
           <ScrollView>
-            <Text style={styles.title}>{promoDetailResult.title_promotion}</Text>
-            <Text style={styles.text}>{promoDetailResult.location}</Text>
-            <Image source={{uri: `http://liburananak.com/images/events/${promoDetailResult.image_small}`}} style={styles.image} resizeMode="stretch" />
-            <ContentView content={content} />
-            <View style={{height: 50}}/>
+            <WebView
+              source={{uri: `${SERVER_API}/detail.php?act=detail&type=event&id=${this.props.selectedPromoID}`}}
+              style={styles.textContainer}
+            />
           </ScrollView>
         </View>
       </View>
