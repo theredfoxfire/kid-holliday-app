@@ -45,7 +45,7 @@ export default class PromoDetailPage extends Component {
   }
 
   _onOptionSelect(value: string) {
-    let {promoDetailResult, currentUser, newTodo} = this.props;
+    let {promoDetailResult, currentUser, newTodo, selectedPromoID} = this.props;
     if (value === 1) {
       const eventConfig = {
         title: promoDetailResult.title_event,
@@ -62,7 +62,7 @@ export default class PromoDetailPage extends Component {
           ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     } else if (value === 2) {
-      newTodo('kids_parent_event', promoDetailResult.id, currentUser.username);
+      newTodo('kids_parent_event', selectedPromoID, currentUser.username);
     }
   }
 

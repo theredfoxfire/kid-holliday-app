@@ -30,8 +30,8 @@ export function* watchPromoDetailSaga(): any {
     try {
       let {id} = action;
       let result = yield call(PromoAPI.promoDetails, id);
-      if (result.data.length > 0) {
-        yield put({type: 'FETCH_PROMO_DETAIL_SUCCESS', promoDetailResult: result.data[0]});
+      if (result.data) {
+        yield put({type: 'FETCH_PROMO_DETAIL_SUCCESS', promoDetailResult: result.data});
       } else {
         throw new Error('Data Promo kosong.');
       }

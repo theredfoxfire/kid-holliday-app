@@ -32,8 +32,8 @@ export function* watchNearbyDetailSaga(): any {
     try {
       let {id} = action;
       let result = yield call(SearchAPI.searchNameDetail, id);
-      if (result.data.length > 0) {
-        yield put({type: 'FETCH_NEARBY_DETAIL_SUCCESS', nearbyDetailResult: result.data[0]});
+      if (result.data) {
+        yield put({type: 'FETCH_NEARBY_DETAIL_SUCCESS', nearbyDetailResult: result.data});
       } else {
         throw new Error('Data Nearby kosong.');
       }

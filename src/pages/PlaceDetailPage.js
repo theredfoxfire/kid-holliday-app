@@ -41,7 +41,7 @@ export default class PlaceDetailPage extends Component {
   }
 
   _onOptionSelect(value: string) {
-    let {searchNameDetailResult, currentUser, newTodo} = this.props;
+    let {searchNameDetailResult, currentUser, newTodo, placeDetailID} = this.props;
     if (value === 1) {
       const eventConfig = {
         title: searchNameDetailResult.title,
@@ -58,7 +58,7 @@ export default class PlaceDetailPage extends Component {
           ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     } else if (value === 2) {
-      newTodo('kids_holiday_spots', searchNameDetailResult.id, currentUser.username);
+      newTodo('kids_holiday_spots', placeDetailID, currentUser.username);
     }
   }
 

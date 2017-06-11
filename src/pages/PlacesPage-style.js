@@ -32,17 +32,24 @@ export default StyleSheet.create({
     borderBottomColor: GREY,
     borderBottomWidth: 2,
   },
+  image: {
+    width: getScreenSize().width * 0.20,
+    height: 60,
+  },
   titleContainer: {
     width: mainWidth * 0.9,
     marginTop: 5,
     justifyContent: 'center',
     alignItems: 'flex-start',
+    flexDirection: 'row',
   },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  subtitle: {
+  titleTextContainer: {
+    width: mainWidth * 0.70,
+    marginLeft: 5,
   },
   field: {
     width: mainWidth * 0.9,

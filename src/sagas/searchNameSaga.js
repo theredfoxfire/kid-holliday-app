@@ -31,8 +31,8 @@ export function* watchSearchNameDetailSaga(): any {
     try {
       let {id} = action;
       let result = yield call(SearchAPI.searchNameDetail, id);
-      if (result.data.length > 0) {
-        yield put({type: 'FETCH_SEARCH_NAME_DETAIL_SUCCESS', searchNameDetailResult: result.data[0]});
+      if (result.data) {
+        yield put({type: 'FETCH_SEARCH_NAME_DETAIL_SUCCESS', searchNameDetailResult: result.data});
       } else {
         throw new Error('Data Places kosong.');
       }

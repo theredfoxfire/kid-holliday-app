@@ -31,8 +31,8 @@ export function* watchTodoDetailSaga(): any {
     try {
       let {id, todoType} = action;
       let result = yield call(TodoAPI.todoDetails, id, todoType);
-      if (result.data.length > 0) {
-        yield put({type: 'FETCH_TODO_DETAIL_SUCCESS', todoDetailResult: result.data[0]});
+      if (result.data) {
+        yield put({type: 'FETCH_TODO_DETAIL_SUCCESS', todoDetailResult: result.data});
       } else {
         throw new Error('Data Todo kosong.');
       }
@@ -55,7 +55,6 @@ export function* watchNewTodoSaga(): any {
     } catch (error) {
       yield put({type: 'POST_NEW_TODO_FAILED', error});
       ToastAndroid.showWithGravity(error.message, ToastAndroid.LONG, ToastAndroid.CENTER);
-      // ToastAndroid.showWithGravity('Add new Todo success', ToastAndroid.LONG, ToastAndroid.CENTER);
       continue;
     }
   }

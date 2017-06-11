@@ -12,6 +12,7 @@ import {
   TitleBar,
   TextField,
   Dropdown,
+  ResponsiveImage,
 } from '../core-ui';
 import styles from './PlacesPage-style';
 import LoadingIndicator from '../core-ui/LoadingIndicator';
@@ -108,7 +109,7 @@ export default class PlacesPage extends Component {
                 rootStyle={styles.rootField} />
             </View>
             <View style={styles.lableContainer}>
-              <Text style={styles.lableText}>Recomended Places:</Text>
+              <Text style={styles.lableText}>Recommended Places:</Text>
             </View>
           </View>
           <ScrollView>
@@ -132,8 +133,11 @@ export default class PlacesPage extends Component {
           <TouchableOpacity onPress={() => placeDetail(item.id)}>
             <View style={styles.listContainer}>
               <View style={styles.titleContainer}>
-                <Text style={styles.title}>{item.title ? item.title.substr(0,55) : null}{item.title ? item.title.length > 55 ? '...' : null : null}</Text>
-                <Text style={styles.subtitle}>{item.location ? item.location.substr(0,70) : null}{item.location ? item.location.length > 70 ? '...' : null : null}</Text>
+                <ResponsiveImage source={{uri: item.thumb}} style={styles.image} />
+                <View style={styles.titleTextContainer}>
+                  <Text style={styles.title}>{item.title ? item.title.substr(0,30) : null}{item.title ? item.title.length > 30 ? '...' : null : null}</Text>
+                  <Text style={styles.subtitle}>{item.location ? item.location.substr(0,45) : null}{item.location ? item.location.length > 45 ? '...' : null : null}</Text>
+                </View>
               </View>
             </View>
           </TouchableOpacity>
@@ -177,7 +181,7 @@ export default class PlacesPage extends Component {
                 rootStyle={styles.rootField} />
             </View>
             <View style={styles.lableContainer}>
-              <Text style={styles.lableText}>Recomended Places:</Text>
+              <Text style={styles.lableText}>Recommended Places:</Text>
             </View>
           </View>
           <ScrollView>

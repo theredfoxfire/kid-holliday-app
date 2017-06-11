@@ -41,7 +41,7 @@ export default class NearbyDetailPage extends Component {
   }
 
   _onOptionSelect(value: string) {
-    let {nearbyDetailResult, currentUser, newTodo} = this.props;
+    let {nearbyDetailResult, currentUser, newTodo, selectedNearbyID} = this.props;
     if (value === 1) {
       const eventConfig = {
         title: nearbyDetailResult.title,
@@ -58,7 +58,7 @@ export default class NearbyDetailPage extends Component {
           ToastAndroid.showWithGravity(error, ToastAndroid.LONG, ToastAndroid.CENTER);
       });
     } else if (value === 2) {
-      newTodo('kids_holiday_spots', nearbyDetailResult.id, currentUser.username);
+      newTodo('kids_holiday_spots', selectedNearbyID, currentUser.username);
     }
   }
 

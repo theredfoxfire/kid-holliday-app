@@ -13,6 +13,7 @@ export default StyleSheet.create({
   mainContainer: {
     flex: 1,
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+    backgroundColor: '#fff',
   },
   image: {
     width: getScreenSize().width * 0.9,

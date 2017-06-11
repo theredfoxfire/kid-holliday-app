@@ -42,6 +42,10 @@ export default class NearbyPage extends Component {
   }
 
   componentWillMount() {
+    this._getPosition();
+  }
+
+  _getPosition() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         let latitude = position.coords.latitude;
@@ -59,7 +63,7 @@ export default class NearbyPage extends Component {
         this.setState({error: error.message});
         return ToastAndroid.showWithGravity(`${error.message}, please TURN OFF your GPS for run faster.`, ToastAndroid.LONG, ToastAndroid.CENTER);
       },
-      { enableHighAccuracy: false, timeout: 15000, maximumAge: 1000 },
+      { enableHighAccuracy: false, timeout: 25000, maximumAge: 1000 },
     );
   }
 
@@ -98,6 +102,7 @@ export default class NearbyPage extends Component {
             <ScrollView>
               <View style={styles.init}>
                 <Text style={styles.lableText}>There is no place near you.</Text>
+                <Button onPress={() => this._getPosition()} text="Retry" style={{width: 100}}/>
               </View>
             </ScrollView>
           </View>
