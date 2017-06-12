@@ -67,6 +67,17 @@ export default class NearbyPage extends Component {
     );
   }
 
+  _retry() {
+    this.setState(
+      {
+        latitude: null,
+        longitude: null,
+        error: null,
+      }
+    );
+    this._getPosition();
+  }
+
   _handleGetDirections = (lat, long) => {
     const data = {
       source: {
@@ -102,7 +113,7 @@ export default class NearbyPage extends Component {
             <ScrollView>
               <View style={styles.init}>
                 <Text style={styles.lableText}>There is no place near you.</Text>
-                <Button onPress={() => this._getPosition()} text="Retry" style={{width: 100}}/>
+                <Button onPress={() => this._retry()} text="Retry" style={{width: 100}}/>
               </View>
             </ScrollView>
           </View>
