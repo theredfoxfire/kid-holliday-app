@@ -3,24 +3,25 @@
 import {
   StyleSheet,
   Platform,
+  Dimensions,
 } from 'react-native';
-import {getScreenSize} from '../helpers/getSize';
+const mainWidth = Dimensions.get('window').width;
 
 import {INFO_TEXT} from '../constants/color';
 
 export default StyleSheet.create({
   mainContainer: {
-    justifyContent: 'space-between',
-    padding: 15,
+    marginTop: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: (Platform.OS === 'ios') ? 15 : 50,
-    height: 225,
-  },
-  formContainer: {
+    height: 200,
   },
   field: {
-    width: 300,
+    width: mainWidth * 0.80,
   },
   forgot: {
+    width: mainWidth * 0.80,
     justifyContent: 'center',
     alignItems: 'center',
     height: 120,
@@ -37,5 +38,8 @@ export default StyleSheet.create({
   },
   signUp: {
     flexDirection: 'row',
+  },
+  buttonWidth: {
+    width: mainWidth * 0.80,
   },
 });

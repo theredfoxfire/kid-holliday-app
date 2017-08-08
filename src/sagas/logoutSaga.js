@@ -10,11 +10,9 @@ function getToken(state) {
 
 function* logout() {
   try {
-    let token = yield select(getToken);
-    yield call(UserAPI.logout, token);
+    yield call(UserAPI.logout);
     yield put({type: 'LOGOUT_SUCCESS'});
   } catch (error) {
-    // yield put({type: 'LOGOUT_FAILED', error: error});
     yield put({type: 'LOGOUT_SUCCESS'}); // TODO: wait for logout API in backend fixed
   }
 }

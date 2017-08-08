@@ -4,7 +4,7 @@ import {View, Platform, AppState, ToastAndroid} from 'react-native';
 import {Provider} from 'react-redux';
 
 import createAppStore from './store/configureStore';
-import RootNavigation from './navigation/RootNavigation';
+import RootNavigationContainer from './navigation/RootNavigationContainer';
 
 let store = createAppStore();
 
@@ -17,7 +17,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <RootNavigation />
+          <RootNavigationContainer />
         </View>
       </Provider>
     );

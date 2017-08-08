@@ -21,8 +21,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#a8a7a4',
     alignItems: 'center',
   },
   option: {
@@ -56,8 +54,6 @@ export default StyleSheet.create({
     maxHeight: height * 0.5,
   },
   optionItem: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#DDD',
     alignItems: 'center',
     backgroundColor: '#FFF',
   },

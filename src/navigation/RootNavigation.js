@@ -16,6 +16,16 @@ import {LA_GREY} from '../constants/color';
 import InitialPageContainer from '../containers/InitialPageContainer';
 import LoginPageContainer from '../containers/LoginPageContainer';
 import HomePageContainer from '../containers/HomePageContainer';
+import PlacesPageContainer from '../containers/PlacesPageContainer';
+import NearbyPageContainer from '../containers/NearbyPageContainer';
+import TodoPageContainer from '../containers/TodoPageContainer';
+import PromoPageContainer from '../containers/PromoPageContainer';
+import ForgotPageContainer from '../containers/ForgotPageContainer';
+import SignupPageContainer from '../containers/SignupPageContainer';
+import NearbyDetailPageContainer from '../containers/NearbyDetailPageContainer';
+import TodoDetailPageContainer from '../containers/TodoDetailPageContainer';
+import PromoDetailPageContainer from '../containers/PromoDetailPageContainer';
+import PlaceDetailPageContainer from '../containers/PlaceDetailPageContainer';
 
 let {CardStack: NavigationCardStack} = NavigationExperimental;
 
@@ -30,16 +40,17 @@ type Props = {
   isDrawerOpen: boolean;
   popRoute: () => void;
   backToHome: () => void;
-  showWalkthrough: () => void;
   onPressClose: () => void;
-  onPressSearch: () => void;
-  onPressProfile: () => void;
+  onPressPlaces: () => void;
   onPressLogout: () => void;
-  onPressContactUs: () => void;
+  onPressNearBy: () => void;
+  onPressTodo: () => void;
+  onPressPromo: () => void;
+  closeDrawer: () => void;
   autoLogin: (userAuth: {email: string; password: string}) => void;
 };
 
-class RootNavigation extends Component {
+export default class RootNavigation extends Component {
   props: Props;
 
   constructor() {
@@ -56,18 +67,22 @@ class RootNavigation extends Component {
   }
 
   _handleBackAction() {
-    if (this.props.navigation.index === 0) {
-      let firstRouteKey = this.props.navigation.routes[0].key;
-      if (['walkthrough', 'initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
-        Alert.alert('Liburan Anak', 'Keluar dari aplikasi?', [
-          {text: 'Iya', onPress: () => BackAndroid.exitApp()},
-          {text: 'Tidak'},
-        ]);
-      } else {
-        this.props.backToHome();
-      }
+    if (this.props.isDrawerOpen) {
+      this.props.closeDrawer();
     } else {
-      this.props.popRoute();
+      if (this.props.navigation.index === 0) {
+        let firstRouteKey = this.props.navigation.routes[0].key;
+        if (['initial', 'homepage'].indexOf(firstRouteKey) !== -1) {
+          Alert.alert('Liburan Anak', 'Keluar dari aplikasi?', [
+            {text: 'Iya', onPress: () => BackAndroid.exitApp()},
+            {text: 'Tidak'},
+          ]);
+        } else {
+          this.props.backToHome();
+        }
+      } else {
+        this.props.popRoute();
+      }
     }
     return true;
   }
@@ -78,13 +93,23 @@ class RootNavigation extends Component {
       case 'login': return <LoginPageContainer />;
       case 'initial': return <InitialPageContainer />;
       case 'homepage': return <HomePageContainer />;
+      case 'places': return <PlacesPageContainer />;
+      case 'nearby': return <NearbyPageContainer />;
+      case 'todo': return <TodoPageContainer />;
+      case 'promo': return <PromoPageContainer />;
+      case 'forgot': return <ForgotPageContainer />;
+      case 'signup': return <SignupPageContainer />;
+      case 'nearbyDetail': return <NearbyDetailPageContainer />;
+      case 'todoDetail': return <TodoDetailPageContainer />;
+      case 'promoDetail': return <PromoDetailPageContainer />;
+      case 'placeDetail': return <PlaceDetailPageContainer />;
     }
   }
 
   render() {
     let firstRouteKey = this.props.navigation.routes[0].key;
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, zIndex: 1}}>
         <Drawer
           open={this.props.isDrawerOpen}
           type="overlay"
@@ -113,63 +138,3 @@ class RootNavigation extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  let {navigation, isDrawerOpen} = state;
-  return {
-    navigation,
-    isDrawerOpen,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    popRoute: () => {
-      dispatch({
-        type: 'POP_ROUTE',
-      });
-    },
-    backToHome: () => {
-      dispatch({
-        type: 'RESET_ROUTE',
-        key: 'homepage',
-      });
-    },
-    onPressClose() {
-      dispatch({
-        type: 'CLOSE_DRAWER',
-      });
-    },
-    onPressLogout: () => {
-      dispatch({type: 'LOGOUT'});
-      dispatch({type: 'RESET_ROUTE', key: 'initial'});
-      dispatch({
-        type: 'CLOSE_DRAWER',
-      });
-    },
-    onPressContactUs: () => {
-      dispatch({
-        type: 'PUSH_ROUTE', key: 'contactUs',
-      });
-      dispatch({
-        type: 'CLOSE_DRAWER',
-      });
-    },
-    onPressProfile() {
-      dispatch({
-        type: 'PUSH_ROUTE',
-        key: 'editProfile',
-      });
-      dispatch({
-        type: 'CLOSE_DRAWER',
-      });
-    },
-    onPressSearch() {
-    },
-    autoLogin(userAuth) {
-      dispatch({type: 'LOGIN', userAuth});
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RootNavigation);

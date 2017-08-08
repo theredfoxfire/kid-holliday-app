@@ -14,17 +14,6 @@ export function mapStateToProps(state: RootState) {
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    onLoginSubmit(user: UserLogin) {
-      user = {
-        email: user.email.trim(),
-        password: user.password,
-      };
-      // dispatch({type: 'LOGIN', userAuth: user});
-      dispatch({type: 'RESET_ROUTE', key: 'homepage'}); // Temporary for dismiss login page
-    },
-    onPressForgot() {
-      // dispatch({type: 'PUSH_ROUTE', key: 'forgotPassword'});
-    },
     onFacebookLoginButtonPress() {
       // dispatch({type: 'FACEBOOK_LOGIN'});
       dispatch({type: 'RESET_ROUTE', key: 'homepage'});

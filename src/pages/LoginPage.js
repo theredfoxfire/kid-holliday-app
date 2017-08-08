@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  AsyncStorage,
+  Alert,
+  Linking,
 } from 'react-native';
 import {
   Button,
@@ -22,8 +23,9 @@ type State = {
 };
 type Props = {
   isLoading: boolean;
-  // onLoginSubmit: (user: {email: string; password: string}) => null;
-  onLoginSubmit: () => null;
+  onLoginSubmit: (user: {email: string; password: string}) => null;
+  onPressSignup: () => void;
+  onPressForgot: () => void;
 };
 
 export default class LoginPage extends Component {
@@ -41,11 +43,22 @@ export default class LoginPage extends Component {
     });
   }
   _onLoginSubmit() {
-    // this.props.onLoginSubmit({
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // });
-    this.props.onLoginSubmit();
+    // let regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    // else if (!regexEmail.test(this.state.email)) {
+    //   Alert.alert('Liburan Anak', 'Periksa kolom email, isilah email dengan benar.', [
+    //     {text: 'OK!'},
+    //   ]);
+    // }
+    if ((this.state.email === '') || (this.state.password === '')) {
+      Alert.alert('Liburan Anak', 'Periksa form login, pastikan semua kolom sudah terisi.', [
+        {text: 'OK!'},
+      ]);
+    } else {
+      this.props.onLoginSubmit({
+        email: this.state.email,
+        password: this.state.password,
+      });
+    }
   }
   constructor() {
     super(...arguments);
@@ -66,12 +79,24 @@ export default class LoginPage extends Component {
   //     }
   //   });
   // }
+  handleClick = (url: string) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        Alert.alert('Liburan Anak', 'Tidak bisa membuka link.', [
+          {text: 'OK!'},
+        ]);
+      }
+    });
+  };
   render() {
-    let {isLoading, onPressForgot} = this.props;
+    let {isLoading, onPressForgot, onPressSignup} = this.props;
     let pressForgot = onPressForgot ? onPressForgot : () => {};
-    // if (isLoading) {
-    //   return <LoadingIndicator />;
-    // }
+    let pressSignup = onPressSignup ? onPressSignup : () => {};
+    if (isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.field}>
@@ -88,23 +113,24 @@ export default class LoginPage extends Component {
             placeholderStyle={styles.placeholderStyle}
             placeholderTextColor="#9a9a9a"
             value={this.state.password}
+            secureTextEntry
             onChangeText={this._onPasswordChange}
           />
         </View>
         <View style={styles.forgot}>
-          <TouchableOpacity onPress={() => pressForgot()}>
+          <TouchableOpacity onPress={() => this.handleClick('http://www.liburananak.com/id/users/forgot')}>
             <Text style={styles.labelForgot}>Forgot Password?</Text>
           </TouchableOpacity>
           <View style={styles.signUp}>
             <Text>Don't have any account? </Text>
-            <TouchableOpacity onPress={() => pressForgot()}>
+            <TouchableOpacity onPress={() => this.handleClick('http://www.liburananak.com/id/users/registration')}>
               <Text style={styles.labelForgot}>Sign Up.</Text>
             </TouchableOpacity>
           </View>
           <Button
             text="MASUK"
-            onPress={this.props.onLoginSubmit}
-            style={{width: 300}}
+            onPress={() => this._onLoginSubmit()}
+            style={styles.buttonWidth}
           />
         </View>
       </View>

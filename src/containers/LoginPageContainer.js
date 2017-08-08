@@ -19,16 +19,18 @@ export function mapStateToProps(state: RootState) {
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    // onLoginSubmit(user: UserLogin) {
-    //   user = {
-    //     email: user.email.trim(),
-    //     password: user.password,
-    //   };
-    //   console.log(user);
-    //   dispatch({type: 'LOGIN', userAuth: user});
-    // },
-    onLoginSubmit() {
-      dispatch({type: 'RESET_ROUTE', key: 'homepage'});
+    onLoginSubmit(user: UserLogin) {
+      user = {
+        email: user.email,
+        password: user.password,
+      };
+      dispatch({type: 'LOGIN', userAuth: user});
+    },
+    onPressForgot() {
+      dispatch({type: 'PUSH_ROUTE', key: 'forgot'});
+    },
+    onPressSignup() {
+      dispatch({type: 'PUSH_ROUTE', key: 'signup'});
     },
   };
 }

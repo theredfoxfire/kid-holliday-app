@@ -6,120 +6,25 @@ import type {Loaders} from '../types/Loaders';
 export default function loadingIndicatorReducer(state: Loaders, action: Action) {
   if (state == null) {
     return {
-      isPlantDetailLoading: true,
       isLoginLoading: false,
-      isMarketPriceLoading: false,
-      isThreadLoading: true,
-      isThreadDetailLoading: true,
-      isUpdatePaswordLoading: false,
-      isUpdatePaswordSuccess: false,
-      isForgotPaswordLoading: false,
-      isForgotPaswordSuccess: false,
-      isProductDetailLoading: true,
-      isSubmitThreadLoading: false,
-      isFetchingMoreProductData: false,
-      isReportForumLoading: false,
-      isUserGroupLoading: false,
-      isOtherGroupLoading: false,
-      isInvitedGroupLoading: false,
-      isFetchingMoreStoreProduct: false,
-      isJoinGroupLoading: false,
-      isNearestStoreLoading: false,
-      isFetchingGroupMembersLoading: false,
-      isFetchingGroupThreadsLoading: false,
-      isFetchingMorePlants: true,
-      isFetchingGroupDetail: true,
-      isNotificationLoading: true,
-      isPlantingGuidesLoading: true,
-      isPlantingGuideDetailLoading: true,
-      isGamificationBonusLoading: true,
-      isRewardListLoading: true,
+      isFetchTodoLoading: false,
+      isFetchSearchNameLoading: false,
+      isFetchPromoLoading: false,
+      isFetchNearbyLoading: false,
+      isFetchSearchNameDetailLoading: false,
+      isFetchNearbyDetailLoading: false,
+      isFetchTodoDetailLoading: false,
+      isFetchPromoDetailLoading: false,
+      isPostTodoLoading: false,
+      isRemoveTodoLoading: false,
+      isRemoveTodoDone: false,
+      isActionTodoLoading: false,
+      isFetchProvinceLoading: false,
+      isFetchCityLoading: false,
+      isFetchPlaceByCity: false,
     };
   } else {
     switch (action.type) {
-      case 'FETCH_PLANTS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingMorePlants: true,
-        };
-      }
-      case 'FETCH_REWARDS_SUCCESS': {
-        return {
-          ...state,
-          isRewardListLoading: false,
-        };
-      }
-      case 'FETCH_PLANTS_SUCCESS':
-      case 'FETCH_PLANTS_FAILED': {
-        return {
-          ...state,
-          isFetchingMorePlants: false,
-        };
-      }
-      case 'FETCH_STORE_BY_PRODUCT_REQUESTED': {
-        return {
-          ...state,
-          isNearestStoreLoading: true,
-        };
-      }
-      case 'FETCH_STORE_BY_PRODUCT_SUCCESS':
-      case 'FETCH_STORE_BY_PRODUCT_FAILED': {
-        return {
-          ...state,
-          isNearestStoreLoading: false,
-        };
-      }
-      case 'FETCH_STORE_PRODUCTS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingMoreStoreProduct: true,
-        };
-      }
-      case 'FETCH_STORE_PRODUCTS_FAILED':
-      case 'FETCH_STORE_PRODUCTS_SUCCESS': {
-        return {
-          ...state,
-          isFetchingMoreStoreProduct: false,
-        };
-      }
-      case 'FETCH_PRODUCT_LIST_REQUESTED': {
-        return {
-          ...state,
-          isFetchingMoreProductData: true,
-        };
-      }
-      case 'FETCH_PRODUCT_LIST_FAILED':
-      case 'FETCH_PRODUCT_LIST_SUCCESS': {
-        return {
-          ...state,
-          isFetchingMoreProductData: false,
-        };
-      }
-      case 'FETCH_PRODUCT_DETAIL_SUCCESS': {
-        return {
-          ...state,
-          isProductDetailLoading: false,
-        };
-      }
-      case 'FETCH_PRODUCT_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isProductDetailLoading: true,
-        };
-      }
-      case 'FETCH_PLANT_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isPlantDetailLoading: true,
-        };
-      }
-      case 'FETCH_PLANT_DETAIL_FAILED':
-      case 'FETCH_PLANT_DETAIL_SUCCESS': {
-        return {
-          ...state,
-          isPlantDetailLoading: false,
-        };
-      }
       case 'FACEBOOK_LOGIN':
       case 'LOGIN': {
         return {
@@ -127,22 +32,52 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           isLoginLoading: true,
         };
       }
-      case 'UPDATE_PASSWORD': {
+      case 'PUSH_ROUTE': {
+        if (action.key === 'nearbyDetail') {
+          return {
+            ...state,
+            isFetchNearbyDetailLoading: true,
+          };
+        }
+        if (action.key === 'todoDetail') {
+          return {
+            ...state,
+            isFetchTodoDetailLoading: true,
+          };
+        }
+        if (action.key === 'placeDetail') {
+          return {
+            ...state,
+            isFetchSearchNameDetaiLoading: true,
+          };
+        }
+        if (action.key === 'promoDetail') {
+          return {
+            ...state,
+            isFetchPromoDetailLoading: true,
+          };
+        }
+        return state;
+      }
+      case 'RESET_ROUTE': {
+        if (action.key === 'places') {
+          return {
+            ...state,
+            isFetchSearchNameLoading: true,
+          };
+        }
+        return state;
+      }
+      case 'GOTO_TODO': {
         return {
           ...state,
-          isUpdatePaswordSuccess: false,
+          isFetchTodoLoading: true,
         };
       }
-      case 'UPDATE_PASSWORD_POST': {
+      case 'GOTO_PROMO': {
         return {
           ...state,
-          isUpdatePaswordLoading: true,
-        };
-      }
-      case 'FORGOT_PASSWORD_POST': {
-        return {
-          ...state,
-          isForgotPaswordLoading: true,
+          isFetchPromoLoading: true,
         };
       }
       case 'FACEBOOK_LOGIN_ERROR':
@@ -155,627 +90,193 @@ export default function loadingIndicatorReducer(state: Loaders, action: Action) 
           isLoginLoading: false,
         };
       }
-      case 'UPDATE_PASSWORD_POST_SUCCESS': {
+      case 'FETCH_TODO': {
         return {
           ...state,
-          isUpdatePaswordLoading: false,
-          isUpdatePaswordSuccess: true,
+          isFetchTodoLoading: true,
         };
       }
-      case 'FORGOT_PASSWORD': {
+      case 'FETCH_TODO_FAILED':
+      case 'FETCH_TODO_SUCCESS': {
         return {
           ...state,
-          isForgotPaswordSuccess: false,
+          isFetchTodoLoading: false,
         };
       }
-      case 'FORGOT_PASSWORD_POST_SUCCESS': {
+      case 'FETCH_TODO_DETAIL': {
         return {
           ...state,
-          isForgotPaswordLoading: false,
-          isForgotPaswordSuccess: true,
+          isFetchTodoDetailLoading: true,
         };
       }
-      case 'REGISTER_USER': {
+      case 'FETCH_TODO_DETAIL_FAILED':
+      case 'FETCH_TODO_DETAIL_SUCCESS': {
         return {
           ...state,
-          isRegisterUserLoading: true,
+          isFetchTodoDetailLoading: false,
         };
       }
-      case 'REGISTER_USER_FAILED':
-      case 'REGISTER_USER_ERROR':
-      case 'REGISTER_USER_SUCCESS': {
+      case 'FETCH_SEARCH_NAME': {
         return {
           ...state,
-          isRegisterUserLoading: false,
+          isFetchSearchNameLoading: true,
         };
       }
-      case 'PUSH_ROUTE': {
-        if (action.key === 'marketPrice') {
-          return {
-            ...state,
-            isMarketPriceLoading: true,
-          };
-        }
-        return state;
-      }
-      case 'FETCH_MARKET_PRICE_INITIAL_SUCCESS': {
+      case 'FETCH_SEARCH_NAME_FAILED':
+      case 'FETCH_SEARCH_NAME_SUCCESS': {
         return {
           ...state,
-          isMarketPriceLoading: false,
+          isFetchSearchNameLoading: false,
         };
       }
-      case 'FETCH_PROVINCE_PRICE_REQUESTED': {
+      case 'FETCH_SEARCH_NAME_DETAIL': {
         return {
           ...state,
-          isProvincePriceLoading: true,
+          isFetchSearchNameDetailLoading: true,
         };
       }
-      case 'FETCH_PROVINCE_PRICE_SUCCESS': {
+      case 'FETCH_SEARCH_NAME_DETAIL_FAILED':
+      case 'FETCH_SEARCH_NAME_DETAIL_SUCCESS': {
         return {
           ...state,
-          isProvincePriceLoading: false,
+          isFetchSearchNameDetailLoading: false,
         };
       }
-      case 'FETCH_COMMODITY_PRICE_REQUESTED': {
+      case 'FETCH_PROMO': {
         return {
           ...state,
-          isCommodityPriceLoading: true,
+          isFetchPromoLoading: true,
         };
       }
-      case 'FETCH_COMMODITY_PRICE_SUCCESS': {
+      case 'FETCH_PROMO_FAILED':
+      case 'FETCH_PROMO_SUCCESS': {
         return {
           ...state,
-          isCommodityPriceLoading: false,
+          isFetchPromoLoading: false,
         };
       }
-      case 'FETCH_MORE_PEST_REQUESTED': {
+      case 'FETCH_PROMO_DETAIL': {
         return {
           ...state,
-          isFetchingMorePestData: true,
+          isFetchPromoDetailLoading: true,
         };
       }
-      case 'FETCH_MORE_DISEASE_REQUESTED': {
+      case 'FETCH_PROMO_DETAIL_FAILED':
+      case 'FETCH_PROMO_DETAIL_SUCCESS': {
         return {
           ...state,
-          isFetchingMoreDiseaseData: true,
+          isFetchPromoDetailLoading: false,
         };
       }
-      case 'FETCH_MORE_PEST_SUCCESS': {
+      case 'POST_NEW_TODO': {
         return {
           ...state,
-          isFetchingMorePestData: false,
+          isPostTodoLoading: true,
         };
       }
-      case 'FETCH_MORE_DISEASE_SUCCESS': {
+      case 'POST_NEW_TODO_FAILED':
+      case 'POST_NEW_TODO_SUCCESS': {
         return {
           ...state,
-          isFetchingMoreDiseaseData: false,
+          isPostTodoLoading: false,
         };
       }
-      case 'FETCH_PEST_DISEASE_REQUESTED': {
+      case 'FETCH_NEARBY': {
         return {
           ...state,
-          isPestDiseaseLoading: true,
+          isFetchNearbyLoading: true,
         };
       }
-      case 'FETCH_PEST_DISEASE_SUCCESS': {
+      case 'FETCH_NEARBY_FAILED':
+      case 'FETCH_NEARBY_SUCCESS': {
         return {
           ...state,
-          isPestDiseaseLoading: false,
+          isFetchNearbyLoading: false,
         };
       }
-      case 'FETCH_FILTERED_DISEASE_REQUESTED': {
+      case 'FETCH_NEARBY_DETAIL': {
         return {
           ...state,
-          isFetchingMoreDiseaseData: true,
+          isFetchNearbyDetailLoading: true,
         };
       }
-      case 'FETCH_FILTERED_DISEASE_SUCCESS': {
+      case 'FETCH_NEARBY_DETAIL_FAILED':
+      case 'FETCH_NEARBY_DETAIL_SUCCESS': {
         return {
           ...state,
-          isFetchingMoreDiseaseData: false,
+          isFetchNearbyDetailLoading: false,
         };
       }
-      case 'FETCH_FILTERED_DISEASE_FAILED': {
+      case 'FETCH_PROVINCE': {
         return {
           ...state,
-          isFetchingMoreDiseaseData: false,
+          isFetchProvinceLoading: true,
         };
       }
-      case 'FETCH_FILTERED_PEST_REQUESTED': {
+      case 'FETCH_PROVINCE_FAILED':
+      case 'FETCH_PROVINCE_SUCCESS': {
         return {
           ...state,
-          isFetchingMorePestData: true,
+          isFetchProvinceLoading: false,
         };
       }
-      case 'FETCH_FILTERED_PEST_FAILED': {
+      case 'FETCH_CITY': {
         return {
           ...state,
-          isFetchingMorePestData: false,
+          isFetchCityLoading: true,
         };
       }
-      case 'FETCH_FILTERED_PEST_SUCCESS': {
+      case 'FETCH_CITY_FAILED':
+      case 'FETCH_CITY_SUCCESS': {
         return {
           ...state,
-          isFetchingMorePestData: false,
+          isFetchCityLoading: false,
         };
       }
-      case 'FETCH_OTHER_THREADS_REQUESTED':
-      case 'FETCH_USER_THREADS_REQUESTED': {
+      case 'REMOVE_TODO': {
         return {
           ...state,
-          isThreadLoading: true,
+          isRemoveTodoLoading: true,
+          isRemoveTodoDone: false,
         };
       }
-      case 'FETCH_OTHER_THREADS_SUCCESS':
-      case 'FETCH_OTHER_THREADS_FAILED':
-      case 'FETCH_USER_THREADS_SUCCESS':
-      case 'FETCH_USER_THREADS_FAILED': {
+      case 'REMOVE_TODO_FAILED':
+      case 'REMOVE_TODO_SUCCESS': {
         return {
           ...state,
-          isThreadLoading: false,
+          isRemoveTodoLoading: false,
+          isRemoveTodoDone: true,
         };
       }
-      case 'LIKE_THREAD_REQUESTED': {
+      case 'ACTION_TODO': {
         return {
           ...state,
-          isLikeThreadLoading: true,
+          isActionTodoLoading: true,
         };
       }
-      case 'LIKE_THREAD_SUCCESS':
-      case 'LIKE_THREAD_FAILED': {
+      case 'ACTION_TODO_FAILED':
+      case 'ACTION_TODO_SUCCESS': {
         return {
           ...state,
-          isLikeThreadLoading: false,
+          isActionTodoLoading: false,
         };
       }
-      case 'FETCH_PEST_DETAIL_REQUESTED': {
+      case 'FETCH_PLACE_BY_CITY': {
         return {
           ...state,
-          isPestDiseaseDetailLoading: true,
+          isFetchPlaceByCity: true,
         };
       }
-      case 'FETCH_PEST_DETAIL_SUCCESS': {
+      case 'FETCH_PLACE_BY_CITY_FAILED':
+      case 'FETCH_PLACE_BY_CITY_SUCCESS': {
         return {
           ...state,
-          isPestDiseaseDetailLoading: false,
+          isFetchPlaceByCity: false,
         };
       }
-      case 'FETCH_DISEASE_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isPestDiseaseDetailLoading: true,
-        };
-      }
-      case 'FETCH_DISEASE_DETAIL_SUCCESS': {
-        return {
-          ...state,
-          isPestDiseaseDetailLoading: false,
-        };
-      }
-      case 'FETCH_SEARCHED_PEST_REQUESTED': {
-        return {
-          ...state,
-          isFetchingMorePestData: true,
-        };
-      }
-      case 'FETCH_SEARCHED_PEST_SUCCESS': {
-        return {
-          ...state,
-          isFetchingMorePestData: false,
-        };
-      }
-      case 'FETCH_SEARCHED_PEST_FAILED': {
-        return {
-          ...state,
-          isFetchingMorePestData: false,
-        };
-      }
-      case 'FETCH_SEARCHED_DISEASE_REQUESTED': {
-        return {
-          ...state,
-          isFetchingMoreDiseaseData: true,
-        };
-      }
-      case 'FETCH_SEARCHED_DISEASE_SUCCESS': {
-        return {
-          ...state,
-          isFetchingMoreDiseaseData: false,
-        };
-      }
-      case 'FETCH_SEARCHED_DISEASE_FAILED': {
-        return {
-          ...state,
-          isFetchingMoreDiseaseData: false,
-        };
-      }
-      case 'FETCH_THREAD_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isThreadDetailLoading: true,
-        };
-      }
-      case 'FETCH_THREAD_DETAIL_SUCCESS':
-      case 'FETCH_THREAD_DETAIL_FAILED': {
-        return {
-          ...state,
-          isThreadDetailLoading: false,
-        };
-      }
-      case 'FETCH_COMMENTS_REQUESTED': {
-        return {
-          ...state,
-          isThreadCommentsLoading: true,
-        };
-      }
-      case 'FETCH_COMMENTS_SUCCESS':
-      case 'FETCH_COMMENTS_FAILED': {
-        return {
-          ...state,
-          isThreadCommentsLoading: false,
-        };
-      }
-      case 'LIKE_COMMENT_REQUESTED': {
-        return {
-          ...state,
-          isLikeCommentLoading: true,
-        };
-      }
-      case 'LIKE_COMMENT_SUCCESS':
-      case 'LIKE_COMMENT_FAILED': {
-        return {
-          ...state,
-          isLikeCommentLoading: false,
-        };
-      }
-      case 'POST_COMMENT_REQUESTED': {
-        return {
-          ...state,
-          isPostCommentLoading: true,
-        };
-      }
-      case 'POST_COMMENT_SUCCESS':
-      case 'POST_COMMENT_FAILED': {
-        return {
-          ...state,
-          isPostCommentLoading: false,
-        };
-      }
-      case 'FETCH_PRODUCT_REVIEW_REQUESTED': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: true,
-        };
-      }
-      case 'FETCH_PRODUCT_REVIEW_SUCCESS': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: false,
-        };
-      }
-      case 'POST_REVIEW_REQUESTED': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: true,
-        };
-      }
-      case 'POST_REVIEW_SUCCESS': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: false,
-        };
-      }
-      case 'POST_REVIEW_FAILED': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: false,
-          isProductDetailLoading: false,
-        };
-      }
-      case 'FETCH_PRODUCT_REVIEW_FAILED': {
-        return {
-          ...state,
-          isLoadMoreReviewLoading: false,
-        };
-      }
-      case 'SHARE_PLANT_TO_FORUM_REQUESTED':
-      case 'EDIT_THREAD_REQUESTED':
-      case 'CREATE_THREAD_REQUESTED': {
-        return {
-          ...state,
-          isSubmitThreadLoading: true,
-        };
-      }
-      case 'SHARE_PLANT_TO_FORUM_SUCCEED':
-      case 'SHARE_PLANT_TO_FORUM_FAILED':
-      case 'EDIT_THREAD_SUCCESS':
-      case 'EDIT_THREAD_FAILED':
-      case 'CREATE_THREAD_SUCCESS':
-      case 'CREATE_THREAD_FAILED': {
-        return {
-          ...state,
-          isSubmitThreadLoading: false,
-        };
-      }
-      case 'FETCH_FILTERED_THREADS_REQUESTED':
-      case 'FETCH_SEARCHED_THREADS_REQUESTED': {
-        return {
-          ...state,
-          isThreadLoading: true,
-        };
-      }
-      case 'FETCH_FILTERED_THREADS_SUCCESS':
-      case 'FETCH_FILTERED_THREADS_FAILED':
-      case 'FETCH_SEARCHED_THREADS_SUCCESS':
-      case 'FETCH_SEARCHED_THREADS_FAILED': {
-        return {
-          ...state,
-          isThreadLoading: false,
-        };
-      }
+
       default: {
         return state;
-      }
-      case 'REPORT_FORUM_ITEM_REQUESTED': {
-        return {
-          ...state,
-          isReportForumLoading: true,
-        };
-      }
-      case 'REPORT_FORUM_ITEM_SUCCESS':
-      case 'REPORT_FORUM_ITEM_FAILED': {
-        return {
-          ...state,
-          isReportForumLoading: false,
-        };
-      }
-      case 'FETCH_USER_GROUP_LIST_REQUESTED': {
-        return {
-          ...state,
-          isUserGroupLoading: true,
-        };
-      }
-      case 'FETCH_GROUP_LIST_REQUESTED': {
-        return {
-          ...state,
-          isOtherGroupLoading: true,
-        };
-      }
-      case 'FETCH_GROUP_INVITATION_LIST_REQUESTED': {
-        return {
-          ...state,
-          isInvitedGroupLoading: true,
-        };
-      }
-      case 'FETCH_USER_GROUP_LIST_SUCCESS':
-      case 'FETCH_USER_GROUP_LIST_FAILED': {
-        return {
-          ...state,
-          isUserGroupLoading: false,
-        };
-      }
-      case 'FETCH_GROUP_LIST_SUCCESS':
-      case 'FETCH_GROUP_LIST_FAILED': {
-        return {
-          ...state,
-          isOtherGroupLoading: false,
-        };
-      }
-      case 'FETCH_GROUP_INVITATION_LIST_SUCCESS':
-      case 'FETCH_GROUP_INVITATION_LIST_FAILED': {
-        return {
-          ...state,
-          isInvitedGroupLoading: false,
-        };
-      }
-      case 'FETCH_SEARCHED_GROUPS_REQUESTED': {
-        let {groupCategory} = action;
-        return {
-          ...state,
-          isUserGroupLoading: groupCategory === 'joined',
-          isOtherGroupLoading: groupCategory === 'not-joined',
-          isInvitedGroupLoading: groupCategory === 'invite',
-        };
-      }
-      case 'FETCH_SEARCHED_GROUPS_SUCCESS':
-      case 'FETCH_SEARCHED_GROUPS_FAILED': {
-        return {
-          ...state,
-          isUserGroupLoading: false,
-          isOtherGroupLoading: false,
-          isInvitedGroupLoading: false,
-        };
-      }
-      case 'CONFIRM_GROUP_INVITATION_REQUESTED':
-      case 'JOIN_GROUP_REQUESTED': {
-        return {
-          ...state,
-          isProcessGroupLoading: true,
-        };
-      }
-      case 'CONFIRM_GROUP_INVITATION_SUCCESS':
-      case 'CONFIRM_GROUP_INVITATION_FAILED':
-      case 'JOIN_GROUP_SUCCESS':
-      case 'JOIN_GROUP_FAILED': {
-        return {
-          ...state,
-          isProcessGroupLoading: false,
-        };
-      }
-      case 'FETCH_GROUP_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isFetchingGroupDetail: true,
-        };
-      }
-      case 'FETCH_GROUP_DETAIL_SUCCESS':
-      case 'FETCH_GROUP_DETAIL_FAILED': {
-        return {
-          ...state,
-          isFetchingGroupDetail: false,
-        };
-      }
-      case 'FETCH_GROUP_MEMBERS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingGroupMembersLoading: true,
-        };
-      }
-      case 'FETCH_GROUP_MEMBERS_SUCCESS':
-      case 'FETCH_GROUP_MEMBERS_FAILED': {
-        return {
-          ...state,
-          isFetchingGroupMembersLoading: false,
-        };
-      }
-      case 'FETCH_GROUP_THREADS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingGroupThreadsLoading: true,
-        };
-      }
-      case 'FETCH_GROUP_THREADS_SUCCESS':
-      case 'FETCH_GROUP_THREADS_FAILED': {
-        return {
-          ...state,
-          isFetchingGroupThreadsLoading: false,
-        };
-      }
-      case 'DELETE_THREAD_REQUESTED': {
-        return {
-          ...state,
-          isThreadDetailLoading: true,
-        };
-      }
-      case 'DELETE_THREAD_SUCCESS':
-      case 'DELETE_THREAD_FAILED': {
-        return {
-          ...state,
-          isThreadDetailLoading: false,
-        };
-      }
-      case 'FETCH_NOTIFICATION_REQUESTED': {
-        return {
-          ...state,
-          isNotificationLoading: true,
-        };
-      }
-      case 'FETCH_NOTIFICATION_SUCCEED':
-      case 'FETCH_NOTIFICATION_FAILED': {
-        return {
-          ...state,
-          isNotificationLoading: false,
-        };
-      }
-      case 'FETCH_CONTACT_DATA_REQUESTED': {
-        return {
-          ...state,
-          isFetchContactLoading: true,
-        };
-      }
-      case 'FETCH_CONTACT_DATA_SUCCEED':
-      case 'FETCH_CONTACT_DATA_FAILED': {
-        return {
-          ...state,
-          isFetchContactLoading: false,
-        };
-      }
-      case 'SUGGESTION_SUBMISSION_REQUESTED': {
-        return {
-          ...state,
-          isSubmitEmailLoading: true,
-        };
-      }
-      case 'SUGGESTION_SUBMISSION_SUCCEED':
-      case 'SUGGESTION_SUBMISSION_FAILED': {
-        return {
-          ...state,
-          isSubmitEmailLoading: false,
-        };
-      }
-      case 'FETCH_PLANTING_GUIDES_REQUESTED': {
-        return {
-          ...state,
-          isPlantingGuidesLoading: true,
-        };
-      }
-      case 'FETCH_PLANTING_GUIDES_SUCCEED':
-      case 'FETCH_PLANTING_GUIDES_FAILED': {
-        return {
-          ...state,
-          isPlantingGuidesLoading: false,
-        };
-      }
-      case 'FETCH_PLANTING_GUIDE_DETAIL_REQUESTED': {
-        return {
-          ...state,
-          isPlantingGuideDetailLoading: true,
-        };
-      }
-      case 'FETCH_PLANTING_GUIDE_DETAIL_SUCCEED':
-      case 'FETCH_PLANTING_GUIDE_DETAIL_FAILED': {
-        return {
-          ...state,
-          isPlantingGuideDetailLoading: false,
-        };
-      }
-      case 'FETCH_LEVELS_SUCCESS':
-      case 'FETCH_LEVELS_FAILED': {
-        return {
-          ...state,
-          isGamificationBonusLoading: false,
-        };
-      }
-      case 'FETCH_LEVELS_REQUESTED': {
-        return {
-          ...state,
-          isGamificationBonusLoading: true,
-        };
-      }
-      case 'FETCH_REWARDS_REQUESTED': {
-        return {
-          ...state,
-          isRewardListLoading: true,
-        };
-      }
-      case 'FETCH_GAMIFICATION_ACTIONS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingGamificationActions: true,
-        };
-      }
-      case 'FETCH_GAMIFICATION_ACTIONS_SUCCEED':
-      case 'FETCH_GAMIFICATION_ACTIONS_FAILED': {
-        return {
-          ...state,
-          isFetchingGamificationActions: false,
-        };
-      }
-      case 'FETCH_USER_GAMIFICATION_ACTIONS_REQUESTED': {
-        return {
-          ...state,
-          isFetchingUserGamificationActions: true,
-        };
-      }
-      case 'FETCH_USER_GAMIFICATION_ACTIONS_SUCCEED':
-      case 'FETCH_USER_GAMIFICATION_ACTIONS_FAILED': {
-        return {
-          ...state,
-          isFetchingUserGamificationActions: false,
-        };
-      }
-      case 'FETCH_USER_SCORES_REQUESTED': {
-        return {
-          ...state,
-          isFetchingUserScores: true,
-        };
-      }
-      case 'FETCH_USER_SCORES_SUCEED':
-      case 'FETCH_USER_SCORES_FAILED': {
-        return {
-          ...state,
-          isFetchingUserScores: false,
-        };
       }
     }
   }

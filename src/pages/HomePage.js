@@ -20,7 +20,7 @@ type State = {
 
 };
 type Props = {
-
+  currentUser: Object;
 };
 
 export default class HomePage extends Component {
@@ -33,6 +33,9 @@ export default class HomePage extends Component {
   }
 
   render() {
+    let {currentUser} = this.props;
+    let username = currentUser.username ?
+      `${currentUser.first_name} ${currentUser.last_name}` : 'Guest';
     return (
       <View style={styles.mainContainer}>
         <View style={styles.barContainer}>
@@ -45,7 +48,8 @@ export default class HomePage extends Component {
         </View>
         <View style={styles.welcomeContainer}>
           <Text style={styles.title}>Welcome to</Text>
-          <Text>Liburan Anak</Text>
+          <Text style={styles.subtitle}>Liburan Anak</Text>
+          <Text style={styles.subtitle}>{username}</Text>
         </View>
         <View style={styles.wall}>
           <Image source={backroungCover} style={styles.backgroundImage} />

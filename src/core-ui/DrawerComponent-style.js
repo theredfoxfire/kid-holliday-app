@@ -1,10 +1,8 @@
 //@flow
 import {StyleSheet, Dimensions, Platform} from 'react-native';
-import {LIGHT_GREY, LA_BLUE_OLD} from '../constants/color';
+import {LIGHT_GREY, LA_BLUE_OLD, LA_RED} from '../constants/color';
 
 import {getScreenSize} from '../helpers/getSize';
-
-const height = Platform.OS === 'ios' ? 75 : 100;
 
 export default StyleSheet.create({
   containerDrawer: {
@@ -27,18 +25,21 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   footerText: {
-    color: LA_BLUE_OLD,
+    color: LA_RED,
     fontSize: 14,
-    marginLeft: 20,
+    marginLeft: 5,
     fontWeight: 'bold',
   },
   headerBottom: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    marginLeft: -18,
+    marginRight: 2,
+    marginTop: 10,
     backgroundColor: '#f7f7f7',
-    paddingBottom: 40,
-    paddingTop: 30,
+    width: getScreenSize().width * 0.80,
+    height: 90,
   },
   headerBottomRight: {
     marginLeft: 10,
@@ -46,8 +47,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: getScreenSize().width * 0.40,
-    height: height,
+    width: getScreenSize().width * 0.80,
+    height: 100,
   },
   logoTop: {
     fontSize: 30,
@@ -75,7 +76,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   iconFooter: {
-    color: LA_BLUE_OLD,
+    color: LA_RED,
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -89,5 +90,12 @@ export default StyleSheet.create({
   onClose: {
     flex: 1,
     backgroundColor: LA_BLUE_OLD,
+  },
+  home: {
+    backgroundColor: '#fff',
+    marginRight: -10,
+    marginTop: -10,
+    marginLeft: -10,
+    paddingLeft: 30,
   },
 });

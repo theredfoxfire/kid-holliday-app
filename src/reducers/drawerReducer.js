@@ -12,6 +12,6 @@ export default function drawerReducer(state: boolean = initialState, action: Act
     case 'CLOSE_DRAWER': {
       return false;
     }
+    default: return state;
   }
-  return state;
 }

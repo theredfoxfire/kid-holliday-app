@@ -13,7 +13,7 @@ let styles = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: width / 12,
+    paddingLeft: 18,
     marginRight: 30,
   },
 });

@@ -33,9 +33,11 @@ export default async function fetchJSON(url: string, options: Object = {}, custo
     let errorMessage;
     if (!response.ok) {
       errorMessage = `Unexpected response status: ${response.status}`;
-    } else if (contentType !== 'application/json') {
-      errorMessage = `Unexpected response type: ${contentType}`;
     }
+    // disable headers check
+    //  else if (contentType !== 'application/json') {
+    //   errorMessage = `Unexpected response type: ${contentType}`;
+    // }
     if (errorMessage != null) {
       let error: Object = new Error(errorMessage);
       Object.assign(error, {

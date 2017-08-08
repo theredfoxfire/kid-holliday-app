@@ -3,6 +3,7 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 import autobind from 'class-autobind';
 import FixedRatioView from './FixedRatioView';
+import noImage from '../images/no-image.png';
 
 type Dimensions = {
   width: number;
@@ -90,7 +91,9 @@ export default class ResponsiveImage extends Component {
     let {isLoading, dimensions, error} = this.state;
     if (error != null) {
       return (
-        <View><Text>{error}</Text></View>
+        <View>
+          <Image source={noImage} resizeMode="contain" style={{height: 60, width: 60}}/>
+        </View>
       );
     }
     let loadingIndicator;

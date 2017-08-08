@@ -11,14 +11,11 @@ export default function currentUserReducer(state: User, action: Action) {
   switch (action.type) {
     case 'LOGIN_SUCCESS': {
       return {
-        ...state,
         ...action.currentUser,
       };
     }
     case 'LOGOUT_SUCCESS': {
-      return {
-        token: '',
-      };
+      return {};
     }
     case 'EDIT_PROFILE_SUBMITTED': {
       let {tempProfile} = action;
@@ -33,6 +30,7 @@ export default function currentUserReducer(state: User, action: Action) {
         ...action.user,
       };
     }
+
+    default: return state;
   }
-  return state;
 }

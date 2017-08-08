@@ -9,6 +9,7 @@ import {
 
 type Props = {
   uri: string;
+  style: StyleSet;
 };
 
 export default function WebView(props: Props) {
@@ -16,7 +17,7 @@ export default function WebView(props: Props) {
   return (
     <WebViewNative
       source={{uri}}
-      style={{flex: 1}}
+      style={[{flex: 1}, style]}
       renderLoading={() => {
         return (
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -27,6 +28,7 @@ export default function WebView(props: Props) {
           </View>
         );
       }}
+      {...props}
     />
   );
 }

@@ -7,7 +7,9 @@ import type {Dispatch} from '../types/Store';
 import HomePage from '../pages/HomePage';
 
 export function mapStateToProps(state: RootState) {
-  return {};
+  return {
+    currentUser: state.currentUser,
+  };
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
